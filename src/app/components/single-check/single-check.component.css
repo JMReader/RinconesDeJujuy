@@ -1,12 +1,23 @@
 .card{
-    padding: 9px;
-    
-    background-color: rgb(158, 178, 178);
+   border-radius: 6%;
+    padding: 1rem;
+    color: aliceblue;
+    background-color: rgb(9, 28, 73);
     display: flex;
    flex-wrap: wrap;
    flex-direction: column;
+    --bs-modal-bg: rgba(255, 255, 255, 0); 
+   
+}
+:root{
+    --bs-modal-bg: rgba(255, 255, 255, 0);
 }
 .fila{
     display: flex;
     flex-direction: row;
+}
+.btn-sig{
+    margin-left: 30%;
+    width: 40%;
+    background-color: rgb(4, 4, 46);
 }

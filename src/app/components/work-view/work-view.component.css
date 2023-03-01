@@ -1,4 +1,6 @@
 .mainCointainer{
+    color: aliceblue;
+    background-color: black;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -11,4 +13,16 @@
 }
 .d-flex{
     width: 30%;
+}
+.modal-content{
+   background-color:#fff0 !important;  
+}
+:root, .modal {
+    --bs-body-bg:#fff0;
+}
+.modal{
+    --bs-modal-bg: #fff0;
+}
+.modal-content{
+    background-color: #fff0 !important;
 }
