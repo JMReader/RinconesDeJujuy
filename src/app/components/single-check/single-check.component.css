@@ -1,0 +1,12 @@
+.card{
+    padding: 9px;
+    
+    background-color: rgb(158, 178, 178);
+    display: flex;
+   flex-wrap: wrap;
+   flex-direction: column;
+}
+.fila{
+    display: flex;
+    flex-direction: row;
+}

@@ -1,0 +1,14 @@
+.mainCointainer{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+.table{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.d-flex{
+    width: 30%;
+}
