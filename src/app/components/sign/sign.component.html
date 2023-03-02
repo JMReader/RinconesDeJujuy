@@ -1,0 +1,27 @@
+  <body class="fondo">
+
+  <br><br><br>
+  <div class="container" >
+
+    <div class="tarjeta">
+        <div *ngIf="conf==false">
+            <h4 class="text-center">Por favor, dibuje su firma</h4>
+            <canvas #sigPad width="300" height="200" (mousedown)="onMouseDown($event)"
+            (mousemove)="onMouseMove($event)" class="centrar" style="border-radius: 15px; background-color: rgb(253, 252, 203);"></canvas>
+            <br/>
+            <button type="button" class="btn btn-warning" style="margin: 8px; padding-inline: 115px;" (click)="clear()">Limpiar</button><br>
+            <button type="button" class="btn btn-warning" style="margin:  8px; padding-inline: 113px;" (click)="save()">Guardar</button>
+            <br/>
+        </div>
+        <div *ngIf="conf==true">
+          <h5 class="text-center">Su firma se ha registrado correctamente</h5><br>
+          <a type="button" href="/" class="btn btn-warning" style="padding-inline: 113px;">Volver a listado de reservas</a>
+        </div> 
+        <!-- <div class="tarjeta" *ngIf="conf==true">
+            <img style="background-color: aliceblue; border-radius: 15px" [src]="img">
+        </div> -->
+    </div>
+    
+  </div>
+
+</body>
