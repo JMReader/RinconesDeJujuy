@@ -3,6 +3,7 @@ export class CheckIN {
     apellido!: string;
     DNI!: number;
     FotoDni!:string;
+    CantAcomp!:number;
     FechaLLegada !:Date;
     FechaSalida !:Date;
     email!: string;
