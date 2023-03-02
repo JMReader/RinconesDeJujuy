@@ -1,0 +1,28 @@
+canvas
+{
+    border: 1px solid rgb(0, 0, 0)
+}
+
+.tarjeta{
+    margin: auto; 
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    max-width: 70vh;
+    background-color: rgba(255, 213, 136, 0.788);
+}
+
+.centrar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fondo{
+    background-image: url(https://www.civitatis.com/f/argentina/tilcara/tilcara.jpg);
+    background-repeat: no repeat;
+    background-attachment: fixed;
+    background-size:cover;
+}
