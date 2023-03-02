@@ -1,6 +1,3 @@
-
-
-
 <div id="Form-container">
   <div class="logo">
     <img class="logoF" src="assets/img/rinconesdeJuy.png">
@@ -10,21 +7,24 @@
       <h1>CHECK IN EN LINEA</h1>
       <h3>Gracias por visitar Termas El Corazon. Por favor realice un check in por cada habitación reservada, indicando
         los datos de todos los ocupantes por cada habitación.</h3>
-        
+
       <form>
         <p>
           <label for="nombre" class="colocar_nombre">Datos del titular de la reserva
             <span class="obligatorio">*</span>
           </label>
-          <input type="text" name="introducir_nombre" id="nombre" [(ngModel)]="check.nombre" required="obligatorio" placeholder="Nombres">
-          <input type="text" name="introducir_apellido" id="apellido" [(ngModel)]="check.apellido" required="obligatorio" placeholder="Apellidos">
+          <input type="text" name="introducir_nombre" id="nombre" [(ngModel)]="check.nombre" required="obligatorio"
+            placeholder="Nombres">
+          <input type="text" name="introducir_apellido" id="apellido" [(ngModel)]="check.apellido"
+            required="obligatorio" placeholder="Apellidos">
         </p>
 
         <p>
           <label for="nombre" class="colocar_nombre">Nº de Documento de Identidad
             <span class="obligatorio">*</span>
           </label>
-          <input type="number" name="introducir_dni" id="dni" [(ngModel)]="check.DNI" required="obligatorio" placeholder="DNI o Pasaporte">
+          <input type="number" name="introducir_dni" id="dni" [(ngModel)]="check.DNI" required="obligatorio"
+            placeholder="DNI o Pasaporte">
         </p>
 
         <p>
@@ -36,9 +36,46 @@
 
         <p>
           <label for="acompaniantes">Nº de acompañantes</label>
-          <input type="number" name="cantidad" min="1" max="5" required="obligatorio"
-            placeholder="Indique cantidad de acompañantes">
+          <!-- <input type="number" name="cantidad" min="1" max="5" required="obligatorio" id="CantAcomp" [(ngModel)]="check.CantAcomp"
+            placeholder="Indique cantidad de acompañantes"> -->
+          <select class="custom-select" name="cantidad" id="CantAcomp" [(ngModel)]="check.CantAcomp">
+            <option selected>Sin acompañante</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
         </p>
+
+        <div class="mb-3" *ngIf="check.CantAcomp == 1">
+          <p>
+            <label for="nombre" class="colocar_nombre">Datos del acompañante N° {{check.CantAcomp}}
+              <span class="obligatorio">*</span>
+            </label>
+            <input type="text" name="introducir_nombre" id="nombre" [(ngModel)]="check.nombre" required="obligatorio"
+              placeholder="Nombres">
+            <input type="text" name="introducir_apellido" id="apellido" [(ngModel)]="check.apellido"
+              required="obligatorio" placeholder="Apellidos">
+          </p>
+
+          <p>
+            <label for="nombre" class="colocar_nombre">Nº de Documento de Identidad del acompañante N°
+              {{check.CantAcomp}}
+              <span class="obligatorio">*</span>
+            </label>
+            <input type="number" name="introducir_dni" id="dni" [(ngModel)]="check.DNI" required="obligatorio"
+              placeholder="DNI o Pasaporte">
+          </p>
+
+          <p>
+            <label for="copiadnia" class="colocar_cdni">Copia Documento de Identidad del del acompañante N°
+              {{check.CantAcomp}}
+              <span class="obligatorio">*</span>
+            </label>
+            <input class="form-control" type="file" id="formFile" [(ngModel)]="check.FotoDni">
+          </p>
+        </div>
 
         <p>
           <label for="llegada">Fecha de llegada</label>
@@ -59,7 +96,15 @@
           <label for="email" class="colocar_email">Email
             <span class="obligatorio">*</span>
           </label>
-          <input type="email" name="introducir_email" id="email" [(ngModel)]="check.email" required="obligatorio" placeholder="Indique su Email">
+          <input type="email" name="introducir_email" id="email" [(ngModel)]="check.email" required="obligatorio"
+            placeholder="Indique su Email">
+        </p>
+
+        <p>
+          <label for="tel" class="colocar_tel">Telefono
+            <span class="obligatorio">*</span>
+          </label>
+          <input type="tel" name="telefono" id="tel" placeholder="(Código de área) Número">
         </p>
 
         <p>
@@ -312,11 +357,58 @@
           <label for="mensaje" class="colocar_mensaje">Mensaje
             <span class="obligatorio">*</span>
           </label>
-          <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" [(ngModel)]="check.notas" required="obligatorio"
+          <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" [(ngModel)]="check.notas"
+            required="obligatorio"
             placeholder="Si desea dejarnos alguna recomendación para el día de su llegada, indiquela aquí..."></textarea>
         </p>
 
-          <button type="button" class="btn btn-warning" >Enviar</button>
+        <p>
+          <label for="transp" class="colocar_transp">Medio de transporte para llegar a Termas el Corazón
+            <span class="obligatorio">*</span>
+          </label>
+        </p>
+        
+        <input type="radio" id="vehiculo" name="vehiculo" (click)="mostrar1()">Auto/Moto particular
+        <div *ngIf="mostrar == true">
+          <label for="nombre" class="colocar_v">Marca Vehiculo
+            <span class="obligatorio">*</span>
+          </label>
+          <input type="text" name="introducir_v" id="v" required="obligatorio" placeholder="Marca Vehiculo">
+          <label for="nombre" class="colocar_v">Modelo
+            <span class="obligatorio">*</span>
+          </label>
+          <input type="text" name="introducir_c" id="c" required="obligatorio" placeholder="Marca Modelo">
+          <label for="nombre" class="colocar_c">Color
+            <span class="obligatorio">*</span>
+          </label>
+          <input type="text" name="introducir_p" id="p" required="obligatorio" placeholder="Marca Color">
+          <label for="nombre" class="colocar_p">Patente
+            <span class="obligatorio">*</span>
+          </label>
+          <input type="text" name="introducir_v" id="v" required="obligatorio" placeholder="Marca Patente">
+          </div>
+        <p>
+          <input type="radio" id="vehiculo" name="vehiculo" (click)="ocultar()">Taxi/Uber
+          <br>
+          <input type="radio" id="vehiculo" name="vehiculo" (click)="ocultar()">Bus
+          <br>
+          <input type="radio" id="vehiculo" name="vehiculo" (click)="ocultar()">Transfer
+        </p>     
+
+        <p>
+          <label for="transp" class="colocar_transp">¿Con qué frecuencia desea el servicio de limpieza de la habitación?
+            <span class="obligatorio">*</span>
+          </label>
+          <input type="radio" id="vehiculo" name="all">Todos los días
+          <br>
+          <input type="radio" id="vehiculo" name="day">Día por medio
+          <br>
+          <input type="radio" id="vehiculo" name="soli">Cuando lo solicite
+          <br>
+          <input type="radio" id="vehiculo" name="never">Nunca
+        </p>
+
+        <button type="button" class="btn btn-warning">Enviar</button>
 
         <p class="aviso">
           <span class="obligatorio"> * </span>los campos son obligatorios.

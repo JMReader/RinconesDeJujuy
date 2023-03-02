@@ -166,3 +166,27 @@ p{
   outline:0;
   border: 1px solid #97d848;
 } 
+
+#vehiculo{
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  left: 15px;
+  margin-right: 9px;
+  margin-top: 4px;
+ }
+
+input [type="radio"] {
+  opacity: 0;
+  width: 0px;
+  margin: 0;
+  padding: 0;
+}
+
+.form-radio-item:not(#foo)
+label{
+  line-height: 24px;
+  float: left;
+  margin-left: 41px;
+  outline: none !important;
+}

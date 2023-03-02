@@ -7,6 +7,7 @@ import { CheckIN } from 'src/app/models/check-in';
 })
 export class CheckInFormComponent implements OnInit {
   check!: CheckIN;
+  mostrar:boolean = false;
   
   constructor() {
     this.check = new CheckIN();
@@ -15,4 +16,11 @@ export class CheckInFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  mostrar1(): void {
+    this.mostrar = true;
+  }
+
+  ocultar(): void {
+    this.mostrar = false;
+  }
 }
