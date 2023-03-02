@@ -1,8 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Noto+Sans);
 
 
-body{
-  height: 100%;
+#Form-container{
+  
   font-family: 'Noto Sans', sans-serif;
   /* background-color: #165F8C;  */
   background-image: url(src/assets/img/LobbyHotel.png);
