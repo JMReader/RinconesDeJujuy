@@ -7,18 +7,22 @@ import { WorkViewComponent } from './components/work-view/work-view.component';
 import { HeaderComponent } from './components/layouts/header/header.component';
 import { SingleCheckComponent } from './components/single-check/single-check.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CheckInFormComponent } from './components/check-in-form/check-in-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     WorkViewComponent,
     HeaderComponent,
-    SingleCheckComponent
+    SingleCheckComponent,
+    CheckInFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
