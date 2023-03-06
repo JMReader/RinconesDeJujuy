@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { SignaturePadModule  } from 'angular2-signaturepad';
+
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +32,7 @@ import { SignComponent } from './components/sign/sign.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SignaturePadModule,
     NgbModule, 
     FormsModule
   ],

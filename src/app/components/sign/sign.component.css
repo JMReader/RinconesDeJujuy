@@ -29,3 +29,8 @@ canvas
     background-attachment: fixed;
     background-size:cover;
 }
+
+.signature-container {
+    border-radius: 15px; 
+    background-color: rgb(229 138 144);
+}
