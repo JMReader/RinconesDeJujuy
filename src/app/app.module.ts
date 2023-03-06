@@ -10,7 +10,7 @@ import { SingleCheckComponent } from './components/single-check/single-check.com
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CheckInFormComponent } from './components/check-in-form/check-in-form.component';
-import { FormsModule } from '@angular/forms';
+
 
 
 import { SignComponent } from './components/sign/sign.component';
@@ -22,7 +22,7 @@ import { SignComponent } from './components/sign/sign.component';
     HeaderComponent,
     SingleCheckComponent,
 
-    CheckInFormComponent
+    CheckInFormComponent,
 
     SignComponent,
 
