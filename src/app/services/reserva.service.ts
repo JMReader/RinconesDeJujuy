@@ -7,7 +7,7 @@ import { Reserva } from '../models/reserva';
   providedIn: 'root'
 })
 export class ReservaService {
-  private baseURL: string = "http://localhost:3000/api/reserva"; 
+  private baseURL: string = "http://localhost:3000/Reserva"; 
   constructor(private _http: HttpClient) {  }
 
   createReserva(reserva: Reserva): Observable<any>{

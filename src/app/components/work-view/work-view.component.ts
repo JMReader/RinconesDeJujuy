@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CheckIN } from 'src/app/models/check-in';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SingleCheckComponent } from '../single-check/single-check.component';
+import { ReservaService } from 'src/app/services/reserva.service';
 
 @Component({
   selector: 'app-work-view',
@@ -11,8 +12,10 @@ import { SingleCheckComponent } from '../single-check/single-check.component';
 export class WorkViewComponent implements OnInit {
   Registros: CheckIN[] = new Array();
    muestra: CheckIN[] = new Array();
-  constructor(private modalService: NgbModal) { 
-    
+  constructor(private modalService: NgbModal, private reservaService: ReservaService) { 
+    this.reservaService.getReservas().subscribe((result:any)=> {
+     console.log(result); 
+  }); 
   }
 
   ngOnInit(): void {
