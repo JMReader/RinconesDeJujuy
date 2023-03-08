@@ -1,10 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+ @import url(https://fonts.googleapis.com/css?family=Noto+Sans);
 
 
 #Form-container {
-
   font-family: 'Noto Sans', sans-serif;
-  /* background-color: #165F8C;  */
+  background-color: #165F8C;  
   background-image: url(src/assets/img/LobbyHotel.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -12,7 +11,9 @@
 }
 
 #Logo-container {
-  width: 460px;
+  width: 90%;
+  max-width: 460px;
+  min-width: 200px;
   height: auto;
   margin: 10px auto;
   border-radius: 10px;
@@ -22,13 +23,17 @@
 }
 
 .logoF {
-  width: 460px;
+  width: 100%;
+  max-width: 460px;
+  min-width: 200px;
   height: auto;
   padding-right: 20px;
 }
 
 #CheckIn-container {
-  width: 460px;
+  width: 90%;
+  max-width: 460px;
+  min-width: 200px;
   height: auto;
   margin: 10px auto;
   border-radius: 10px;
@@ -67,7 +72,9 @@ label {
 
 input, select {
   background-color: #fbfbfb;
-  width: 408px;
+  width: 90%;
+  /* max-width: 408px;
+  min-width: 148px;  */
   height: 40px;
   border-radius: 5px;
   border-style: solid;
@@ -89,7 +96,9 @@ input, select {
 
 textarea{
   background-color: #fbfbfb;
-  width: 408px;
+  width: 90%;
+  max-width: 408px;
+  min-width: 148px;
   height: 150px;
   border-radius: 5px;
   border-style: solid;
@@ -133,159 +142,23 @@ textarea{
   margin-top: 7px;
 }
 
-/* .logo{
-  align-items: flex-end;
-  display: flex;
-  justify-content: center;
-  width: 460px; 
-  height: auto;
-  margin: 10px auto;
-  border-radius: 10px;  
-  padding-top: 30px;
-  padding-bottom: 20px;  
-  background-color: #fbfbfbc7; 
-  padding-left: 30px; 
-}
-
-.logoF{
-  width: 460px; 
-  height: auto;
-  padding-right: 30px;
-} 
-
-.contact_form{  
-  width: 460px; 
-  height: auto;
-  margin: 10px auto;
-  border-radius: 10px;  
-  padding-top: 30px;
-  padding-bottom: 20px;  
-  background-color: #fbfbfbc7; 
-  padding-left: 30px; 
-}
-
-
-input{
-  background-color: #fbfbfb; 
-  width: 408px; 
-  height: 40px; 
-  border-radius: 5px;  
-  border-style: solid; 
-  border-width: 1px; 
-  border-color: #0494dc; 
-  margin-top: 10px;  
-  padding-left: 10px;
-  margin-bottom: 20px; 
-}
-
-select{
-    background-color: #fbfbfb; 
-  width: 408px; 
-  height: 40px; 
-  border-radius: 5px;  
-  border-style: solid; 
-  border-width: 1px; 
-  border-color: #0494dc; 
-  margin-top: 10px;  
-  padding-left: 10px;
-  margin-bottom: 20px; 
-}
-
-textarea{
-  background-color: #fbfbfb; 
-  width: 408px; 
-  height: 150px; 
-  border-radius: 5px;  
-  border-style: solid; 
-  border-width: 1px; 
-  border-color: #0494dc; 
-  margin-top: 10px;  
-  padding-left: 10px;
-  margin-bottom: 20px; 
-  padding-top: 15px; 
-  font-family: 'Noto Sans', sans-serif;
-}
-
-
-label{
-  display: block; 
-  float: center;  
-}
-
-
 button{
-  height: 45px; 
-  padding-left: 5px;
+  /* min-height: 45px; 
+   padding-left: 5px;
   padding-right: 5px;   
   margin-bottom: 20px; 
-  margin-top: 10px;    
+  margin-top: 10px;      */
   text-transform: uppercase;
   background-color: #0494dc; 
   border-radius: 5px;  
   border-style: solid; 
   border-width: 1px; 
   border-color: #0494dc;  
-  width: 300px;   
+  width: 300px;
+  /* min-;   
   cursor: pointer;
   transform: translateX(18%);
-}
-
-button p{
-  color: #fff; 
-}
-
-span{
-  color: #d13c1a; 
-}
-
-
-.aviso{
-  font-size: 13px;  
-  color: #0e0e0e;  
-}
-
-
-h1{
-  font-size: 39px;  
-  color: #fb7c3b;
-    margin-right: 20px;
-    text-align: center;
-}
-
-
-h3{
-  font-size: 16px; 
-  padding-bottom: 30px;
-  color: #0e0e0e;
-  margin-right: 20px;
-  margin-top: 13px;
-  margin-bottom: -13px;
-}
-
-
-p{
-  font-size: 14px; 
-  color: #0e0e0e; 
-}
-
-*/
-
-button{
-  height: 45px; 
-  padding-left: 5px;
-  padding-right: 5px;   
-  margin-bottom: 20px; 
-  margin-top: 10px;    
-  text-transform: uppercase;
-  background-color: #0494dc; 
-  border-radius: 5px;  
-  border-style: solid; 
-  border-width: 1px; 
-  border-color: #0494dc;  
-  width: 300px;   
-  cursor: pointer;
-  transform: translateX(18%);
-  margin-left: 14px;
+  margin-left: 14px;  */
 }
 
 span{

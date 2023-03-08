@@ -1,5 +1,5 @@
 <app-header></app-header>
-<main class="mainCointainer">
+<!-- <main class="mainCointainer">
     <h3 class="my-2">Check In realizados</h3>
     
     <form class="d-flex my-2">
@@ -28,10 +28,60 @@
             <td></td>
             <td></td>
             <td></td>
-            <td colspan="2"> <a class="btn btn-primary btn-sm mx-2" href="#" role="button"><--</a> <a class="btn btn-primary btn-sm mx-2" href="#" role="button">--></a></td>
+            <td colspan="2"> <a class="btn btn-primary btn-sm mx-2" href="#" role="button"></a> <a class="btn btn-primary btn-sm mx-2" href="#" role="button"></a></td>
             
           </tr>
         
         </tbody>
       </table>
-</main>
+</main> -->
+
+<div class="container-fluid" id="Form-container" id="mainCointainer">
+  <div class="container-fluid overflow-hidden">
+    <div class="d-flex flex-column bd-highlight mb-3">
+
+      <div class="d-flex justify-content-between">
+        <h3 class="my-2">Check In realizados</h3>
+        <form class="d-flex my-2">
+          <input class="form-control me-1" type="search" placeholder="Busqueda por DNI" aria-label="Search">
+          <button class="btn btn-dark" type="submit">Search</button>
+        </form>
+      </div>
+
+      <table class="table table-bordered my-3">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">DNI</th>
+            <th scope="col">Fecha Llegada</th>
+            <th scope="col">Fecha Salida</th>
+            <th scope="col">Nombre y apellido</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>
+              <button type="button" class="btn btn-secondary btn-sm">Ver</button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
