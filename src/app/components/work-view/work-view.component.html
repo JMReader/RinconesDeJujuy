@@ -19,12 +19,13 @@
         <tbody>
           <tr *ngFor="let check of muestra">
             <th scope="row">{{check.DNI}}</th>
-            <td>{{ check.FechaLLegada}}</td>
-            <td>{{ check.FechaSalida}}</td>
+            <td>{{ check.FechaLLegada  | date: 'shortDate'}}</td>
+            <td>{{ check.FechaSalida  | date: 'shortDate'}}</td>
             <td>{{check.nombre}} {{check.apellido}}</td>
             <td><a (click)="open()" class="btn btn-primary btn-sm " href="#" role="button">Ver</a></td>
           </tr>
           <tr>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
