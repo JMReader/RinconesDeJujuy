@@ -1,16 +1,139 @@
 @import url(https://fonts.googleapis.com/css?family=Noto+Sans);
 
 
-#Form-container{
-  
+#Form-container {
+
   font-family: 'Noto Sans', sans-serif;
   /* background-color: #165F8C;  */
   background-image: url(src/assets/img/LobbyHotel.png);
   background-repeat: no-repeat;
-    background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-.logo{
+#Logo-container {
+  width: 460px;
+  height: auto;
+  margin: 10px auto;
+  border-radius: 10px;
+  background-color: #fbfbfbc7;
+  padding-top: 30px;
+  padding-bottom: 30px
+}
+
+.logoF {
+  width: 460px;
+  height: auto;
+  padding-right: 20px;
+}
+
+#CheckIn-container {
+  width: 460px;
+  height: auto;
+  margin: 10px auto;
+  border-radius: 10px;
+  background-color: #fbfbfbc7;
+  padding-top: 30px;
+  padding-bottom: 30px
+}
+
+.mb-3 {
+  margin-bottom: 1rem !important;
+  margin-top: -3px;
+}
+
+h1 {
+  font-size: 39px;
+  color: #fb7c3b;
+  margin: auto;
+  text-align: center;
+}
+
+
+h3 {
+  font-size: 16px;
+  padding-bottom: 30px;
+  color: #0e0e0e;
+  margin-top: 13px;
+  margin-bottom: -13px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  float: center;
+  margin-left: 19px;
+}
+
+input, select {
+  background-color: #fbfbfb;
+  width: 408px;
+  height: 40px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #0494dc;
+  margin-top: -2px;
+  margin-left: 19px;
+  margin-bottom: 10px;
+  padding-left: 8px;
+}
+
+.form-text {
+  margin-top: .25rem;
+  font-size: .875em;
+  color: #6c757d;
+  margin-top: -7px;
+  text-align: center;
+}
+
+textarea{
+  background-color: #fbfbfb;
+  width: 408px;
+  height: 150px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #0494dc;
+  margin-top: -2px;
+  margin-left: 19px;
+  margin-bottom: 10px;
+  padding-left: 8px;
+  padding-top: 4px;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.form-check-input[type=radio] {
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  left: 15px;
+ }
+
+ .spanR{
+  vertical-align: super;
+  display: inline-block;
+  line-height: 20px;
+  margin-top: -1px;
+  margin-left: 7px;
+  color: black;
+ }
+
+ .columnas {
+  display: flex;
+}
+
+.columna-izquierda {
+  flex: 1;
+  margin-top: 7px;
+}
+
+.columna-derecha {
+  flex: 1;
+  margin-top: 7px;
+}
+
+/* .logo{
   align-items: flex-end;
   display: flex;
   justify-content: center;
@@ -145,6 +268,36 @@ p{
   color: #0e0e0e; 
 }
 
+*/
+
+button{
+  height: 45px; 
+  padding-left: 5px;
+  padding-right: 5px;   
+  margin-bottom: 20px; 
+  margin-top: 10px;    
+  text-transform: uppercase;
+  background-color: #0494dc; 
+  border-radius: 5px;  
+  border-style: solid; 
+  border-width: 1px; 
+  border-color: #0494dc;  
+  width: 300px;   
+  cursor: pointer;
+  transform: translateX(18%);
+  margin-left: 14px;
+}
+
+span{
+  color: #d13c1a; 
+}
+
+.aviso{
+  font-size: 13px;  
+  color: #0e0e0e;  
+  margin-bottom: 4px;
+    margin-left: 9px;
+}
 
 ::-webkit-input-placeholder {
  color: #a8a8a8;
@@ -166,27 +319,3 @@ p{
   outline:0;
   border: 1px solid #97d848;
 } 
-
-#vehiculo{
-  height: 20px;
-  width: 20px;
-  border-radius: 100%;
-  left: 15px;
-  margin-right: 9px;
-  margin-top: 4px;
- }
-
-input [type="radio"] {
-  opacity: 0;
-  width: 0px;
-  margin: 0;
-  padding: 0;
-}
-
-.form-radio-item:not(#foo)
-label{
-  line-height: 24px;
-  float: left;
-  margin-left: 41px;
-  outline: none !important;
-}
