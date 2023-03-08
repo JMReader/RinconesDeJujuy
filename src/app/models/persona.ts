@@ -1,3 +1,5 @@
+import { Direccion } from "./direccion";
+
 export class Persona {
     nombre!: string; 
     apellido!: string; 
@@ -5,4 +7,5 @@ export class Persona {
     email!: string; 
     telefono!: string; 
     titular!: boolean;  
+    direccion!: Direccion; 
 }

@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { SignaturePadModule  } from 'angular2-signaturepad';
 
+
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WorkViewComponent } from './components/work-view/work-view.component';
@@ -29,8 +33,10 @@ import { SignComponent } from './components/sign/sign.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SignaturePadModule,
     NgbModule, 
-    FormsModule
+    FormsModule, 
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

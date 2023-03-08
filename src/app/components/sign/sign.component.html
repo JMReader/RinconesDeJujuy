@@ -5,12 +5,16 @@
 
     <div class="tarjeta">
         <div *ngIf="conf==false">
-            <h4 class="text-center">Por favor, dibuje su firma</h4>
-            <canvas #sigPad width="300" height="200" (mousedown)="onMouseDown($event)"
+            <h4 class="text-center">Por favor, Dibuje su firma</h4>
+            <!-- <canvas #sigPad width="300" height="200" (mousedown)="onMouseDown($event)"
             (mousemove)="onMouseMove($event)" class="centrar" style="border-radius: 15px; background-color: rgb(229 138 144);"></canvas>
+           -->
+            <div class="signature-container" style="border-color:white;">
+              <signature-pad class="centrar" [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+            </div>
             <br/>
-            <button type="button" class="btn boton" style="margin: 8px; padding-inline: 115px;" (click)="clear()">Limpiar</button><br>
-            <button type="button" class="btn boton" style="margin:  8px; padding-inline: 113px;" (click)="save()">Guardar</button>
+            <button type="button" class="btn boton" style="margin: 8px; padding-inline: 115px; margin-left: 10%" (click)="clearSignature()">Limpiar</button><br>
+            <button type="button" class="btn boton" style="margin:  8px; padding-inline: 113px;margin-left: 10%" (click)="savePad()">Guardar</button>
             <br/>
         </div>
         <div *ngIf="conf==true">
