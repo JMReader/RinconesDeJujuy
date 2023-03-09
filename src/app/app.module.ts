@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { SignaturePadModule  } from 'angular2-signaturepad';
+import { SignaturePadModule } from 'angular2-signaturepad';
 
 
 import { FormsModule } from '@angular/forms';
@@ -14,9 +14,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CheckInFormComponent } from './components/check-in-form/check-in-form.component';
 
-
-
 import { SignComponent } from './components/sign/sign.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatatableComponent } from './components/datatable/datatable.component';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -24,19 +32,25 @@ import { SignComponent } from './components/sign/sign.component';
     WorkViewComponent,
     HeaderComponent,
     SingleCheckComponent,
-
     CheckInFormComponent,
-
     SignComponent,
+    DatatableComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SignaturePadModule,
-    NgbModule, 
-    FormsModule, 
-    HttpClientModule
+    NgbModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

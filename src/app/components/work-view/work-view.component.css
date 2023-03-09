@@ -1,46 +1,10 @@
- #mainCointainer{
-    color: aliceblue;
-    /* background-color: black; */
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-     align-items: center; 
-}
-
- .table{
-    padding-left: 10%;
-    padding-right: 10%;
-}
-/* .d-flex{
-    width: 30%;
-}
-.modal-content{
-   background-color:#fff0 !important;  
-}
-:root, .modal {
-    --bs-body-bg:#fff0;
-}
-.modal{
-    --bs-modal-bg: #fff0;
-}
-.modal-content{
-    background-color: #fff0 !important;
-}  */
-
 h3 {
     font-size: 39px;
     color: black;
     text-align: left;
+    padding: auto;
 }
 
-.col-auto {
-    flex: 0 0 auto;
-    width: auto;
-    margin-top: 27px;
-}
-
-.justify-content-between {
-    justify-content: space-between !important;
-    margin-top: 10px;
+.justify-content-center{
+    margin-top: 20px;
 }

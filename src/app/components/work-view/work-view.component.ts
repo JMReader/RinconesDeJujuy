@@ -14,7 +14,7 @@ export class WorkViewComponent implements OnInit {
    muestra: CheckIN[] = new Array();
   constructor(private modalService: NgbModal, private reservaService: ReservaService) { 
     this.reservaService.getReservas().subscribe((result:any)=> {
-     console.log(result); 
+     console.log(result, "reserva lado work"); 
   }); 
   }
 

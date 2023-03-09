@@ -1,4 +1,4 @@
- @import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
 
 
 #Form-container {
@@ -191,4 +191,4 @@ span{
 .formulario textarea:focus{
   outline:0;
   border: 1px solid #97d848;
-} 
+}
