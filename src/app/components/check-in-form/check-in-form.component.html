@@ -622,7 +622,7 @@
                 <label for="vehiculo">
                   <input class="form-check-input" type="radio" name="opcion" value="vehiculo" id="vehiculo"
                     (click)="mostrarContenedor()">
-                  <span class="spanR">Vehiculo particular</span>
+                  <span class="spanR">Vehiculo</span>
                 </label>
 
                 <label for="Bus">
@@ -688,7 +688,7 @@
               <div class="columna-derecha">
                 <label for="solicitud">
                   <input class="form-check-input" type="radio" name="opcion" value="solicitud" id="solicitud">
-                  <span class="spanR">Cuando lo solicite</span>
+                  <span class="spanR">Si se solicita</span>
                 </label>
 
                 <label for="nunca">
@@ -699,7 +699,10 @@
             </div>
           </div>
 
-          <button type="button" class="btn btn-warning">Enviar</button>
+          <div class="d-flex justify-content-center mb-3">
+            <button type="button" class="btn btn-warning">Enviar</button>
+          </div>
+          
 
           <div class="aviso">
             <span class="obligatorio"> * </span>los campos son obligatorios.
