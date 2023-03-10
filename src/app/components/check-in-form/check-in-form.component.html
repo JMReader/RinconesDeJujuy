@@ -13,29 +13,29 @@
             <label for="datosTitular" class="form-label">Datos del titular de la reserva
               <span class="obligatorio">*</span>
             </label>
-            <input type="text" name="introducir_nombre" id="nombre" placeholder="Nombres">
-            <input type="text" name="introducir_apellido" id="apellido" placeholder="Apellidos">
+            <input type="text" name="nombre" id="nombre" placeholder="Nombres" [(ngModel)]="titular.nombre">
+            <input type="text" name="apellido" id="apellido" placeholder="Apellidos" [(ngModel)]="titular.apellido">
           </div>
 
           <div class="mb-3">
             <label for="dni" class="form-label">Nº de Documento de Identidad
               <span class="obligatorio">*</span>
             </label>
-            <input type="number" name="introducir_dni" id="dni" placeholder="DNI o Pasaporte">
+            <input type="number" name="documento" id="dni" placeholder="DNI o Pasaporte" [(ngModel)]="titular.documento">
           </div>
 
           <div class="mb-3">
             <label for="copiadnia" class="form-label">Copia Documento de Identidad del titular
               <span class="obligatorio">*</span>
             </label>
-            <input class="form-control" type="file" id="copiadni" aria-describedby="dniHelp">
+            <input class="form-control" type="file" name="documentacion" id="copiadni" aria-describedby="dniHelp" [(ngModel)]="titular.documentacion">
             <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
           </div>
 
           <div class="mb-3">
             <label for="acompaniantes" class="form-label">Nº de acompañantes</label>
-            <select class="custom-select" name="cantidad" id="CantAcomp" [(ngModel)]="tab">
-              <option selected>Sin acompañante</option>
+            <select class="custom-select" name="cantidad" id="CantAcomp" [(ngModel)]="tab" (change)="mostrarAcompanantes()">
+              <option selected value="0">Sin acompañante</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -44,299 +44,35 @@
             </select>
           </div>
 
-          <!-- <div class="mb-3" *ngFor="let item of acomp">
-            <label for="datosAcomp" class="form-label">Datos del Acompañante {{item.id}}
+          <form class="mb-3" *ngFor="let acom of acompanantes">
+            <label for="datosAcomp" class="form-label">Datos del Acompañante
               <span class="obligatorio">*</span>
             </label>
-            <input type="text" name="introducir_nombre" id="nombreAcomp" [(ngModel)]="item.nombre" placeholder="Nombres">
-            <input type="text" name="introducir_apellido" id="apellidoAcomp" [(ngModel)]="item.apellido" placeholder="Apellidos">
-            {{item.nombre}}
-            {{item.apellido}}
+            <input type="text" name="nombre1" id="nombreAcomp" placeholder="Nombres" [(ngModel)]="acom.nombre">
+            <input type="text" name="apellido1" id="apellidoAcomp" placeholder="Apellidos" [(ngModel)]="acom.apellido">
 
-          </div> -->
+            <label for="dniAcomp1" class="form-label">Nº de Documento de Identidad
+              <span class="obligatorio">*</span>
+            </label>
+            <input type="number" name="documento1" id="dniAcomp" placeholder="DNI o Pasaporte" [(ngModel)]="acom.documento">
 
-          <div class="mb-3" [ngSwitch]="tab">
-            <div class="mb-3" *ngSwitchCase="1">
-              <label for="datosAcomp1" class="form-label">Datos del Acompañante 1
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp1" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp1" placeholder="Apellidos">
-
-              <label for="dniAcomp1" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp1" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp1" class="form-label">Copia Documento del Acompañante 1
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp1" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-            </div>
-
-            <div class="mb-3" *ngSwitchCase="2">
-              <label for="datosAcomp1" class="form-label">Datos del Acompañante 1
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp1" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp1" placeholder="Apellidos">
-
-              <label for="dniAcomp1" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp1" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp1" class="form-label">Copia Documento del Acompañante 1
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp1" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-              <label for="datosAcomp1" class="form-label">Datos del Acompañante 2
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp1" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp1" placeholder="Apellidos">
-
-              <label for="dniAcomp2" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp2" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp1" class="form-label">Copia Documento del Acompañante 2
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp1" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-            </div>
-
-            <div class="mb-3" *ngSwitchCase="3">
-              <label for="datosAcomp1" class="form-label">Datos del Acompañante 1
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp1" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp1" placeholder="Apellidos">
-
-              <label for="dniAcomp1" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp1" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp1" class="form-label">Copia Documento del Acompañante 1
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp1" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-              <label for="datosAcomp1" class="form-label">Datos del Acompañante 2
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp1" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp1" placeholder="Apellidos">
-
-              <label for="dniAcomp2" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp2" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp1" class="form-label">Copia Documento del Acompañante 2
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp1" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-              <label for="datosAcomp3" class="form-label">Datos del Acompañante 3
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp3" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp3" placeholder="Apellidos">
-
-              <label for="dniAcomp3" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp3" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp3" class="form-label">Copia Documento del Acompañante 3
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp3" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-            </div>
-
-            <div class="mb-3" *ngSwitchCase="4">
-              <label for="datosAcomp1" class="form-label">Datos del Acompañante 1
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp1" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp1" placeholder="Apellidos">
-
-              <label for="dniAcomp1" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp1" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp1" class="form-label">Copia Documento del Acompañante 1
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp1" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-              <label for="datosAcomp1" class="form-label">Datos del Acompañante 2
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp1" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp1" placeholder="Apellidos">
-
-              <label for="dniAcomp2" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp2" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp1" class="form-label">Copia Documento del Acompañante 2
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp1" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-              <label for="datosAcomp3" class="form-label">Datos del Acompañante 3
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp3" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp3" placeholder="Apellidos">
-
-              <label for="dniAcomp3" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp3" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp3" class="form-label">Copia Documento del Acompañante 3
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp3" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-              <label for="datosAcomp4" class="form-label">Datos del Acompañante 4
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp4" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp4" placeholder="Apellidos">
-
-              <label for="dniAcomp4" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp4" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp3" class="form-label">Copia Documento del Acompañante 4
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp4" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-            </div>
-
-            <div class="mb-3" *ngSwitchCase="5">
-              <label for="datosAcomp1" class="form-label">Datos del Acompañante 1
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp1" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp1" placeholder="Apellidos">
-
-              <label for="dniAcomp1" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp1" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp1" class="form-label">Copia Documento del Acompañante 1
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp1" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-              <label for="datosAcomp1" class="form-label">Datos del Acompañante 2
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp1" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp1" placeholder="Apellidos">
-
-              <label for="dniAcomp2" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp2" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp1" class="form-label">Copia Documento del Acompañante 2
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp1" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-              <label for="datosAcomp3" class="form-label">Datos del Acompañante 3
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp3" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp3" placeholder="Apellidos">
-
-              <label for="dniAcomp3" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp3" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp3" class="form-label">Copia Documento del Acompañante 3
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp3" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-              <label for="datosAcomp4" class="form-label">Datos del Acompañante 4
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp4" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp4" placeholder="Apellidos">
-
-              <label for="dniAcomp4" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp4" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp3" class="form-label">Copia Documento del Acompañante 4
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp4" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-              <label for="datosAcomp5" class="form-label">Datos del Acompañante 5
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="text" name="introducir_nombre" id="nombreAcomp5" placeholder="Nombres">
-              <input type="text" name="introducir_apellido" id="apellidoAcomp5" placeholder="Apellidos">
-
-              <label for="dniAcomp5" class="form-label">Nº de Documento de Identidad
-                <span class="obligatorio">*</span>
-              </label>
-              <input type="number" name="introducir_dni" id="dniAcomp5" placeholder="DNI o Pasaporte">
-
-              <label for="copiadniaAcomp5" class="form-label">Copia Documento del Acompañante 5
-                <span class="obligatorio">*</span>
-              </label>
-              <input class="form-control" type="file" id="copiadniAcomp5" aria-describedby="dniHelp">
-              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
-              <hr>
-            </div>
-
-          </div>
+            <label for="copiadniaAcomp1" class="form-label">Copia Documento del Acompañante
+              <span class="obligatorio">*</span>
+            </label>
+            <input class="form-control" name="documentacion1" type="file" id="copiadniAcomp" aria-describedby="dniHelp" [(ngModel)]="acom.documentacion">
+            <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
+          </form>
 
           <div class="mb-3">
             <label for="llegada" class="form-label">Fecha de llegada
               <span class="obligatorio">*</span>
             </label>
-            <input type="date" name="diall" id="diall">
+            <input type="date" name="fechaLlegada" id="diall" [(ngModel)]="reserva.fechaLlegada">
 
             <label for="salida" class="form-label">Fecha de salida
               <span class="obligatorio">*</span>
             </label>
-            <input type="date" name="diasal" id="diasal">
+            <input type="date" name="fechaSalida" name="diasal" id="diasal" [(ngModel)]="reserva.fechaSalida">
 
             <label for="horario" class="form-label">Horario aproximado de llegada
               <span class="obligatorio">*</span>
@@ -348,24 +84,24 @@
             <label for="email" class="form-label">Correo electrónico
               <span class="obligatorio">*</span>
             </label>
-            <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com">
+            <input type="email" name="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" [(ngModel)]="titular.email">
           </div>
 
           <div class="mb-3">
             <label for="tel" class="form-label">Telefono Celular
               <span class="obligatorio">*</span>
             </label>
-            <input type="tel" name="telefono" id="tel" placeholder="(Código de área) Número">
+            <input type="tel" name="telefono" id="tel" placeholder="(Código de área) Número" [(ngModel)]="titular.telefono">
           </div>
 
           <div class="mb-3">
             <label for="direccion" class="form-label">Dirección
               <span class="obligatorio">*</span>
             </label>
-            <input type="text" name="dir" id="dir" required="obligatorio" placeholder="Calle, Número, Dpto/Casa">
-            <input type="text" name="dir" id="dir" required="obligatorio" placeholder="Ciudad">
-            <input type="text" name="dir" id="dir" required="obligatorio" placeholder="Región">
-            <select class="form-select" aria-label="Default select example" name="pais" id="pais">
+            <input type="text" name="calle" id="calle" required="obligatorio" placeholder="Calle, Número, Dpto/Casa" [(ngModel)]="direccionTitular.calle">
+            <input type="text" name="ciudad" id="ciudad" required="obligatorio" placeholder="Ciudad" [(ngModel)]="direccionTitular.ciudad">
+            <input type="text" name="region" id="region" required="obligatorio" placeholder="Región" [(ngModel)]="direccionTitular.region">
+            <select class="form-select" aria-label="Default select example" name="pais" id="pais" [(ngModel)]="direccionTitular.pais">
               <option hidden selected>Selecciona tu país</option>
               <option value="AF">Afganistán</option>
               <option value="AL">Albania</option>
@@ -608,8 +344,8 @@
             <label for="mensaje" class="form-label">Mensaje
               <span class="obligatorio">*</span>
             </label>
-            <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio"
-              placeholder="Si desea dejarnos alguna recomendación para el día de su llegada, indiquela aquí..."></textarea>
+            <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio" name="notas"
+              placeholder="Si desea dejarnos alguna recomendación para el día de su llegada, indiquela aquí..." [(ngModel)]="reserva.notas"></textarea>
           </div>
 
           <div class="mb-3">
@@ -619,26 +355,26 @@
             <div class="columnas">
               <div class="columna-izquierda">
                 <label for="vehiculo">
-                  <input class="form-check-input" type="radio" name="opcion" value="vehiculo" id="vehiculo"
-                    (click)="mostrarContenedor()">
+                  <input class="form-check-input" type="radio" name="medioTransporte" value="vehiculo" id="vehiculo"
+                    (click)="mostrarContenedor()" [(ngModel)]="reserva.medioTransporte">
                   <span class="spanR">Vehiculo</span>
                 </label>
 
                 <label for="Bus">
-                  <input class="form-check-input" type="radio" name="opcion" value="Bus" id="Bus" (click)="ocultar()">
+                  <input class="form-check-input" type="radio" name="medioTransporte" value="Bus" id="Bus" (click)="ocultar()" [(ngModel)]="reserva.medioTransporte">
                   <span class="spanR">Bus</span>
                 </label>
               </div>
 
               <div class="columna-derecha">
                 <label for="Taxi">
-                  <input class="form-check-input" type="radio" name="opcion" value="Taxi" id="Taxi" (click)="ocultar()">
+                  <input class="form-check-input" type="radio" name="medioTransporte" value="Taxi" id="Taxi" (click)="ocultar()" [(ngModel)]="reserva.medioTransporte">
                   <span class="spanR">Taxi/Uber</span>
                 </label>
 
                 <label for="Transfer">
-                  <input class="form-check-input" type="radio" name="opcion" value="Transfer" id="Transfer"
-                    (click)="ocultar()">
+                  <input class="form-check-input" type="radio" name="medioTransporte" value="Transfer" id="Transfer"
+                    (click)="ocultar()" [(ngModel)]="reserva.medioTransporte">
                   <span class="spanR">Transfer</span>
                 </label>
               </div>
@@ -674,24 +410,24 @@
             <div class="columnas">
               <div class="columna-izquierda">
                 <label for="dias">
-                  <input class="form-check-input" type="radio" name="opcion" value="dias" id="dias">
+                  <input class="form-check-input" type="radio" name="frecuenciaLimpieza" value="dias" id="dias" [(ngModel)]="reserva.frecuenciaLimpieza">
                   <span class="spanR">Todos los días</span>
                 </label>
 
                 <label for="dia">
-                  <input class="form-check-input" type="radio" name="opcion" value="dia" id="dia">
+                  <input class="form-check-input" type="radio" name="frecuenciaLimpieza" value="dia" id="dia" [(ngModel)]="reserva.frecuenciaLimpieza">
                   <span class="spanR">Día por medio</span>
                 </label>
               </div>
 
               <div class="columna-derecha">
                 <label for="solicitud">
-                  <input class="form-check-input" type="radio" name="opcion" value="solicitud" id="solicitud">
+                  <input class="form-check-input" type="radio" name="frecuenciaLimpieza" value="solicitud" id="solicitud" [(ngModel)]="reserva.frecuenciaLimpieza">
                   <span class="spanR">Si se solicita</span>
                 </label>
 
                 <label for="nunca">
-                  <input class="form-check-input" type="radio" name="opcion" value="nunca" id="nunca">
+                  <input class="form-check-input" type="radio" name="frecuenciaLimpieza" value="nunca" id="nunca" [(ngModel)]="reserva.frecuenciaLimpieza">
                   <span class="spanR">Nunca</span>
                 </label>
               </div>
@@ -699,7 +435,7 @@
           </div>
 
           <div class="d-flex justify-content-center mb-3">
-            <button type="button" class="btn btn-warning">Enviar</button>
+            <button type="button" class="btn btn-warning" (click)="guardarReserva()">Enviar</button>
           </div>
           
 

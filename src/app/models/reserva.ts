@@ -4,7 +4,7 @@ export class Reserva {
     titular!: Persona; 
     nroAcompanantes!: number; 
     acompanantes!: Array<Persona>; 
-    documentacion!: string; 
+    //documentacion!: string; 
     fechaLlegada!: Date; 
     fechaSalida!: Date; 
     medioTransporte!: string; 
