@@ -23,13 +23,13 @@
 
                         <ng-container matColumnDef="fechaLlegada">
                             <th mat-header-cell *matHeaderCellDef> Fecha LLegada </th>
-                            <td mat-cell *matCellDef="let element"> {{element.fechaLlegada | date: 'shortDate'}} </td>
+                            <td mat-cell *matCellDef="let element"> {{element.fechaLlegada | date: 'dd/MM/yyyy'}} </td>
                         </ng-container>
 
 
                         <ng-container matColumnDef="fechaSalida">
                             <th mat-header-cell *matHeaderCellDef> Fecha Salida </th>
-                            <td mat-cell *matCellDef="let element"> {{element.fechaSalida | date: 'shortDate'}} </td>
+                            <td mat-cell *matCellDef="let element"> {{element.fechaSalida | date: 'dd/MM/yyyy'}} </td>
                         </ng-container>
 
 
@@ -37,8 +37,7 @@
                             <th mat-header-cell *matHeaderCellDef> </th>
                             <td mat-cell *matCellDef="let element; let pasajero" >
 
-                                <button mat-raised-button color="primary"
-                                    (click)="open()">Ver</button>
+                                <button mat-raised-button color="primary" (click)="selectedReserva(element)">Ver</button>
                             </td>
                         </ng-container>
 

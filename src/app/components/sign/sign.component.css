@@ -1,10 +1,14 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+
 canvas
 {
     border: 1px solid rgb(0, 0, 0)
 }
 .boton{
     color: white;
-    background-color: black;
+    background-color: rgb(9, 28, 73);
+    font-size: 14px;
+    font-family: 'Noto Sans', sans-serif;
 }
 .tarjeta{
     margin: auto; 
@@ -12,9 +16,40 @@ canvas
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 80vh;
-    max-width: 70vh;
-    background-color: rgb(201 65 69 / 67%);
+    width: 90%;
+    max-width: 460px;
+    min-width: 200px;
+    height: auto;
+    padding: 1rem;
+    background-color: white;
+    font-size: 10px;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+#Logo-container {
+    width: 90%;
+    max-width: 460px;
+    min-width: 200px;
+    height: auto;
+    margin: 10px auto;
+    border-radius: 10px;
+    background-color: white;
+    /* background-color: #ffffffd4; */
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: 30px;
+  }
+  
+  .logoF {
+    width: 100%;
+    max-width: 460px;
+    min-width: 200px;
+    height: auto;
+    padding-right: 6px;
+  }
+
+.fondo{
+    background-color: rgb(9, 28, 73); 
 }
 
 .centrar{
@@ -23,14 +58,8 @@ canvas
     justify-content: center;
 }
 
-.fondo{
-    background-image: url(src/assets/img/LobbyHotel.png);
-    background-repeat: no repeat;
-    background-attachment: fixed;
-    background-size:cover;
-}
-
 .signature-container {
     border-radius: 15px; 
-    background-color: rgb(229 138 144);
+    background-color: aliceblue;
+    border-color: rgb(9, 28, 73) ;
 }

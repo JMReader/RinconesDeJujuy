@@ -3,6 +3,7 @@ import { Component,
   ViewChild,
   OnInit,
   HostListener, } from '@angular/core';
+import { Persona } from 'src/app/models/persona';
 
 @Component({
   selector: 'app-single-check',
@@ -10,15 +11,19 @@ import { Component,
   styleUrls: ['./single-check.component.css']
 })
 export class SingleCheckComponent implements OnInit {
-  desp: boolean; 
-  @Input() name: string;
+  @Input() pData: any;
+  
   @ViewChild('sigPad') sigPad: any;
   sigPadElement: any;
   context: any;
   isDrawing = false;
   img: any;
 
-  constructor() { this.name = "", this.desp=false; }
+  acomp: Array<Persona> = [];
+
+  constructor() { }
+
+  //dentro del constructor va un (id:string)
 
   ngOnInit(): void {
   }
