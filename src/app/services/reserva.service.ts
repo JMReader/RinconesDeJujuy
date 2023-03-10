@@ -33,13 +33,16 @@ export class ReservaService {
     return this._http.get(this.baseURL + '/traer', options)
   }
 
-  getReservaParticular(): Observable<any>{
+
+  getReserva(id: string): Observable<any> {
     const options = {
       method: "GET",
       headers: new HttpHeaders({
-        "Content-Type": "application/json",
-      })
+        "Content-Type": "application/json"
+      }),
     }
-    return this._http.get(this.baseURL + '/traer/:id', options)
+    return this._http.get(this.baseURL+'/traer/'+ id, options)
   }
+
+
 }

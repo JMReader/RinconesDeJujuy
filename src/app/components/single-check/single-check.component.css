@@ -1,14 +1,39 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+
+.mat-typography h4{
+    font-size: 16px;
+    padding-bottom: 30px;
+    color: #0e0e0e;
+    margin-top: 13px;
+    margin-bottom: -13px;
+    text-align: center;
+}
+
 .card{
-   border-radius: 6%;
+   /* border-radius: 6%;
     padding: 1rem;
     color: aliceblue;
     background-color: rgb(9, 28, 73);
     display: flex;
    flex-wrap: wrap;
    flex-direction: column;
-    --bs-modal-bg: rgba(255, 255, 255, 0); 
-   
+    --bs-modal-bg: rgba(255, 255, 255, 0);  */
+    margin: auto; 
+    border-radius: 6%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --bs-modal-bg: rgba(255, 255, 255, 0);
+    padding: 1rem;
+    color: aliceblue;
+    background-color: rgb(9, 28, 73);
+} 
+
+.card-header{
+    font-size: 16px;
+    font-family: 'Noto Sans', sans-serif;
 }
+
 :root{
     --bs-modal-bg: rgba(255, 255, 255, 0);
 }
@@ -20,4 +45,16 @@
     margin-left: 30%;
     width: 40%;
     background-color: rgb(4, 4, 46);
+} 
+
+.separador{
+    margin: 1rem 0;
+    color: inherit;
+    border: 0;
+    border-top: 1px solid;
+    opacity: .25;
+    margin-top: -10px;
+    margin-bottom: 7px;
+    size: 1.5px;
+    background-color: black;
 }

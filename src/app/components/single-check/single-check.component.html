@@ -1,4 +1,4 @@
-<div class="card">
+ <!-- <div class="card">
     <div class="esencial">
         <b>Martinez Laura, 444.444.444</b>
     </div>
@@ -22,20 +22,56 @@
 
 <div class="datos my-2"> 
  Llega en auto, Limpieza cuando se solicite
-</div>
-<a class="btn btn-secondary btn-sm btn-sig" href="/sign" role="button">Firmar</a>
-</div>
-
-
-<!-- <div *ngIf="desp">
-    <br/>
-    <canvas #sigPad width="300" height="150" (mousedown)="onMouseDown($event)"
-    (mousemove)="onMouseMove($event)"></canvas>
-    <br/>
-    <button (click)="clear()">clear</button>
-    <button (click)="save()">save</button>
-    <br/>
-    <img [src]="img">
-    <br/>
-    <span>{{img}}</span>`,
+</div> 
+    <pre>{{pData | json}}</pre> 
+    <a class="btn btn-secondary btn-sm btn-sig" href="/sign" role="button">Firmar</a>
 </div> -->
+
+
+<div class="card">
+    <h5 class="card-header">{{pData.Titular.Apellido}}, {{pData.Titular.Nombre}}</h5>
+    <div class="card-body">
+        <!-- <div class="card-horizontal">
+            <div class="img-square-wrapper">
+                <img class=""
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Dni_tarjeta_A.jpg/2560px-Dni_tarjeta_A.jpg"
+                    width="300" height="180" alt="Card image cap">
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Datos de contacto</h4>
+                <p>Telefono: {{pData.Titular.Telefono}}</p>
+                <p>Email: {{pData.Titular.Email}}</p>
+                <h4 class="card-title">Datos extra</h4>
+                <p>Notas: {{pData.Titular.Notas}}</p>
+                <p>Frecuencia de Limpieza: {{pData.FrecuenciaLimpieza}}</p>
+            </div>
+        </div> -->
+
+        <div class="row content">
+            <div class="col">
+                <img onclick="javascript:this.width=450;this.height=338" ondblclick="javascript:this.width=250;this.height=160" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Dni_tarjeta_A.jpg/2560px-Dni_tarjeta_A.jpg" width="250"/>
+                <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Dni_tarjeta_A.jpg/2560px-Dni_tarjeta_A.jpg"
+                    width="250" height="160" alt="Card image cap"> -->
+            </div>
+            <div class="col">
+                <p>Contacto</p>
+                <hr class="separador"/>
+                <h5>Telefono: {{pData.Titular.Telefono}}</h5>
+                <h5>Email: {{pData.Titular.Email}}</h5>
+                <p>Fechas</p>
+                <hr class="separador"/>
+                <h5>Entrada: {{pData.fechaLlegada | date: 'dd/MM/yyyy' }}</h5>
+                <h5>Salida: {{pData.fechaSalida | date: 'dd/MM/yyyy' }}</h5>
+            </div>
+        </div>
+        <h5 class="card-text">
+            Notas: {{pData.Notas}} <br>
+            Frecuencia de Limpieza: {{pData.FrecuenciaLimpieza}}
+        </h5>
+        <p>Acompañantes</p>
+        <hr class="separador"/>
+        <h5>Cantidad de personas: {{pData.nroacompanantes}}</h5>
+
+        <a class="btn btn-secondary btn-sm btn-sig" href="/sign" role="button">Firmar</a>
+    </div>
+</div>
