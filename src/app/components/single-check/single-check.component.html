@@ -29,7 +29,7 @@
 
 
 <div class="card">
-    <h5 class="card-header">{{pData.Titular.Apellido}}, {{pData.Titular.Nombre}}</h5>
+    <h5 class="card-header">{{pData.titular.apellido}}, {{pData.titular.nombre}}</h5>
     <div class="card-body">
         <!-- <div class="card-horizontal">
             <div class="img-square-wrapper">
@@ -56,8 +56,8 @@
             <div class="col">
                 <p>Contacto</p>
                 <hr class="separador"/>
-                <h5>Telefono: {{pData.Titular.Telefono}}</h5>
-                <h5>Email: {{pData.Titular.Email}}</h5>
+                <h5>Telefono: {{pData.titular.telefono}}</h5>
+                <h5>Email: {{pData.titular.email}}</h5>
                 <p>Fechas</p>
                 <hr class="separador"/>
                 <h5>Entrada: {{pData.fechaLlegada | date: 'dd/MM/yyyy' }}</h5>
@@ -65,8 +65,8 @@
             </div>
         </div>
         <h5 class="card-text">
-            Notas: {{pData.Notas}} <br>
-            Frecuencia de Limpieza: {{pData.FrecuenciaLimpieza}}
+            Notas: {{pData.notas}} <br>
+            Frecuencia de Limpieza: {{pData.frecuenciaLimpieza}}
         </h5>
         <p>Acompañantes</p>
         <hr class="separador"/>

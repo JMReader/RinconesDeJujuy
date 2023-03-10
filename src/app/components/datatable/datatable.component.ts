@@ -18,7 +18,10 @@ export class DatatableComponent implements OnInit {
   dataSource = new MatTableDataSource<Reserva>([]);
 
   reservas: Array<Reserva> = [];
-  id:string= "6409f9e7b8fc5cee48affc51";
+  reservasFirmadas: Array<Reserva> = [];
+  reservasNoFirmadas: Array<Reserva> = [];
+
+  //id:string= "6409f9e7b8fc5cee48affc51";
 
   @Output () eventData = new EventEmitter<any>();
 
@@ -36,7 +39,7 @@ export class DatatableComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerReservas();
-    this.obtenerUnaReserva();
+    //this.obtenerReservasFiltradas();
     //  console.log(this.reservas, "reservas");
     //  this.dataSource.data = this.reservas;
     //  console.log(this.dataSource.data, "data");
@@ -76,19 +79,37 @@ export class DatatableComponent implements OnInit {
     )
   }
 
-  async obtenerUnaReserva(){
-    // this.reservaService.getReserva(this.id).subscribe(
-    //   (result) => {
-    //     result.forEach((element:any) => {
-    //     // this.pasaje = new Pasaje();
-    //     // Object.assign(this.pasaje, element)
-    //   });
-    // })
-    this.reservaService.getReserva(this.id).subscribe(
+  async obtenerReservasFiltradas() {
+    await new Promise(f => setTimeout(f, 10));
+    this.reservaService.getReservasFiltro().subscribe(
       (result) => {
-          console.log(result, "reserva");
-      }
+        this.reservasFirmadas = result.firmadas;
+        console.log(this.reservasFirmadas, "result firmadas");
+        this.reservasNoFirmadas = result.nofirmadas;
+        console.log(this.reservasNoFirmadas, "result no frimardas");
+      },
+      error => { alert("Error en la petición"); }
     )
   }
 
+  onChange($event:any){
+    // let filteredData = 
+    // this.dataSource = new MatTableDataSource(filteredData);
+    alert("Funca")
+  }
+
+  // async obtenerUnaReserva(){
+  //   // this.reservaService.getReserva(this.id).subscribe(
+  //   //   (result) => {
+  //   //     result.forEach((element:any) => {
+  //   //     // this.pasaje = new Pasaje();
+  //   //     // Object.assign(this.pasaje, element)
+  //   //   });
+  //   // })
+  //   this.reservaService.getReserva(this.id).subscribe(
+  //     (result) => {
+  //         console.log(result, "reserva");
+  //     }
+  //   )
+  // }
 }

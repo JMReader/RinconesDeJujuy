@@ -45,4 +45,15 @@ export class ReservaService {
   }
 
 
+  getReservasFiltro(): Observable<any>{
+    const options = {
+      method: "GET",
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+      })
+    }
+    return this._http.get(this.baseURL + '/traerfirmas', options)
+  }
+
+
 }
