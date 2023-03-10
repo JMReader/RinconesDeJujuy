@@ -21,11 +21,19 @@ export class SingleCheckComponent implements OnInit {
 
   acomp: Array<Persona> = [];
 
-  constructor() { }
+  constructor() {
+    this.asig();
+  }
 
   //dentro del constructor va un (id:string)
 
   ngOnInit(): void {
+  }
+
+  async asig(){
+    await new Promise(f => setTimeout(f, 10));
+    this.acomp = this.pData.acompanantes;
+    console.log(this.acomp, 'acompanantes');
   }
 
   // firma(){

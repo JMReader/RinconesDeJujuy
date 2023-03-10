@@ -9,12 +9,14 @@
                 </mat-form-field> -->
                 
                 <mat-form-field appearance="fill">
-                    <mat-select (selectionChange)="onChange($event)">
-                      <mat-option value="firmadas">Check-In Firmados</mat-option>
-                      <mat-option value="nofirmadas">Check-In No Firmados</mat-option>
+                    <mat-select [(value)]="selectedValue" (click)="filtro()">
+                      <mat-option value="firmadas" (click)="filtro()">Check-In Firmados</mat-option>
+                      <mat-option value="nofirmadas" (click)="filtro()">Check-In No Firmados</mat-option>
                     </mat-select>
                   </mat-form-field>
-
+                  <button *ngIf="selectedValue" matSuffix mat-icon-button aria-label="Clear" (click)="cls()">
+                    <mat-icon>close</mat-icon>
+                </button>
                 <div class="mat-elevation-z8">
                     <table mat-table [dataSource]="dataSource">
 
@@ -44,7 +46,7 @@
                             <th mat-header-cell *matHeaderCellDef> </th>
                             <td mat-cell *matCellDef="let element; let pasajero" >
 
-                                <button mat-raised-button color="primary" (click)="selectedReserva(element)">Ver</button>
+                                <button mat-raised-button (click)="selectedReserva(element)" style="background-color: rgb(9, 28, 73); color: white;">Ver</button>
                             </td>
                         </ng-container>
 

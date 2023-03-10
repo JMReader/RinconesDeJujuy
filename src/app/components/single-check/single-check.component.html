@@ -70,8 +70,28 @@
         </h5>
         <p>Acompañantes</p>
         <hr class="separador"/>
-        <h5>Cantidad de personas: {{pData.nroacompanantes}}</h5>
+        <h5 *ngIf="pData.nroacompanantes > 0">Cantidad de personas: {{pData.nroacompanantes}}</h5>
+        <h5 *ngIf="pData.nroacompanantes == 0">No se registraron acompañantes</h5>
 
+                <div class="accordion accordion-flush" *ngIf="pData.nroacompanantes > 0">
+                    <div class="accordion-item">
+                      <p class="accordion-header">
+                        <button class="accordion-button collapsed" id="acordion" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                          Información Acompañantes
+                        </button>
+                    </p>
+                      <div *ngFor="let a of acomp" id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <h5>Nombre: {{a.apellido}}, {{a.nombre}}</h5>
+                            <h5>DNI: {{a.documento}}</h5>
+                            <hr style="max-width: 95%;">
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+          <br>
+          <br>
         <a class="btn btn-secondary btn-sm btn-sig" href="/sign" role="button">Firmar</a>
     </div>
 </div>
