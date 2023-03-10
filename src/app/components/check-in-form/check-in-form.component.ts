@@ -16,6 +16,7 @@ export class CheckInFormComponent implements OnInit {
   i=0;
   reserva = new Reserva;
   titular = new Persona; 
+  checkin = {}; 
   acompanante = new Persona; 
   direccionTitular= new Direccion;
   persona = new Persona; 
@@ -49,15 +50,17 @@ export class CheckInFormComponent implements OnInit {
       this.acompanante = {nombre:"", apellido: "", documento: "", documentacion:"", email:"", 
         telefono:"", titular: false, direccion:{calle:"",numero:0, ciudad:"",region:"", cpp:0, pais:""}}
     }
-    this.reserva.acompanantes = this.acompanantes; 
+    this.reserva.acompaniantes = this.acompanantes; 
 
     console.log(this.acompanantes)
   }
 
   guardarReserva(){
     this.titular.direccion = this.direccionTitular; 
-    this.reserva.titular = this.titular; 
-    this.reservaService.createReserva(this.reserva).subscribe((data: any)=>{
+    // this.reserva.titular = this.titular; 
+    this.checkin = {"Persona": this.titular, "Reserva": this.reserva, "Direccion": this.direccionTitular}
+    console.log(this.checkin)
+    this.reservaService.createReserva(this.checkin).subscribe((data: any)=>{
             console.log(data);})
     console.log(this.reserva); 
   }
