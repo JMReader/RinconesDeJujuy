@@ -3,7 +3,7 @@ import { Persona } from "./persona";
 export class Reserva {
     titular!: Persona; 
     nroAcompanantes!: number; 
-    acompanantes!: Array<Persona>; 
+    acompaniantes!: Array<Persona>; 
     //documentacion!: string; 
     fechaLlegada!: Date; 
     fechaSalida!: Date; 

@@ -10,7 +10,7 @@ export class ReservaService {
   private baseURL: string = "http://localhost:3000/Reserva"; 
   constructor(private _http: HttpClient) {  }
 
-  createReserva(reserva: Reserva): Observable<any>{
+  createReserva(reserva: any): Observable<any>{
     const options = {
       method: "POST",
       headers: new HttpHeaders({
