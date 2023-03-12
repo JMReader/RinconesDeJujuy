@@ -14,6 +14,7 @@ export class CheckInFormComponent implements OnInit {
   mostrar:boolean = false;
   tab: number = 0;
   i=0;
+  dnibase64!: string;
   reserva = new Reserva;
   titular = new Persona; 
   checkin = {}; 
@@ -57,12 +58,27 @@ export class CheckInFormComponent implements OnInit {
     console.log(this.acompanantes)
   }
 
-  guardarReserva(){
-    // this.reserva.titular = this.titular; 
+  guardarReserva(){console.log("aaaaaaaaaaaaaaaa");
+    console.log(this.dnibase64);
+    this.titular.documentacion = this.dnibase64;
     this.checkin = {"Persona": this.titular, "Reserva": this.reserva, "Direccion": this.direccionTitular}
     console.log(this.checkin)
     this.reservaService.createReserva(this.checkin).subscribe((data: any)=>{
             console.log(data);})
     console.log(this.reserva); 
+  }
+
+
+  onFileChanges(event: any) {
+    const file: File = event.target.files[0];
+    console.log(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.dnibase64 = reader.result as string;
+        console.log(this.dnibase64);
+      };
+    }
   }
 }
