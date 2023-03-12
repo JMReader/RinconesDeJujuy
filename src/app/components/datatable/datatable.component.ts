@@ -23,10 +23,11 @@ export class DatatableComponent implements OnInit {
 
   //id:string= "6409f9e7b8fc5cee48affc51";
 
-  @Output () eventData = new EventEmitter<any>();
+  @Output() eventData = new EventEmitter<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   searchKey!: string;
+  selectedValue!: string;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -50,7 +51,7 @@ export class DatatableComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    
+
     console.log(this.dataSource.data, "filter")
     // if (this.dataSource.paginator) {
     //   this.dataSource.paginator.firstPage();
@@ -59,9 +60,9 @@ export class DatatableComponent implements OnInit {
 
 
   // open() {
-	// 	const modalRef = this.modalService.open(SingleCheckComponent);
-	// 	modalRef.componentInstance.name = 'World';
-	// }
+  // 	const modalRef = this.modalService.open(SingleCheckComponent);
+  // 	modalRef.componentInstance.name = 'World';
+  // }
 
   selectedReserva(reserva: Reserva): void {
     this.eventData.emit(reserva);
@@ -85,18 +86,49 @@ export class DatatableComponent implements OnInit {
       (result) => {
         this.reservasFirmadas = result.firmadas;
         console.log(this.reservasFirmadas, "result firmadas");
-        this.reservasNoFirmadas = result.nofirmadas;
-        console.log(this.reservasNoFirmadas, "result no frimardas");
+        //this.dataSource.data = this.reservasFirmadas;
+        // this.reservasNoFirmadas = result.nofirmadas;
+        // console.log(this.reservasNoFirmadas, "result no frimardas");
       },
       error => { alert("Error en la petición"); }
     )
   }
 
-  onChange($event:any){
-    // let filteredData = 
-    // this.dataSource = new MatTableDataSource(filteredData);
-    alert("Funca")
+  filtro() {
+    this.reservaService.getReservasFiltro().subscribe(
+      (result) => {
+        this.reservasFirmadas = result.firmadas;
+        this.reservasNoFirmadas = result.nofirmadas;
+        console.log(this.reservasFirmadas, "result firmadas filtro void");
+      }
+    )
+
+    if (this.selectedValue == "firmadas"){
+      this.dataSource.data = this.reservasFirmadas;
+    } else if (this.selectedValue == "nofirmadas"){
+      this.dataSource.data = this.reservasNoFirmadas;
+    }
+    
   }
+
+  cls(){
+    this.selectedValue = "";
+    this.reservaService.getReservas().subscribe(
+      (result) => {
+        this.reservas = result.msg;
+        this.dataSource.data = this.reservas;
+      }
+    )
+  }
+
+  // onChange($event:any){
+  //   this.obtenerReservasFiltradas();
+  //   console.log(this.reservasFirmadas, "result firmadas");
+
+  //   // let filteredData = this.reservasFirmadas;
+  //   // this.dataSource = new MatTableDataSource(filteredData);
+  //   alert("Funca")
+  // }
 
   // async obtenerUnaReserva(){
   //   // this.reservaService.getReserva(this.id).subscribe(

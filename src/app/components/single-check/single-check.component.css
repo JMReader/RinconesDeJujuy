@@ -58,3 +58,37 @@
     size: 1.5px;
     background-color: black;
 }
+
+
+.accordion-button {
+    height: 20px;
+    color: white;
+    text-align: left;
+    background-color: #091c49;
+    font-size: 12px;
+    border-color:#5d6c8b;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #ffffff;
+    background-color: #091c49;
+    box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
+}
+
+.accordion-item {
+    color: #ffffff;
+    background-color: #5d6c8b;
+}
+
+.accordion {
+    --bs-accordion-border-color: #091c49;
+    --bs-accordion-btn-padding-x: 0rem;
+    --bs-accordion-btn-padding-y: 0.5rem;
+}
+
+.accordion-body{
+        /* align-items: start; */
+        display: flow-root;
+        padding: inherit;
+        margin-left: 17px;
+}
