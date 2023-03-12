@@ -28,7 +28,8 @@
             <label for="copiadnia" class="form-label">Copia Documento de Identidad del titular
               <span class="obligatorio">*</span>
             </label>
-            <input class="form-control" type="file" name="documentacion" id="copiadni" aria-describedby="dniHelp" [(ngModel)]="titular.documentacion">
+            <input type="file"(change)="onFileChanges($event)" alife-file-to-base64  class="form-control"  name="documentacion" id="copiadni" aria-describedby="dniHelp"
+             accept="image/x-png,image/gif,image/jpeg"  >
             <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
           </div>
 
