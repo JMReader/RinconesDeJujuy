@@ -93,6 +93,11 @@
           <br>
           <br>
         <!-- <a class="btn btn-secondary btn-sm btn-sig" href="/sign" role="button">Firmar</a> -->
-        <a class="btn btn-secondary btn-sm btn-sig" (click)="firmarReserva(pData)" role="button">Firmar</a>
+    </div>
+    <div>
+        <a class="btn btn-secondary btn-sm btn-sig" style="width: 100px; margin-right: 26%; margin-bottom: 5px;" 
+            *ngIf="band==false" (click)="firmarReserva(pData)" role="button">Firmar</a>
+        <a class="btn btn-secondary btn-sm btn-sig" style="width: 100px;margin-right: 26%; margin-bottom: 5px;"
+            *ngIf="band==false" (click)="imprimirDetalles()" role="button">Imprimir</a>
     </div>
 </div>
