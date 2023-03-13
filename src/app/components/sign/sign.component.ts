@@ -2,7 +2,9 @@ import {
   Component,
   ViewChild,
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SignaturePad } from 'angular2-signaturepad';
+import { ReservaService } from 'src/app/services/reserva.service';
 
 
 @Component({
@@ -22,12 +24,24 @@ export class SignComponent {
     'canvasHeight': 200
   };
 
-  constructor() { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private reservaService: ReservaService) { }
 
   ngAfterViewInit() {
     // this.signaturePad is now available
     this.signaturePad.set('minWidth', 2); 
     this.signaturePad.clear(); 
+  }
+
+  ngOnInit(): void {
+    // this.activatedRoute.params.subscribe(params =>{
+    //   this.reservaService.getReserva(params['id']).subscribe(
+    //     (result) => {
+    //       // this.pasaje = new Pasaje();
+    //       // Object.assign(this.pasaje, element)
+    //       console.log(result, "resultado y element");
+    //   }
+    //   )
+    // })
   }
 
   drawComplete() {

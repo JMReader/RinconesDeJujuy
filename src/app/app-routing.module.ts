@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: WorkViewComponent },
   { path: 'test', component: SingleCheckComponent },
   { path: 'check-in', component: CheckInFormComponent },
-  {path: 'sign', component: SignComponent}
+  {path: 'sign/:id', component: SignComponent}
 
 ];
 

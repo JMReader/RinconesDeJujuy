@@ -3,7 +3,10 @@ import { Component,
   ViewChild,
   OnInit,
   HostListener, } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Persona } from 'src/app/models/persona';
+import { Reserva } from 'src/app/models/reserva';
 
 @Component({
   selector: 'app-single-check',
@@ -20,8 +23,9 @@ export class SingleCheckComponent implements OnInit {
   img: any;
 
   acomp: Array<Persona> = [];
+  reserva: Array<Reserva> = [];
 
-  constructor() {
+  constructor(private router: Router, private modalService: NgbModal) {
     this.asig();
   }
 
@@ -34,6 +38,12 @@ export class SingleCheckComponent implements OnInit {
     await new Promise(f => setTimeout(f, 10));
     this.acomp = this.pData.acompanantes;
     console.log(this.acomp, 'acompanantes');
+  }
+
+  firmarReserva(reserva: Reserva): void {
+    this.router.navigate(['sign', reserva._id]);
+    console.log(reserva._id)
+    this.modalService.dismissAll(SingleCheckComponent);
   }
 
   // firma(){
