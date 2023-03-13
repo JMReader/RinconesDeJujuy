@@ -11,6 +11,9 @@ import { Direccion } from 'src/app/models/direccion';
   styleUrls: ['./check-in-form.component.css']
 })
 export class CheckInFormComponent implements OnInit { 
+
+  URL!:string;
+
   mostrar:boolean = false;
   tab: number = 0;
   i=0;
@@ -29,7 +32,7 @@ export class CheckInFormComponent implements OnInit {
     this.titular.titular = true; 
     this.direccionTitular = new Direccion(); 
     this.persona = new Persona();
-    this.acompanante = new Persona();    
+    this.acompanante = new Persona();
   }
 
   ngOnInit(): void {
@@ -65,4 +68,18 @@ export class CheckInFormComponent implements OnInit {
             console.log(data);})
     console.log(this.reserva); 
   }
+
+  // copiarRuta() {
+  //   this.URL = window.location.href;
+  //   //this.reservaService.actualizarDatosCompartidos(this.URL);
+  //   this.reservaService.establecerValor(this.URL);
+  //   console.log(this.URL, "copiarRuta");
+  // }
+
+  // getAbsolutePath() {
+  //   var loc = window.location;
+  //   var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
+  //   return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
+  // } //incluye el pathname y el dominio
+
 }
