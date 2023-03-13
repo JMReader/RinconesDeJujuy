@@ -54,6 +54,20 @@ export class ReservaService {
     }
     return this._http.get(this.baseURL + '/traerfirmas', options)
   }
+  editarReserva(id: string, firma:string): Observable<any>{
+    const options = {
+      method: "PUT",
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+      })
+    }
+    let datos ={
+      'Reserva':{
+       'firma': firma
+      }
+    }
+    return this._http.put(this.baseURL + '/editar/'+ id, datos, options)
+  }
 
 
 }

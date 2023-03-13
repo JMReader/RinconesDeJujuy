@@ -14,6 +14,7 @@ import { ReservaService } from 'src/app/services/reserva.service';
 })
 export class SignComponent {
   title = 'prueba';
+  id:string='';
   signatureImg!: string;
   @ViewChild(SignaturePad) signaturePad!: SignaturePad;
   conf = false; 
@@ -33,6 +34,9 @@ export class SignComponent {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params['id'];
+    });
     // this.activatedRoute.params.subscribe(params =>{
     //   this.reservaService.getReserva(params['id']).subscribe(
     //     (result) => {
@@ -57,9 +61,14 @@ export class SignComponent {
   }
 
   savePad() {
+
     const base64Data = this.signaturePad.toDataURL();
     this.signatureImg = base64Data;
     this.conf=true; 
+    console.log(base64Data);
+    console.log(this.signatureImg);
+    this.reservaService.editarReserva(this.id, this.signatureImg).subscribe((data: any)=>{
+      console.log(data);});
   }
 
 }
