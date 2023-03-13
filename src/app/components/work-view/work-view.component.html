@@ -43,14 +43,12 @@
 
       <div class="d-flex justify-content-center">
         <h3 class="my-2">Check In realizados</h3>
-
       </div>
-            <!-- <th scope="col">DNI</th>
-            <th scope="col">Fecha Llegada</th>
-            <th scope="col">Fecha Salida</th>
-            <th scope="col">Nombre y apellido</th>
-            <th scope="col">Opciones</th> -->
+      <button mat-raised-button [cdkCopyToClipboard]="URL" (click)="openSnackBar()" style="background-color: rgb(9, 28, 73); color: white;">
+        <mat-icon>file_copy</mat-icon>Check-In Online
+      </button>
     </div>
     <app-datatable (eventData)="tablaSeleccion($event)"></app-datatable>
   </div>
+
 </div>

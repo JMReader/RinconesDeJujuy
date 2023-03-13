@@ -11,10 +11,12 @@ import { Direccion } from 'src/app/models/direccion';
   styleUrls: ['./check-in-form.component.css']
 })
 export class CheckInFormComponent implements OnInit { 
+
+  URL!:string;
+
   mostrar:boolean = false;
   tab: number = 0;
   i=0;
-  dnibase64!: string;
   reserva = new Reserva;
   titular = new Persona; 
   checkin = {}; 
@@ -30,7 +32,7 @@ export class CheckInFormComponent implements OnInit {
     this.titular.titular = true; 
     this.direccionTitular = new Direccion(); 
     this.persona = new Persona();
-    this.acompanante = new Persona();    
+    this.acompanante = new Persona();
   }
 
   ngOnInit(): void {
@@ -58,9 +60,8 @@ export class CheckInFormComponent implements OnInit {
     console.log(this.acompanantes)
   }
 
-  guardarReserva(){console.log("aaaaaaaaaaaaaaaa");
-    console.log(this.dnibase64);
-    this.titular.documentacion = this.dnibase64;
+  guardarReserva(){
+    // this.reserva.titular = this.titular; 
     this.checkin = {"Persona": this.titular, "Reserva": this.reserva, "Direccion": this.direccionTitular}
     console.log(this.checkin)
     this.reservaService.createReserva(this.checkin).subscribe((data: any)=>{
@@ -68,17 +69,17 @@ export class CheckInFormComponent implements OnInit {
     console.log(this.reserva); 
   }
 
+  // copiarRuta() {
+  //   this.URL = window.location.href;
+  //   //this.reservaService.actualizarDatosCompartidos(this.URL);
+  //   this.reservaService.establecerValor(this.URL);
+  //   console.log(this.URL, "copiarRuta");
+  // }
 
-  onFileChanges(event: any) {
-    const file: File = event.target.files[0];
-    console.log(file);
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.dnibase64 = reader.result as string;
-        console.log(this.dnibase64);
-      };
-    }
-  }
+  // getAbsolutePath() {
+  //   var loc = window.location;
+  //   var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
+  //   return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
+  // } //incluye el pathname y el dominio
+
 }

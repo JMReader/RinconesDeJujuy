@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Reserva } from '../models/reserva'; 
 
 @Injectable({
@@ -8,6 +8,8 @@ import { Reserva } from '../models/reserva';
 })
 export class ReservaService {
   private baseURL: string = "http://localhost:3000/Reserva"; 
+  //url!:string;
+
   constructor(private _http: HttpClient) {  }
 
   createReserva(reserva: any): Observable<any>{
@@ -69,5 +71,18 @@ export class ReservaService {
     return this._http.put(this.baseURL + '/editar/'+ id, datos, options)
   }
 
+  // establecerValor(valor: any) {
+  //   this.url = valor;
+  // }
+
+  // private datosCompartidos = new BehaviorSubject<string>('');
+
+  // actualizarDatosCompartidos(datos: string) {
+  //   this.datosCompartidos.next(datos);
+  // }
+
+  // obtenerDatosCompartidos() {
+  //   return this.datosCompartidos.asObservable();
+  // }
 
 }
