@@ -19,6 +19,7 @@ export class SingleCheckComponent implements OnInit {
   @ViewChild('sigPad') sigPad: any;
   sigPadElement: any;
   context: any;
+  band=false; 
   isDrawing = false;
   img: any;
 
@@ -46,6 +47,13 @@ export class SingleCheckComponent implements OnInit {
     this.router.navigate(['sign', reserva._id]);
     console.log(reserva._id)
     this.modalService.dismissAll(SingleCheckComponent);
+  }
+
+  imprimirDetalles(){
+    this.band=true; 
+    setTimeout(() => {
+      window.print();
+    }, 300); 
   }
 
   // firma(){
