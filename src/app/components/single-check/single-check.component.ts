@@ -27,6 +27,7 @@ export class SingleCheckComponent implements OnInit {
 
   constructor(private router: Router, private modalService: NgbModal) {
     this.asig();
+    
   }
 
   //dentro del constructor va un (id:string)
@@ -37,6 +38,7 @@ export class SingleCheckComponent implements OnInit {
   async asig(){
     await new Promise(f => setTimeout(f, 10));
     this.acomp = this.pData.acompanantes;
+    console.log(this.pData);
     console.log(this.acomp, 'acompanantes');
   }
 
