@@ -1,15 +1,19 @@
-<app-header></app-header>
-<div class="container" style="position: relative;">
-    <br><br>
-    <div class="fichaContainer">
-        <div class="card" style="width:40rem;">
-            <img style="max-height: 20rem; max-width: 40rem;" src="https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-muted ">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              b5
-            </div>
+<app-header class="no-imprimir"></app-header><br><br>
+<div class="container">
+    <div class="fichaContainer" style="position: relative;">
+        <h2 class="text-center">Detalles de la reserva</h2>  
+        <div class="card" style="width:19rem;">
+            <img class="imagen, card-img-top" src="{{reservaSeleccionada.titular.documentacion}}" alt="" >
+        <div class="card-body">
+            <h3 class="card-title, text-center" styles="font-weight: bolder;">Titular: {{reservaSeleccionada.titular.nombre}} {{reservaSeleccionada.titular.apellido}}</h3>
+            <h4 class="card-subtitle mb-2 text-center text-muted ">DNI: {{reservaSeleccionada.titular.documento}}</h4>
+            <h4 class="card-subtitle mb-2 text-center ">Contactos: </h4>
+            <p class="card-text text-center text-muted">{{reservaSeleccionada.titular.telefono}}</p>
+            <p class="card-text text-center text-muted">{{reservaSeleccionada.titular.email}}</p>
+
+            <a class="btn btn-secondary btn-sm btn-sig" style="margin-right: 5%; margin-left: 37%;"
+             (click)="imprimirDetalles()" role="button">Imprimir</a>
+        </div>
         </div>
     </div>
 </div>
