@@ -29,6 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import { ReservaDetailsComponent } from './components/reserva-details/reserva-details.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     CheckInFormComponent,
     SignComponent,
     DatatableComponent,
+    ReservaDetailsComponent,
 
   ],
   imports: [
