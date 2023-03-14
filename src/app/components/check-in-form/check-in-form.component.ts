@@ -62,8 +62,7 @@ export class CheckInFormComponent implements OnInit {
     console.log(this.acompanantes)
   }
 
-  guardarReserva(){console.log("aaaaaaaaaaaaaaaa");
-    console.log(this.dnibase64);
+  guardarReserva(){console.log(this.reserva.horaLLegada);
     this.titular.documentacion = this.dnibase64;
     this.checkin = {"Persona": this.titular, "Vehiculo": this.vehiculo, "Reserva": this.reserva, "Direccion": this.direccionTitular}
     console.log(this.checkin)

@@ -75,10 +75,10 @@
             </label>
             <input type="date" name="fechaSalida" name="diasal" id="diasal" [(ngModel)]="reserva.fechaSalida">
 
-            <label for="horario" class="form-label">Horario aproximado de llegada
+            <label for="horario"   class="form-label">Horario aproximado de llegada
               <span class="obligatorio">*</span>
             </label>
-            <input type="time" name="eta">
+            <input [(ngModel)]="reserva.horaLLegada" type="time" name="eta">
           </div>
 
           <div class="mb-3">

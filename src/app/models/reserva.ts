@@ -10,6 +10,7 @@ export class Reserva {
     fechaSalida!: Date; 
     medioTransporte!: string; 
     frecuenciaLimpieza!: string; 
+    horaLLegada!: string; 
     notas!: string; 
     firma!: string;
 }
