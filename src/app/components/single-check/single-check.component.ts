@@ -49,13 +49,6 @@ export class SingleCheckComponent implements OnInit {
     this.modalService.dismissAll(SingleCheckComponent);
   }
 
-  imprimirDetalles(){
-    this.band=true; 
-    setTimeout(() => {
-      window.print();
-    }, 300); 
-  }
-  
   editarReserva(reserva: Reserva): void{
     this.router.navigate(['details', reserva._id]);
     console.log(reserva._id)
