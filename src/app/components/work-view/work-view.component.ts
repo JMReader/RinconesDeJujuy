@@ -4,6 +4,7 @@ import { SingleCheckComponent } from '../single-check/single-check.component';
 import { ReservaService } from 'src/app/services/reserva.service';
 import { Reserva } from 'src/app/models/reserva';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-work-view',
@@ -12,9 +13,11 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 })
 export class WorkViewComponent implements OnInit {
 
+  status: number; 
   URL:string = "http://localhost:4200/check-in";
 
-  constructor(private modalService: NgbModal, private reservaService: ReservaService, private _snackBar: MatSnackBar) { 
+  constructor(private modalService: NgbModal, private reservaService: ReservaService, private _snackBar: MatSnackBar,private router: Router) { 
+    this.status = 0; 
     // this.URL = this.reservaService.url;
     // console.log(this.URL, "url de los datos");
   }
@@ -34,6 +37,11 @@ export class WorkViewComponent implements OnInit {
     this._snackBar.open('Link copiado con éxito', '', config );
   }
 
+  check_hotel(){
+    this.status=1; 
+    this.router.navigate(['check-in/', this.status]);
+    console.log(this.status)
+  }
   
 
 }

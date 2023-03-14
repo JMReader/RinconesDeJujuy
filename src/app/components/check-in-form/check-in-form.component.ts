@@ -4,7 +4,11 @@ import { PersonaService } from 'src/app/services/persona.service';
 import { Reserva } from 'src/app/models/reserva';
 import { Persona } from 'src/app/models/persona';
 import { Direccion } from 'src/app/models/direccion';
+
+import { ActivatedRoute } from '@angular/router';
+
 import { Vehiculo } from 'src/app/models/vehiculo';
+
 
 @Component({
   selector: 'app-check-in-form',
@@ -13,6 +17,7 @@ import { Vehiculo } from 'src/app/models/vehiculo';
 })
 export class CheckInFormComponent implements OnInit { 
   mostrar:boolean = false;
+  status!: number;
   tab: number = 0;
   i=0;
   dnibase64!: string;
@@ -25,7 +30,8 @@ export class CheckInFormComponent implements OnInit {
   persona = new Persona; 
   acompanantes: Array<Persona> = []; 
 
-  constructor(private reservaService: ReservaService) {
+
+  constructor(private reservaService: ReservaService, private route: ActivatedRoute) {
     this.vehiculo = new Vehiculo();
     this.reserva = new Reserva();
     this.reserva.acompaniantes = new Array<Persona>();
@@ -33,11 +39,16 @@ export class CheckInFormComponent implements OnInit {
     this.titular.titular = true; 
     this.direccionTitular = new Direccion(); 
     this.persona = new Persona();
-    this.acompanante = new Persona();    
+
+    this.acompanante = new Persona();  
 
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params =>{
+      this.status = params['status']; 
+      console.log(params['status'])
+    })
   }
 
   ocultar(): void {
