@@ -4,7 +4,11 @@ import { PersonaService } from 'src/app/services/persona.service';
 import { Reserva } from 'src/app/models/reserva';
 import { Persona } from 'src/app/models/persona';
 import { Direccion } from 'src/app/models/direccion';
+
 import { ActivatedRoute } from '@angular/router';
+
+import { Vehiculo } from 'src/app/models/vehiculo';
+
 
 @Component({
   selector: 'app-check-in-form',
@@ -19,20 +23,25 @@ export class CheckInFormComponent implements OnInit {
   dnibase64!: string;
   reserva = new Reserva;
   titular = new Persona; 
+  vehiculo!:Vehiculo;
   checkin = {}; 
   acompanante = new Persona; 
   direccionTitular= new Direccion;
   persona = new Persona; 
   acompanantes: Array<Persona> = []; 
 
+
   constructor(private reservaService: ReservaService, private route: ActivatedRoute) {
+    this.vehiculo = new Vehiculo();
     this.reserva = new Reserva();
     this.reserva.acompaniantes = new Array<Persona>();
     this.titular = new Persona(); 
     this.titular.titular = true; 
     this.direccionTitular = new Direccion(); 
     this.persona = new Persona();
+
     this.acompanante = new Persona();  
+
   }
 
   ngOnInit(): void {
@@ -64,10 +73,9 @@ export class CheckInFormComponent implements OnInit {
     console.log(this.acompanantes)
   }
 
-  guardarReserva(){console.log("aaaaaaaaaaaaaaaa");
-    console.log(this.dnibase64);
+  guardarReserva(){console.log(this.reserva.horaLLegada);
     this.titular.documentacion = this.dnibase64;
-    this.checkin = {"Persona": this.titular, "Reserva": this.reserva, "Direccion": this.direccionTitular}
+    this.checkin = {"Persona": this.titular, "Vehiculo": this.vehiculo, "Reserva": this.reserva, "Direccion": this.direccionTitular}
     console.log(this.checkin)
     this.reservaService.createReserva(this.checkin).subscribe((data: any)=>{
             console.log(data);})
