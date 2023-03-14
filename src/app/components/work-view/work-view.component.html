@@ -43,10 +43,15 @@
 
       <div class="d-flex justify-content-center">
         <h3 class="my-2">Check In realizados</h3>
+        <div class="my-2">
+          <button mat-raised-button [cdkCopyToClipboard]="URL" (click)="openSnackBar()" style="background-color: rgb(9, 28, 73); color: white;">
+            <mat-icon>file_copy</mat-icon>Check-In Online
+          </button>
+          <button mat-raised-button (click)="check_hotel()" style="background-color: rgb(9, 28, 73); color: white; float: right;">
+            <mat-icon>border_color</mat-icon>Check-In en hotel
+          </button>
+        </div>
       </div>
-      <button mat-raised-button [cdkCopyToClipboard]="URL" (click)="openSnackBar()" style="background-color: rgb(9, 28, 73); color: white;">
-        <mat-icon>file_copy</mat-icon>Check-In Online
-      </button>
     </div>
     <app-datatable (eventData)="tablaSeleccion($event)"></app-datatable>
   </div>
