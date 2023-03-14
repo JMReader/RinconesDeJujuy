@@ -27,9 +27,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { ReservaDetailsComponent } from './components/reserva-details/reserva-details.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -42,6 +45,7 @@ import { ReservaDetailsComponent } from './components/reserva-details/reserva-de
     SignComponent,
     DatatableComponent,
     ReservaDetailsComponent,
+    LoginComponent,
 
   ],
   imports: [
@@ -61,7 +65,8 @@ import { ReservaDetailsComponent } from './components/reserva-details/reserva-de
     MatSelectModule,
     MatIconModule,
     ClipboardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

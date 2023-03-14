@@ -5,3 +5,8 @@ table {
 th{
   width: 25%;
 }
+
+.pointer{
+  cursor: pointer;
+  color: rgb(9, 28, 73); 
+}

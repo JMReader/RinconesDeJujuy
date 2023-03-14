@@ -19,6 +19,15 @@
             <a class="nav-link" href="#">Check in Firmados</a>
 
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Opciones de Check-In
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" [cdkCopyToClipboard]="URL" (click)="openSnackBar()" style="cursor: pointer;">Check-In Online</a></li>
+              <li><a class="dropdown-item" (click)="check_hotel()" style="cursor: pointer;">Check-In en hotel</a></li>
+            </ul>
+          </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#" disabled >Habitaciones</a>
           </li>
