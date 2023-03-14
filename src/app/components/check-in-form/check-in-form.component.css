@@ -192,3 +192,19 @@ span{
   outline:0;
   border: 1px solid #97d848;
 }
+
+.tarjeta{
+  margin: auto; 
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 460px;
+  min-width: 200px;
+  height: auto;
+  padding: 1rem;
+  background-color: white;
+  font-size: 10px;
+  font-family: 'Noto Sans', sans-serif;
+}

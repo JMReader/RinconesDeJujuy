@@ -18,6 +18,7 @@ import { Vehiculo } from 'src/app/models/vehiculo';
 })
 export class CheckInFormComponent implements OnInit { 
   mostrar:boolean = false;
+  band: boolean = false; 
   status!: number;
   tab: number = 0;
   i=0;
@@ -82,6 +83,7 @@ export class CheckInFormComponent implements OnInit {
     this.reservaService.createReserva(this.checkin).subscribe((data: any)=>{
             console.log(data);
             this.checkin1 = data.msg})
+    this.band = true; 
   }
 
 
@@ -99,7 +101,8 @@ export class CheckInFormComponent implements OnInit {
   }
 
   async firmar (){
-    this.guardarReserva();
+    this.titular.documentacion = this.dnibase64;
+    this.checkin = {"Persona": this.titular, "Vehiculo": this.vehiculo, "Reserva": this.reserva, "Direccion": this.direccionTitular}
     await new Promise(f => setTimeout(f, 80)); 
     this.reservaService.createReserva(this.checkin).subscribe((data: any)=>{
       this.checkin1 = data.msg
@@ -113,4 +116,9 @@ export class CheckInFormComponent implements OnInit {
               )
     })
   }
+
+  recargar(){
+    window.location.reload()
+  }
+  
 }
