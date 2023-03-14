@@ -1,5 +1,6 @@
 table {
     width: 100%;
+    margin-top: 10px;
   }
 
 th{
@@ -9,4 +10,8 @@ th{
 .pointer{
   cursor: pointer;
   color: rgb(9, 28, 73); 
+}
+
+#contAcciones{
+  display: inline-block;
 }
