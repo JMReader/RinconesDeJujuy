@@ -386,22 +386,22 @@
             <label for="nombre" class="form-label">Marca Vehiculo
               <span class="obligatorio">*</span>
             </label>
-            <input type="text" name="introducir_v" id="v" placeholder="Marca Vehiculo">
+            <input [(ngModel)]="vehiculo.marca" type="text" name="introducir_v" id="v" placeholder="Marca Vehiculo">
 
             <label for="nombre" class="form-label">Modelo
               <span class="obligatorio">*</span>
             </label>
-            <input type="text" name="introducir_c" id="c" placeholder="Marca Modelo">
+            <input [(ngModel)]="vehiculo.modelo" type="text" name="introducir_c" id="c" placeholder="Marca Modelo">
 
             <label for="nombre" class="form-label">Color
               <span class="obligatorio">*</span>
             </label>
-            <input type="text" name="introducir_p" id="p" placeholder="Marca Color">
+            <input [(ngModel)]="vehiculo.color" type="text" name="introducir_p" id="p" placeholder="Marca Color">
 
             <label for="nombre" class="form-label">Patente
               <span class="obligatorio">*</span>
             </label>
-            <input type="text" name="introducir_v" id="v" placeholder="Marca Patente">
+            <input [(ngModel)]="vehiculo.patente" type="text" name="introducir_v" id="v" placeholder="Marca Patente">
           </div>
 
           <div class="mb-3">
