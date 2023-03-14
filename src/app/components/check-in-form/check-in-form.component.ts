@@ -6,6 +6,7 @@ import { Persona } from 'src/app/models/persona';
 import { Direccion } from 'src/app/models/direccion';
 
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Vehiculo } from 'src/app/models/vehiculo';
 
@@ -25,13 +26,14 @@ export class CheckInFormComponent implements OnInit {
   titular = new Persona; 
   vehiculo!:Vehiculo;
   checkin = {}; 
+  checkin1!: string; 
   acompanante = new Persona; 
   direccionTitular= new Direccion;
   persona = new Persona; 
   acompanantes: Array<Persona> = []; 
 
 
-  constructor(private reservaService: ReservaService, private route: ActivatedRoute) {
+  constructor(private reservaService: ReservaService, private route: ActivatedRoute, private router: Router) {
     this.vehiculo = new Vehiculo();
     this.reserva = new Reserva();
     this.reserva.acompaniantes = new Array<Persona>();
@@ -78,8 +80,8 @@ export class CheckInFormComponent implements OnInit {
     this.checkin = {"Persona": this.titular, "Vehiculo": this.vehiculo, "Reserva": this.reserva, "Direccion": this.direccionTitular}
     console.log(this.checkin)
     this.reservaService.createReserva(this.checkin).subscribe((data: any)=>{
-            console.log(data);})
-    console.log(this.reserva); 
+            console.log(data);
+            this.checkin1 = data.msg})
   }
 
 
@@ -94,5 +96,21 @@ export class CheckInFormComponent implements OnInit {
         console.log(this.dnibase64);
       };
     }
+  }
+
+  async firmar (){
+    this.guardarReserva();
+    await new Promise(f => setTimeout(f, 80)); 
+    this.reservaService.createReserva(this.checkin).subscribe((data: any)=>{
+      this.checkin1 = data.msg
+      console.log(this.checkin1);
+      this.reservaService.getReserva(this.checkin1).subscribe(
+                async (result) => {
+                  console.log(this.checkin1);
+                   await new Promise(f => setTimeout(f, 100));
+                   this.router.navigate(['sign/', this.checkin1]);
+              }
+              )
+    })
   }
 }
