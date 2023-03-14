@@ -8,7 +8,9 @@
     margin-bottom: -13px;
     text-align: center;
 }
-
+.dni{
+    aspect-ratio: 4/3;
+}
 .card{
    /* border-radius: 6%;
     padding: 1rem;
