@@ -5,6 +5,7 @@ import { SingleCheckComponent } from './components/single-check/single-check.com
 import { WorkViewComponent } from './components/work-view/work-view.component';
 import { SignComponent } from './components/sign/sign.component';
 import { ReservaDetailsComponent } from './components/reserva-details/reserva-details.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
 
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'test', component: SingleCheckComponent },
   { path: 'check-in/:status', component: CheckInFormComponent },
   { path: 'sign/:id', component: SignComponent }, 
-  { path: 'details/:id', component: ReservaDetailsComponent}
+  { path: 'details/:id', component: ReservaDetailsComponent},
+  { path: 'login', component: LoginComponent}
 
 ];
 

@@ -32,7 +32,7 @@ export class ReservaDetailsComponent implements OnInit {
     this.reservaService.getReserva(this.reser).subscribe((result)=> {
       this.reservaSeleccionada = result.reserva;
     }); 
-    console.log(this.reservaSeleccionada); 
+    console.log(this.reser); 
   }
 
   imprimirDetalles(){

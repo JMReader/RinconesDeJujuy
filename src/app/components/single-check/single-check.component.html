@@ -92,15 +92,14 @@
 
           <br>
           <br>
-        <!-- <a class="btn btn-secondary btn-sm btn-sig" href="/sign" role="button">Firmar</a> -->
+          <p>Firma del Titular</p>
+          <hr class="separador"/>
+          <div class="firma">
+            <img src="{{pData.firma}}" width="250"/>
+          </div>
+          
     </div>
-    <div>
-        <a class="btn btn-secondary btn-sm btn-sig" style="width: 100px; margin-right: 26%; margin-bottom: 5px;" 
-            *ngIf="band==false" (click)="firmarReserva(pData)" role="button">Firmar</a>
-        
-            <a class="btn btn-secondary btn-sm btn-sig" (click)="editarReserva(pData)" style="width: 100px;margin-right: 26%; margin-bottom: 5px;"
-            *ngIf="band==false" role="button">Detalles</a>
-        <!-- <a class="btn btn-secondary btn-sm btn-sig" href="/details" style="width: 100px;margin-right: 26%; margin-bottom: 5px;"
-        *ngIf="band==false" (click)="detallarReserva()" role="button">Detalles</a> -->
+    <div class="d-flex justify-content-center mb-3" *ngIf="!pData.firma">
+        <button type="button" class="btn btn-secondary btn-sm btn-sig" (click)="firmarReserva(pData)" role="button">Firmar</button>
     </div>
 </div>

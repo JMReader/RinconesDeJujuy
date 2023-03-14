@@ -121,6 +121,11 @@ export class DatatableComponent implements OnInit {
     )
   }
 
+  editarReserva(reserva: Reserva): void{
+    this.router.navigate(['details', reserva._id]);
+    console.log(reserva._id);
+  }
+
   // onChange($event:any){
   //   this.obtenerReservasFiltradas();
   //   console.log(this.reservasFirmadas, "result firmadas");
