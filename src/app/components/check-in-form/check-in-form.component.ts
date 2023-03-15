@@ -63,6 +63,7 @@ export class CheckInFormComponent implements OnInit {
   }
 
   mostrarAcompanantes(){ 
+    this.reserva.nroAcompanantes = this.tab;
     this.acompanantes.length = this.tab;
     for(this.i=0; this.i < this.tab; this.i++)
     {

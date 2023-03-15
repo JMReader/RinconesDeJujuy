@@ -1,19 +1,34 @@
-.fichaContainer{
-    margin-left: 20%; 
-    margin-right: 20%; 
-    position: absolute;  
+*{
+  margin:0;
+  padding: 0; 
+  box-sizing: border-box;
 }
 
+.fichaContainer{
+    display: flex; 
+    width: 800px;
+    height: auto;
+    border-radius: 2px;
+    box-shadow: 1px 1px 4px 2px rgba(0,0,0,0.2);
+    padding: 20px;
+} 
+
 .imagen{
-    width: 100%;
-    height: 100%;
+    width: 250px;
+    height: 250px;
+    border-right: 1px solid #0000;
+    padding: 20px; 
 }
+
+/* .card-body{
+} */
 
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80vh; /* Ajustar la altura según sea necesario */
+    height: 80vh; 
+    padding: 0 20px;
   }
 
   @media print {

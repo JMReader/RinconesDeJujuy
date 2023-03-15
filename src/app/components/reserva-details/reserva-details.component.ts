@@ -12,7 +12,8 @@ import { PersonaService } from 'src/app/services/persona.service';
   styleUrls: ['./reserva-details.component.css']
 })
 export class ReservaDetailsComponent implements OnInit {
-  reservaSeleccionada! : Reserva; 
+  reservaSeleccionada! : any; 
+  most=false; 
   reser: string; 
   per!:Persona 
   constructor(private route: ActivatedRoute, private reservaService: ReservaService, private personaService: PersonaService) { 
@@ -26,16 +27,22 @@ export class ReservaDetailsComponent implements OnInit {
       console.log(this.reser)
     })
     this.traerReserva(); 
+    console.log(this.most)
   }
 
   traerReserva(){
     this.reservaService.getReserva(this.reser).subscribe((result)=> {
       this.reservaSeleccionada = result.reserva;
+      console.log(this.reservaSeleccionada.acompanantes); 
     }); 
-    console.log(this.reser); 
+    // this.reservaService.getReserva(this.reser).subscribe((data: any)=>{
+    //   this.reservaSeleccionada = data.reserva; 
+    //   console.log(this.reservaSeleccionada); 
+    // })
   }
 
   imprimirDetalles(){
+    this.most = true; 
     setTimeout(() => {
       window.print();
     }, 300); 
