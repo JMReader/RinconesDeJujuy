@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
 import { Vehiculo } from 'src/app/models/vehiculo';
+import { LoginService } from 'src/app/services/login.service';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class CheckInFormComponent implements OnInit {
   acompanantes: Array<Persona> = []; 
 
 
-  constructor(private reservaService: ReservaService, private route: ActivatedRoute, private router: Router) {
+  constructor(private reservaService: ReservaService, private route: ActivatedRoute, private loginS:LoginService, private router: Router) {
     this.vehiculo = new Vehiculo();
     this.reserva = new Reserva();
     this.reserva.acompaniantes = new Array<Persona>();
@@ -42,8 +43,17 @@ export class CheckInFormComponent implements OnInit {
     this.titular.titular = true; 
     this.direccionTitular = new Direccion(); 
     this.persona = new Persona();
-
     this.acompanante = new Persona();  
+    this.route.params.subscribe(params =>{
+      this.status = params['status']; 
+    })
+    if(this.status==1){
+      if(loginS.userLoggedIn()==false){
+        this.router.navigate(['login']);
+      }
+
+    }
+
 
   }
 
