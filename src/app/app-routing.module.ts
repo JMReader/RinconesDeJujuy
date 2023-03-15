@@ -9,11 +9,10 @@ import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
 
-  { path: '', component: WorkViewComponent },
-  { path: 'test', component: SingleCheckComponent },
+  { path: '', component: WorkViewComponent },//debe estar protegido  login
   { path: 'check-in/:status', component: CheckInFormComponent },
-  { path: 'sign/:id', component: SignComponent }, 
-  { path: 'details/:id', component: ReservaDetailsComponent},
+  { path: 'sign/:id', component: SignComponent }, //debe estar protegido  login
+  { path: 'details/:id', component: ReservaDetailsComponent},//debe estar protegido  login
   { path: 'login', component: LoginComponent}
 
 ];

@@ -5,6 +5,7 @@ import { ReservaService } from 'src/app/services/reserva.service';
 import { Reserva } from 'src/app/models/reserva';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-work-view',
@@ -16,7 +17,7 @@ export class WorkViewComponent implements OnInit {
   status: number; 
   URL:string = "http://localhost:4200/check-in/0";
 
-  constructor(private modalService: NgbModal, private reservaService: ReservaService, private _snackBar: MatSnackBar,private router: Router) { 
+  constructor(private modalService: NgbModal, private reservaService: ReservaService, private _snackBar: MatSnackBar,private router: Router, private logs: LoginService ) { 
     this.status = 0; 
     // this.URL = this.reservaService.url;
     // console.log(this.URL, "url de los datos");

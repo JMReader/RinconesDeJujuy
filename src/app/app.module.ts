@@ -28,11 +28,13 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { ReservaDetailsComponent } from './components/reserva-details/reserva-details.component';
 import { LoginComponent } from './components/login/login.component';
+import { LoginService } from './services/login.service';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 
 @NgModule({
@@ -68,7 +70,12 @@ import { LoginComponent } from './components/login/login.component';
     MatSnackBarModule,
     MatTooltipModule
   ],
-  providers: [],
+  providers: [
+    LoginService,
+    { provide: HTTP_INTERCEPTORS,
+       useClass: TokenInterceptorService, 
+       multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,7 +7,7 @@ import { Persona } from '../models/persona';
   providedIn: 'root'
 })
 export class PersonaService {
-  private baseURL: string = "http://localhost:3000/api/persona";
+  private baseURL: string = "http://localhost:3000/Persona";
   constructor(private _http: HttpClient) { }
 
   createPersona(persona: Persona): Observable<any>{
@@ -34,5 +34,18 @@ export class PersonaService {
     const datos = JSON.stringify(persona);
 
     return this._http.post(this.baseURL + '/post/empleado', datos, options)
+  }
+  postLogin(user:string, passw:string): Observable<any>{
+    const datos = {
+      "usuario":user,
+      "password": passw
+    }
+    const options = {
+      method: "POST",
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+      })
+    }
+    return this._http.post(this.baseURL + '/login', datos, options)
   }
 }
