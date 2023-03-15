@@ -30,7 +30,7 @@ export class LoginService {
   }
   public userLoggedIn(){ 
     var resultado = false;
-     var usuario = sessionStorage.getItem("user"); 
+     var usuario = sessionStorage.getItem("_id"); 
      if(usuario!=null){ 
       resultado = true; 
     }
