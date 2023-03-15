@@ -14,7 +14,7 @@ import { SingleCheckComponent } from '../single-check/single-check.component';
 })
 export class DatatableComponent implements OnInit {
 
-  displayedColumns: string[] = ['Titular', 'NomApe', 'fechaLlegada', 'fechaSalida', "acciones"];
+  displayedColumns: string[] = ['Titular', 'NomApe', 'fechaLlegada', 'fechaSalida', 'acciones'];
   dataSource = new MatTableDataSource<Reserva>([]);
 
   reservas: Array<Reserva> = [];
