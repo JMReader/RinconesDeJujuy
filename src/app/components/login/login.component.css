@@ -93,3 +93,12 @@ h2{
     color: #ffffff;
     background-color: #091c49;
 }
+@media only screen and (max-width: 600px) {
+    .derecha{
+        display: none;
+    }
+    .izquierda{
+    width: 100vw;
+    padding: 10vw;
+    }
+}

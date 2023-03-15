@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SignaturePad } from 'angular2-signaturepad';
+import { LoginService } from 'src/app/services/login.service';
 import { ReservaService } from 'src/app/services/reserva.service';
 
 
@@ -25,7 +26,11 @@ export class SignComponent {
     'canvasHeight': 200
   };
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private reservaService: ReservaService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private loginS:LoginService,private reservaService: ReservaService) {
+    if(loginS.userLoggedIn()==false){
+      this.router.navigate(['login']);
+    }
+   }
 
   ngAfterViewInit() {
     // this.signaturePad is now available

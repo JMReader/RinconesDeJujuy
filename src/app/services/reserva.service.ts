@@ -40,6 +40,7 @@ export class ReservaService {
     const options = {
       method: "GET",
       headers: new HttpHeaders({
+        
         "Content-Type": "application/json"
       }),
     }

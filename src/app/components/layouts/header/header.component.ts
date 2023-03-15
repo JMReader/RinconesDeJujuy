@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   URL:string = "http://localhost:4200/check-in/0";
   status: number; 
 
-  constructor(private _snackBar: MatSnackBar, private router: Router) {
+  constructor(private _snackBar: MatSnackBar, private router: Router, private logS: LoginService) {
     this.status = 0;
   }
 
@@ -29,6 +30,9 @@ export class HeaderComponent implements OnInit {
     this.status=1; 
     this.router.navigate(['check-in/', this.status]);
     console.log(this.status)
+  }
+  logOut(){
+    this.logS.logOut
   }
 
 }

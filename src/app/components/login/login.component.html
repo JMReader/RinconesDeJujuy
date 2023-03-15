@@ -4,14 +4,14 @@
       <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" width="50%" height="80%">
       <mat-form-field class="ancho" appearance="fill">
         <mat-label>Usuario</mat-label>
-        <input matInput>
+        <input [(ngModel)]="user" matInput>
       </mat-form-field>
       <mat-form-field class="ancho" appearance="fill">
-        <mat-label>Contraseña</mat-label>
-        <input matInput>
+        <mat-label >Contraseña</mat-label>
+        <input [(ngModel)]="passw" matInput>
       </mat-form-field>
       <br>
-      <button mat-raised-button>Iniciar sesión</button>
+      <button mat-raised-button (click)="iniciar()">Iniciar sesión</button>
     </div>
   </div>
     <div class="derecha">
