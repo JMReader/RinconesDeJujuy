@@ -35,6 +35,8 @@ import { ReservaDetailsComponent } from './components/reserva-details/reserva-de
 import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -68,7 +70,9 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     MatIconModule,
     ClipboardModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     LoginService,
