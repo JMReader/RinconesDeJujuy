@@ -23,7 +23,7 @@ export class PersonaService {
     return this._http.post(this.baseURL + '/post', datos, options)
   }
 
-  createEmpleado(persona: Persona): Observable<any>{
+  createEmpleado(persona: any): Observable<any>{
     const options = {
       method: "POST",
       headers: new HttpHeaders({
@@ -35,6 +35,19 @@ export class PersonaService {
 
     return this._http.post(this.baseURL + '/post/empleado', datos, options)
   }
+
+  getEmpleados(): Observable<any> {
+    const options = {
+      method: "GET",
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+      })
+    }
+    return this._http.get(this.baseURL + '/get/empleados', options);
+  }
+
+
+
   postLogin(user:string, passw:string): Observable<any>{
     const datos = {
       "usuario":user,

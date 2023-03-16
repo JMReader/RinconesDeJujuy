@@ -8,7 +8,10 @@
       </mat-form-field>
       <mat-form-field class="ancho" appearance="fill">
         <mat-label >Contraseña</mat-label>
-        <input [(ngModel)]="passw" matInput>
+        <input [type]="hide ? 'password' : 'text'" [(ngModel)]="passw" matInput>
+        <button mat-icon-button matSuffix (click)="hide = !hide">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
       </mat-form-field>
       <br>
       <button mat-raised-button (click)="iniciar()">Iniciar sesión</button>

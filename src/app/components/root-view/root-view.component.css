@@ -1,0 +1,36 @@
+.modal-content{
+    margin: auto;
+    --bs-modal-bg: rgba(255, 255, 255, 0);
+    padding: 1rem;
+    color: black;
+    background-color: white;
+}
+
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.h5, h5 {
+    font-size: 1.25rem;
+    color: black;
+}
+
+.h6, h6 {
+    font-size: 1rem;
+    color: black;
+}
+
+.btn-close{
+    background-image: url(http://cdn.onlinewebfonts.com/svg/img_206719.png);
+}
+
+.btn-sig{
+    background-color: rgb(4, 4, 46);
+    width: 130px;
+} 
+
+
+.mat-form-field{
+    width: 100%;
+}

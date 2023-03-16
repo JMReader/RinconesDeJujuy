@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   user !:string;
   passw!:string;
   msglogin!: string; // mensaje que indica si no paso el login
+  hide: boolean = true;
+
   constructor( private loginSer:LoginService,
     private route: ActivatedRoute,
     private router: Router) {
@@ -37,4 +39,8 @@ export class LoginComponent implements OnInit {
       console.log(data);});
   }
 
+  togglePasswordVisibility(): void {
+    this.hide = !this.hide;
+  }
+  
 }
