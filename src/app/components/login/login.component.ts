@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
       if (data.status == 1){
       var user = data.user;
       sessionStorage.setItem("_id", user._id);
+      sessionStorage.setItem("user", user.usuario);
       sessionStorage.setItem("root", user.root);
       sessionStorage.setItem("token", data.token);
       this.router.navigate([this.returnUrl]);
