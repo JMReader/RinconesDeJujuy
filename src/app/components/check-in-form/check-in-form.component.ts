@@ -18,11 +18,14 @@ import { Vehiculo } from 'src/app/models/vehiculo';
 })
 export class CheckInFormComponent implements OnInit { 
   mostrar:boolean = false;
-  band: boolean = false; 
+  band: boolean = false;
+  bandera1 = false;  
+  res: boolean=false; 
   status!: number;
   tab: number = 0;
   i=0;
   dnibase64!: string;
+  validar!: false; 
   reserva = new Reserva;
   titular = new Persona; 
   vehiculo!:Vehiculo;
@@ -71,10 +74,14 @@ export class CheckInFormComponent implements OnInit {
       this.acompanante = {nombre:"", apellido: "", documento: "", documentacion:"", email:"", 
         telefono:"", titular: false, direccion:{calle:"",numero:0, ciudad:"",region:"", cpp:0, pais:""}}
       this.acompanante.direccion = new Direccion();
+      if(this.i == this.tab-1){
+        this.bandera1 = true; 
+      } else {
+        this.bandera1 = false; 
+      }
+      console.log(this.bandera1)
     }
     this.reserva.acompaniantes = this.acompanantes; 
-
-    console.log(this.acompanantes)
   }
 
   guardarReserva(){console.log(this.reserva.horaLLegada);
@@ -99,6 +106,12 @@ export class CheckInFormComponent implements OnInit {
         console.log(this.dnibase64);
       };
     }
+  }
+
+  guardarAcompanantes(){
+    console.log(this.acompanantes); 
+    console.log(this.tab)
+    this.res = true;              
   }
 
   async firmar (){
