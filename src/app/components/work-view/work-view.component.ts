@@ -17,7 +17,8 @@ export class WorkViewComponent implements OnInit {
   status: number; 
   URL:string = "http://localhost:4200/check-in/0";
 
-  constructor(private modalService: NgbModal, private reservaService: ReservaService, private _snackBar: MatSnackBar,private router: Router, private loginS: LoginService ) { 
+  constructor(private modalService: NgbModal, private reservaService: ReservaService, 
+    private _snackBar: MatSnackBar,private router: Router, public loginS: LoginService ) { 
     if(loginS.userLoggedIn()==false){
       this.router.navigate(['login']);
     }

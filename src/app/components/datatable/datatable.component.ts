@@ -30,11 +30,20 @@ export class DatatableComponent implements OnInit {
   ];
 
   displayedColumns: string[] = ['Titular', 'NomApe', 'fechaLlegada', 'fechaSalida', 'acciones'];
-  dataSource = new MatTableDataSource();
-  FechaFiltro!:Date;
-  reservas: Array<any> = new Array();
-  reservasFirmadas: Array<Reserva> = [];
-  reservasNoFirmadas: Array<Reserva> = [];
+
+  dataSource = new MatTableDataSource<Reserva>([]);
+
+  reservas: Array<Reserva> = [];
+  reservasFirmadas: any = [];
+  reservasNoFirmadas: any = [];
+  selectedValue!: string;
+//=======
+//  dataSource = new MatTableDataSource();
+//  FechaFiltro!:Date;
+//  reservas: Array<any> = new Array();
+//  reservasFirmadas: Array<Reserva> = [];
+//  reservasNoFirmadas: Array<Reserva> = [];
+//>>>>>>> master
 
   //id:string= "6409f9e7b8fc5cee48affc51";
 
@@ -42,7 +51,7 @@ export class DatatableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   searchKey!: string;
-  selectedValue!: string;
+  
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -148,13 +157,21 @@ export class DatatableComponent implements OnInit {
     )
   }
 
-  filtro() {
+  onFilterChange() {
     this.reservaService.getReservasFiltro().subscribe(
       (result) => {
         this.reservasFirmadas = result.firmadas;
         this.reservasNoFirmadas = result.nofirmadas;
         console.log(this.reservasFirmadas, "result firmadas filtro void");
+  
+        if (this.selectedValue  === 'firmadas') {
+          this.dataSource.data = this.reservasFirmadas;
+        } else if (this.selectedValue  === 'nofirmadas') {
+          this.dataSource.data = this.reservasNoFirmadas;
+        }
       }
+
+
     )
 
     if (this.selectedValue == "firmadas"){
@@ -172,7 +189,7 @@ export class DatatableComponent implements OnInit {
         };
       });;
     }
-    
+
   }
 
   cls(){
@@ -194,28 +211,4 @@ export class DatatableComponent implements OnInit {
     this.router.navigate(['details', reserva._id]);
     console.log(reserva._id);
   }
-
-  // onChange($event:any){
-  //   this.obtenerReservasFiltradas();
-  //   console.log(this.reservasFirmadas, "result firmadas");
-
-  //   // let filteredData = this.reservasFirmadas;
-  //   // this.dataSource = new MatTableDataSource(filteredData);
-  //   alert("Funca")
-  // }
-
-  // async obtenerUnaReserva(){
-  //   // this.reservaService.getReserva(this.id).subscribe(
-  //   //   (result) => {
-  //   //     result.forEach((element:any) => {
-  //   //     // this.pasaje = new Pasaje();
-  //   //     // Object.assign(this.pasaje, element)
-  //   //   });
-  //   // })
-  //   this.reservaService.getReserva(this.id).subscribe(
-  //     (result) => {
-  //         console.log(result, "reserva");
-  //     }
-  //   )
-  // }
 }

@@ -15,6 +15,7 @@ export class LoginService {
       return "";
     }
   }
+
   postLogin(user:string, passw:string): Observable<any>{
     const datos = {
       "usuario":user,
@@ -28,6 +29,7 @@ export class LoginService {
     }
     return this._http.post('http://localhost:3000/Persona/login', datos, options);
   }
+
   public userLoggedIn(){ 
     var resultado = false;
      var usuario = sessionStorage.getItem("_id"); 
@@ -35,9 +37,27 @@ export class LoginService {
       resultado = true; 
     }
       return resultado }
+
   public logOut(){
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("token");
-    sessionStorage.removeItem("id");
+    sessionStorage.removeItem("_id");
+  }
+
+  public userLogged() {
+    var usuario = sessionStorage.getItem("user");
+    return usuario;
+  }
+
+  public esAdmin():boolean {
+    if (sessionStorage.getItem("root") != null) {
+      if ((sessionStorage.getItem("root")) == "true") {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
   }
 }

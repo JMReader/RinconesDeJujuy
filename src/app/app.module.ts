@@ -29,6 +29,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import {ClipboardModule} from '@angular/cdk/clipboard';
@@ -36,8 +38,13 @@ import { ReservaDetailsComponent } from './components/reserva-details/reserva-de
 import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+
+import { RootViewComponent } from './components/root-view/root-view.component';
+import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
+
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+
 
 
 @NgModule({
@@ -51,6 +58,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     DatatableComponent,
     ReservaDetailsComponent,
     LoginComponent,
+    RootViewComponent,
+    EmployeeFormComponent,
 
   ],
   imports: [
@@ -72,9 +81,13 @@ import { MatNativeDateModule } from '@angular/material/core';
     ClipboardModule,
     MatSnackBarModule,
     MatTooltipModule,
+
+    MatCheckboxModule
+
     MatDatepickerModule,
     MatNativeDateModule,
     AlifeFileToBase64Module
+
   ],
   providers: [
     LoginService,

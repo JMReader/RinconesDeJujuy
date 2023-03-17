@@ -11,9 +11,11 @@ import { LoginService } from 'src/app/services/login.service';
 export class HeaderComponent implements OnInit {
 
   URL:string = "http://localhost:4200/check-in/0";
+  //URL:string = window.location.protocol + "/check-in/0";
+
   status: number; 
 
-  constructor(private _snackBar: MatSnackBar, private router: Router, private logS: LoginService) {
+  constructor(private _snackBar: MatSnackBar, private router: Router, public logS: LoginService) {
     this.status = 0;
   }
 
@@ -32,7 +34,9 @@ export class HeaderComponent implements OnInit {
     console.log(this.status)
   }
   logOut(){
-    this.logS.logOut
+    this.logS.logOut();
   }
+
+
 
 }

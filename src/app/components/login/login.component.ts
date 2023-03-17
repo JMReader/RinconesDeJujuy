@@ -13,6 +13,9 @@ export class LoginComponent implements OnInit {
   user !:string;
   passw!:string;
   msglogin!: string; // mensaje que indica si no paso el login
+  hide: boolean = true;
+  passwordInvalid!:boolean;
+
   constructor( private loginSer:LoginService,
     private route: ActivatedRoute,
     private router: Router) {
@@ -27,14 +30,22 @@ export class LoginComponent implements OnInit {
       if (data.status == 1){
       var user = data.user;
       sessionStorage.setItem("_id", user._id);
+      sessionStorage.setItem("user", user.usuario);
       sessionStorage.setItem("root", user.root);
       sessionStorage.setItem("token", data.token);
       this.router.navigate([this.returnUrl]);
     }
       else{
-        this.msglogin=data.msg;
+        //this.msglogin=data.msg;
+        this.passwordInvalid = true;
+        console.log(this.msglogin, data.msg);
+        this.msglogin = "Credenciales incorrectas..";
       }
       console.log(data);});
   }
 
+  togglePasswordVisibility(): void {
+    this.hide = !this.hide;
+  }
+  
 }
