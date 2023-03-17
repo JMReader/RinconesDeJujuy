@@ -85,7 +85,7 @@
                 <label for="copiadniaAcomp1" class="form-label">Copia Documento del Acompañante
                   <span class="obligatorio">*</span>
                 </label>
-                <input class="form-control" name="documentacion1" type="file" id="copiadniAcomp" aria-describedby="dniHelp" [(ngModel)]="acom.documentacion">
+                <input class="form-control" name="documentacion1" alife-file-to-base64 (onFileChanged)="cargarDocumentacion($event)" type="file" id="copiadniAcomp" aria-describedby="dniHelp">
               </form>  
               <button type="button" class="btn btn-warning" style="margin-left: 75px;" (click)="guardarAcompanantes()" *ngIf="bandera1 == true">Guardar acompañantes</button>
             </div>

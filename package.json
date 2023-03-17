@@ -23,6 +23,7 @@
     "@angular/router": "~13.3.0",
     "@ng-bootstrap/ng-bootstrap": "^12.1.2",
     "@popperjs/core": "^2.10.2",
+    "alife-file-to-base64": "^0.0.4",
     "angular2-signaturepad": "^4.0.2",
     "bootstrap": "^5.2.3",
     "fortawesome": "^0.0.1-security",
