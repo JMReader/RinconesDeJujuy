@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SignaturePadModule } from 'angular2-signaturepad';
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 
 
 import { FormsModule } from '@angular/forms';
@@ -72,7 +73,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSnackBarModule,
     MatTooltipModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    AlifeFileToBase64Module
   ],
   providers: [
     LoginService,
