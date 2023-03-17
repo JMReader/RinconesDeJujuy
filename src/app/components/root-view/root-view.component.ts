@@ -34,15 +34,15 @@ export class RootViewComponent implements OnInit {
   }
 
   
-  constructor(private personaService: PersonaService, private loginS: LoginService, private router: Router) {
+  constructor(private personaService: PersonaService, public loginS: LoginService, private router: Router) {
     this.empleado = new Persona();
     this.empleado.titular = false;
     this.direccionEmpleado = new Direccion();
     this.user = new Empleado();
     this.user.root = false;
     this.obtenerEmpleados();
-    if(!this.loginS.userLoggedIn()==false && !this.loginS.esAdmin()){
-      this.router.navigate(['/']);
+    if(loginS.userLoggedIn()==false){
+      this.router.navigate(['/login']);
     }
   }
 
