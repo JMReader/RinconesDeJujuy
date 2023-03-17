@@ -6,21 +6,44 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Reserva } from 'src/app/models/reserva';
 import { ReservaService } from 'src/app/services/reserva.service';
 import { SingleCheckComponent } from '../single-check/single-check.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { stringify } from 'querystring';
 @Component({
   selector: 'app-datatable',
   templateUrl: './datatable.component.html',
   styleUrls: ['./datatable.component.css']
 })
 export class DatatableComponent implements OnInit {
+  meses: string[] = [
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre',
+  ];
 
   displayedColumns: string[] = ['Titular', 'NomApe', 'fechaLlegada', 'fechaSalida', 'acciones'];
+
   dataSource = new MatTableDataSource<Reserva>([]);
 
   reservas: Array<Reserva> = [];
   reservasFirmadas: any = [];
   reservasNoFirmadas: any = [];
   selectedValue!: string;
+//=======
+//  dataSource = new MatTableDataSource();
+//  FechaFiltro!:Date;
+//  reservas: Array<any> = new Array();
+//  reservasFirmadas: Array<Reserva> = [];
+//  reservasNoFirmadas: Array<Reserva> = [];
+//>>>>>>> master
 
   //id:string= "6409f9e7b8fc5cee48affc51";
 
@@ -41,6 +64,7 @@ export class DatatableComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerReservas();
+   
     //this.obtenerReservasFiltradas();
     //  console.log(this.reservas, "reservas");
     //  this.dataSource.data = this.reservas;
@@ -48,11 +72,43 @@ export class DatatableComponent implements OnInit {
 
   }
 
+  filtrarPorFecha(fecha: string, tipo : boolean) {// si se manda false nos fijamos en la de llegada si se manda true vemos las de salida
+    var f = new Date(fecha).toDateString()
+   
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      var aux = new Reserva();
+      aux = data.Reserva
+      if(tipo==false){
+        var fechaaux= new Date(aux.fechaLlegada).toDateString();
+        console.log(fechaaux +"llegada" );
+      console.log(f)
+      }else {console.log("salida" );
+        var fechaaux= new Date(aux.fechaSalida).toDateString();
+      }
+      
+      return fechaaux === f;
+    };
+    this.dataSource.filter = fecha.toString();
+  }
+  Elegirmes(mes:number){
+    var filtroM = mes;
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      console.log("ola");
+      var fechatablaM = new Date(data.Reserva.fechaLlegada).getMonth();
+      var fechatablaY = new Date(data.Reserva.fechaLlegada).getFullYear();
+      let year = new Date().getFullYear();
+      return filtroM === fechatablaM && fechatablaY === year
+    }
+    this.dataSource.filter = mes.toString();
+  }
+  
+
+
+  
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
-
     console.log(this.dataSource.data, "filter")
     // if (this.dataSource.paginator) {
     //   this.dataSource.paginator.firstPage();
@@ -74,6 +130,12 @@ export class DatatableComponent implements OnInit {
     this.reservaService.getReservas().subscribe(
       (result) => {
         this.reservas = result.msg;
+        this.reservas  = this.reservas.map(reserva => {
+          return {
+            Reserva: reserva,
+            titularDocumento: reserva.titular.documento
+          };
+        });
         this.dataSource.data = this.reservas;
         console.log(this.dataSource.data, "data");
       },
@@ -108,7 +170,26 @@ export class DatatableComponent implements OnInit {
           this.dataSource.data = this.reservasNoFirmadas;
         }
       }
-    );
+
+
+    )
+
+    if (this.selectedValue == "firmadas"){
+      this.dataSource.data = this.reservasFirmadas.map(reserva => {
+        return {
+          Reserva: reserva,
+          titularDocumento: reserva.titular.documento
+        };
+      });;
+    } else if (this.selectedValue == "nofirmadas"){
+      this.dataSource.data = this.reservasNoFirmadas.map(reserva => {
+        return {
+          Reserva: reserva,
+          titularDocumento: reserva.titular.documento
+        };
+      });;
+    }
+
   }
 
   cls(){
@@ -116,7 +197,12 @@ export class DatatableComponent implements OnInit {
     this.reservaService.getReservas().subscribe(
       (result) => {
         this.reservas = result.msg;
-        this.dataSource.data = this.reservas;
+        this.dataSource.data = this.reservas.map(reserva => {
+          return {
+            Reserva: reserva,
+            titularDocumento: reserva.titular.documento
+          };
+        });;
       }
     )
   }

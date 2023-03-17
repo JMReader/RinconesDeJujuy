@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SignaturePadModule } from 'angular2-signaturepad';
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 
 
 import { FormsModule } from '@angular/forms';
@@ -37,8 +38,13 @@ import { ReservaDetailsComponent } from './components/reserva-details/reserva-de
 import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+
 import { RootViewComponent } from './components/root-view/root-view.component';
 import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 
 @NgModule({
@@ -75,7 +81,13 @@ import { EmployeeFormComponent } from './components/employee-form/employee-form.
     ClipboardModule,
     MatSnackBarModule,
     MatTooltipModule,
+
     MatCheckboxModule
+
+    MatDatepickerModule,
+    MatNativeDateModule,
+    AlifeFileToBase64Module
+
   ],
   providers: [
     LoginService,

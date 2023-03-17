@@ -2,38 +2,69 @@
     <div class="row">
         <div class="col-12">
             <mat-card>
+<
                 <mat-form-field appearance="fill">
                     <mat-select [(ngModel)]="selectedValue" (ngModelChange)="onFilterChange()" matTooltip="Filtrar por reservas que fueron firmadas">
                         <mat-option value="firmadas" >Check-In Firmados</mat-option>
                         <mat-option value="nofirmadas" >Check-In No Firmados</mat-option>
+
+                 <mat-form-field class="mx-2">
+                    <mat-label>Filtrara por DNI</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" #input>
+                </mat-form-field>
+                <mat-form-field class="mx-2">
+                    <mat-label>Fecha de llegada</mat-label>
+                    <input matInput [matDatepicker]="pickerInicio" #fechaInicio (dateChange)="filtrarPorFecha(fechaInicio.value, false)">
+                    <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerInicio></mat-datepicker>
+                  </mat-form-field>
+
+                  <!-- <mat-form-field>
+                    <mat-label>Seleccionar mes</mat-label>
+                    <input matInput #mes (dateChange)="Elegirmes(mes.value)" [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field> -->
+                   <mat-form-field class="mx-2">
+                    <mat-label>Seleccionar mes</mat-label>
+                    <mat-select  >
+                      <mat-option (click)="Elegirmes(i)" *ngFor="let mes of meses; let i = index" [value]="i">{{mes}}</mat-option>
+                    </mat-select>
+                  </mat-form-field> 
+                
+
+            
+
                     </mat-select>
                 </mat-form-field>
+
                 <button *ngIf="selectedValue" matSuffix mat-icon-button aria-label="Clear" (click)="cls()">
                     <mat-icon>close</mat-icon>
                 </button>
+
                 <div class="mat-elevation-z8">
                     <table mat-table matTableResponsive [dataSource]="dataSource">
 
                         <ng-container matColumnDef="Titular">
                             <th mat-header-cell *matHeaderCellDef> DNI Titular </th>
-                            <td mat-cell *matCellDef="let element"> {{element.titular.documento}} </td>
+                            <td mat-cell *matCellDef="let element"> {{element.Reserva.titular.documento}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="NomApe">
                             <th mat-header-cell *matHeaderCellDef> Nombre y Apellido </th>
-                            <td mat-cell *matCellDef="let element"> {{element.titular.apellido}},
-                                {{element.titular.nombre}} </td>
+                            <td mat-cell *matCellDef="let element"> {{element.Reserva.titular.apellido}},
+                                {{element.Reserva.titular.nombre}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="fechaLlegada">
                             <th mat-header-cell *matHeaderCellDef> Fecha LLegada </th>
-                            <td mat-cell *matCellDef="let element"> {{element.fechaLlegada | date: 'dd/MM/yyyy'}} </td>
+                            <td mat-cell *matCellDef="let element"> {{element.Reserva.fechaLlegada | date: 'dd/MM/yyyy'}} </td>
                         </ng-container>
 
 
                         <ng-container matColumnDef="fechaSalida">
                             <th mat-header-cell *matHeaderCellDef> Fecha Salida </th>
-                            <td mat-cell *matCellDef="let element"> {{element.fechaSalida | date: 'dd/MM/yyyy'}} </td>
+                            <td mat-cell *matCellDef="let element"> {{element.Reserva.fechaSalida | date: 'dd/MM/yyyy'}} </td>
                         </ng-container>
 
 
@@ -44,11 +75,11 @@
                                     <mat-icon>remove_red_eye</mat-icon>
                                 </button> -->
 
-                                <a class="pointer" (click)="selectedReserva(element)"
+                                <a class="pointer" (click)="selectedReserva(element.Reserva)"
                                     matTooltip="Ver detalles del check in">
                                     <mat-icon>remove_red_eye</mat-icon>
                                 </a>
-                                <a class="pointer" (click)="editarReserva(element)"
+                                <a class="pointer" (click)="editarReserva(element.Reserva)"
                                     matTooltip="Imprimir ficha del huesped">
                                     <mat-icon>print</mat-icon>
                                 </a>
