@@ -2,16 +2,10 @@
     <div class="row">
         <div class="col-12">
             <mat-card>
-                <!-- <mat-form-field>
-                    <mat-label>Filter</mat-label>
-                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input> 
-                     <input matInput placeholder="Filtre por DNI" #input (keyup)="search(input.value)" >
-                </mat-form-field> -->
-
                 <mat-form-field appearance="fill">
-                    <mat-select [(value)]="selectedValue" (click)="filtro()" matTooltip="Filtrar por reservas que fueron firmadas y las que no">
-                        <mat-option value="firmadas" (click)="filtro()">Check-In Firmados</mat-option>
-                        <mat-option value="nofirmadas" (click)="filtro()">Check-In No Firmados</mat-option>
+                    <mat-select [(ngModel)]="selectedValue" (ngModelChange)="onFilterChange()" matTooltip="Filtrar por reservas que fueron firmadas">
+                        <mat-option value="firmadas" >Check-In Firmados</mat-option>
+                        <mat-option value="nofirmadas" >Check-In No Firmados</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <button *ngIf="selectedValue" matSuffix mat-icon-button aria-label="Clear" (click)="cls()">

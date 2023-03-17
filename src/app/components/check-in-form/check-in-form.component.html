@@ -354,7 +354,7 @@
               <label for="transp" class="form-label">Medio de transporte para llegar a Termas el Corazón
                 <span class="obligatorio">*</span>
               </label>
-              <div class="columnas">
+              <div class="columnas" id="radio-group">
                 <div class="columna-izquierda">
                   <label for="vehiculo">
                     <input class="form-check-input" type="radio" name="medioTransporte" value="vehiculo" id="vehiculo"
@@ -409,7 +409,7 @@
               <label for="transp" class="form-label">¿Con qué frecuencia desea el servicio de limpieza de la habitación?
                 <span class="obligatorio">*</span>
               </label>
-              <div class="columnas">
+              <div class="columnas" id="radio-group">
                 <div class="columna-izquierda">
                   <label for="dias">
                     <input class="form-check-input" type="radio" name="frecuenciaLimpieza" value="dias" id="dias" [(ngModel)]="reserva.frecuenciaLimpieza">

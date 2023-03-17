@@ -208,3 +208,10 @@ span{
   font-size: 10px;
   font-family: 'Noto Sans', sans-serif;
 }
+
+@media (max-width: 425px) {
+  #radio-group {
+    display: flex;
+    flex-direction: column;
+  }
+}

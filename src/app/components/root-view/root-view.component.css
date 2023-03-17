@@ -39,7 +39,7 @@ h6 {
 }
 
 .btn-sig {
-    background-color: rgb(4, 4, 46);
+    background-color: rgb(9, 28, 73);
     margin-bottom: 8px;
     display: flex;
     align-items: center;
@@ -70,7 +70,7 @@ th {
 
 /* si quiero cambiarle el size */
 
-@media (max-width: 375px) {
+@media (max-width: 425px) {
     .mat-table[matTableResponsive] .mat-header-row {
         display: flex;
         flex-wrap: wrap;
@@ -106,6 +106,7 @@ th {
         padding: 0.5rem;
         text-align: right;
         word-break: break-word;
+        color: white;
     }
 
     .mat-table[matTableResponsive] .mat-row td.mat-cell:not(.mat-column-actions)>* {
@@ -139,4 +140,29 @@ th {
     .mat-expansion-panel .mat-table[matTableResponsive] {
         border: 0.5rem solid #fafafa;
     }
+
+    tr.mat-row, tr.mat-footer-row {
+        height: 48px;
+        background-color: rgb(9, 28, 73);
+    }
 }
+
+.logoF {
+    width: 100%;
+    max-width: 340px;
+    min-width: 200px;
+    height: auto;
+    padding-right: 20px;
+  }
+
+#Logo-container {
+    width: 90%;
+    max-width: 340px;
+    min-width: 200px;
+    height: auto;
+    margin: 10px auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+  }
