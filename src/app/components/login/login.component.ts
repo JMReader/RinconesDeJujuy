@@ -27,6 +27,12 @@ export class LoginComponent implements OnInit {
   iniciar():void{
     console.log(this.passw);
     this.loginSer.postLogin(this.user, this.passw).subscribe((data: any)=>{
+      if(data.status==0){
+        console.log("ola")
+        this.passwordInvalid = true;
+        console.log(this.msglogin, data.msg);
+        this.msglogin = "Credenciales incorrectas..";
+      }
       if (data.status == 1){
       var user = data.user;
       sessionStorage.setItem("_id", user._id);
@@ -35,13 +41,8 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem("token", data.token);
       this.router.navigate([this.returnUrl]);
     }
-      else{
-        //this.msglogin=data.msg;
-        this.passwordInvalid = true;
-        console.log(this.msglogin, data.msg);
-        this.msglogin = "Credenciales incorrectas..";
-      }
-      console.log(data);});
+ 
+      console.log("aaa" +data);});
   }
 
   togglePasswordVisibility(): void {

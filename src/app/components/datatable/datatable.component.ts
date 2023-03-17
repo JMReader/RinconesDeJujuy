@@ -31,18 +31,18 @@ export class DatatableComponent implements OnInit {
 
   displayedColumns: string[] = ['Titular', 'NomApe', 'fechaLlegada', 'fechaSalida', 'acciones'];
 
-  dataSource = new MatTableDataSource<Reserva>([]);
 
-  reservas: Array<Reserva> = [];
-  reservasFirmadas: any = [];
-  reservasNoFirmadas: any = [];
+
+
+
   selectedValue!: string;
 //=======
-//  dataSource = new MatTableDataSource();
-//  FechaFiltro!:Date;
-//  reservas: Array<any> = new Array();
-//  reservasFirmadas: Array<Reserva> = [];
-//  reservasNoFirmadas: Array<Reserva> = [];
+ dataSource = new MatTableDataSource();
+ FechaFiltro!:Date;
+ reservas: Array<any> = new Array();
+ reservasFirmadas: Array<Reserva> = [];
+ reservasNoFirmadas: Array<Reserva> = [];
+
 //>>>>>>> master
 
   //id:string= "6409f9e7b8fc5cee48affc51";
@@ -165,9 +165,19 @@ export class DatatableComponent implements OnInit {
         console.log(this.reservasFirmadas, "result firmadas filtro void");
   
         if (this.selectedValue  === 'firmadas') {
-          this.dataSource.data = this.reservasFirmadas;
+          this.dataSource.data = this.reservasFirmadas.map(reserva => {
+            return {
+              Reserva: reserva,
+              titularDocumento: reserva.titular.documento
+            };
+          });;
         } else if (this.selectedValue  === 'nofirmadas') {
-          this.dataSource.data = this.reservasNoFirmadas;
+          this.dataSource.data = this.reservasNoFirmadas.map(reserva => {
+            return {
+              Reserva: reserva,
+              titularDocumento: reserva.titular.documento
+            };
+          });;
         }
       }
 
@@ -180,7 +190,7 @@ export class DatatableComponent implements OnInit {
           Reserva: reserva,
           titularDocumento: reserva.titular.documento
         };
-      });;
+      });
     } else if (this.selectedValue == "nofirmadas"){
       this.dataSource.data = this.reservasNoFirmadas.map(reserva => {
         return {

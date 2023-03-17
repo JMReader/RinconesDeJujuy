@@ -5,7 +5,7 @@ import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 
 
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WorkViewComponent } from './components/work-view/work-view.component';
@@ -31,7 +31,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { ReservaDetailsComponent } from './components/reserva-details/reserva-details.component';
@@ -81,9 +80,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ClipboardModule,
     MatSnackBarModule,
     MatTooltipModule,
-
-    MatCheckboxModule
-
+    MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
     AlifeFileToBase64Module
