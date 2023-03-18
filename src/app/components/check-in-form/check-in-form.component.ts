@@ -18,10 +18,18 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./check-in-form.component.css']
 })
 export class CheckInFormComponent implements OnInit { 
+  cont1 : number = 0; 
   mostrar:boolean = false;
   band: boolean = false;
   bandera1 = false;  
-  res: boolean=false; 
+  bandera2 = false;  
+  bandera3 = false; 
+  bandera4 = false; 
+  habilitarboton = false; 
+  cargando: Array<string> = []
+  cargando1: Array<string> = []
+  cargando2: Array<string> = []
+  res: boolean=true; 
   status!: number;
   tab: number = 0;
   cont = 0; 
@@ -75,21 +83,23 @@ export class CheckInFormComponent implements OnInit {
   }
 
   mostrarAcompanantes(){ 
+    this.bandera1 = false; 
+    this.res = false; 
     this.reserva.nroAcompanantes = this.tab;
     this.acompanantes.length = this.tab;
-    for(this.i=0; this.i < this.tab; this.i++)
-    {
-      this.acompanante = {nombre:"", apellido: "", documento: "", documentacion:"", email:"", 
-        telefono:"", titular: false, direccion:{calle:"",numero:0, ciudad:"",region:"", cpp:0, pais:""}}
-      this.acompanantes[this.i] = this.acompanante; 
-      this.acompanante.direccion = new Direccion();
-      if(this.i == this.tab-1){
-        this.bandera1 = true; 
-      } else {
-        this.bandera1 = false; 
-      }
+    if(this.acompanantes.length == 0){
+      this.res = true;
     }
-    this.reserva.acompaniantes = this.acompanantes; 
+
+    for(this.i=0; this.i < this.tab; this.i++)
+      {
+        this.acompanante = {nombre:"", apellido: "", documento: "", documentacion:"", email:"", 
+          telefono:"", titular: false, direccion:{calle:"",numero:0, ciudad:"",region:"", cpp:0, pais:""}}
+        this.acompanantes[this.i] = this.acompanante; 
+        this.acompanante.direccion = new Direccion();
+      }
+  this.reserva.acompaniantes = this.acompanantes; 
+    
   }
 
   guardarReserva(){console.log(this.reserva.horaLLegada);
@@ -117,23 +127,27 @@ export class CheckInFormComponent implements OnInit {
   }
 
   cargarDocumentacion(event: any){
-    this.cont ++; 
-    console.log(this.cont)
     switch (this.acompanantes.length) {
+      case 0:
+        this.cont = 0; 
+      break; 
       case 1:
          this.bases[0] = event[0].base64
        break;
       case 2:
+        this.cont ++; 
         if(this.cont == 1)
         {
           this.bases[0] = event[0].base64
           Object.freeze(this.bases[0])
-          console.log(this.bases[0])
+          console.log(this.cont)
+        }else if(this.bases[0] !="")
+        {
+          this.bases[1] = event[0].base64
         }
-        this.bases[1] = event[0].base64
-        this.cont = 0; 
       break;
       case 3:
+        this.cont ++; 
         if(this.cont == 1)
         {
           this.bases[0] = event[0].base64
@@ -145,9 +159,9 @@ export class CheckInFormComponent implements OnInit {
           console.log(this.bases[1])
         }
         this.bases[2] = event[0].base64
-        this.cont = 0; 
       break;
       case 4:
+        this.cont ++; 
         if(this.cont == 1)
         {
           this.bases[0] = event[0].base64
@@ -162,9 +176,9 @@ export class CheckInFormComponent implements OnInit {
           Object.freeze(this.bases[2])
         }
         this.bases[3] = event[0].base64
-        this.cont = 0; 
       break;
       case 5:
+        this.cont ++; 
         if(this.cont == 1)
         {
           this.bases[0] = event[0].base64
@@ -182,7 +196,6 @@ export class CheckInFormComponent implements OnInit {
           Object.freeze(this.bases[3])
         }
         this.bases[4] = event[0].base64
-        this.cont = 0; 
       break;
     }
     // for(this.i=0; this.i < this.tab; this.i++)
@@ -191,14 +204,15 @@ export class CheckInFormComponent implements OnInit {
     // }
   }
 
+
   guardarAcompanantes(){
-    console.log(this.bases)
     for(this.i=0; this.i < this.tab; this.i++)
     {
       this.reserva.acompaniantes[this.i].documentacion = this.bases[this.i]; 
       console.log(this.reserva.acompaniantes); 
     }
-    this.res = true;              
+    this.res = true;             
+    console.log(this.bases); 
   }
 
   async firmar (){

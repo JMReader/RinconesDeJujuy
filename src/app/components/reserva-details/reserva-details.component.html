@@ -1,7 +1,7 @@
 <app-header class="no-imprimir"></app-header>
 <body>
-    
-    <div class="container" style="margin-top: 100px">
+    <div class="container" style="margin-top: 100px"><br>
+
         <div class="fichaContainer" style="position: relative;">
             <!-- datos titular -->
                 <div style="border-right: 1px solid rgba(0, 0, 0, 0.205);">
@@ -16,8 +16,13 @@
                     <h4 class="card-subtitle mb-2 text-center text-muted">Ciudad: {{reservaSeleccionada.titular.direccion.ciudad}}</h4>
                     <h4 class="card-subtitle mb-2 text-center text-muted">Provincia:  {{reservaSeleccionada.titular.direccion.region}}</h4>
                     <h4 class="card-subtitle mb-2 text-center text-muted">Pais: {{reservaSeleccionada.titular.direccion.pais}}</h4>   
-                    <a class="btn btn-secondary btn-sm btn-sig" style="margin-right: 5%; margin-left: 30%; width: 100px;"
+                    <div *ngIf="reservaSeleccionada.firma != undefined ">
+                        <h3 class="card-title, text-center" style="margin-bottom: 3px;">Firma del titular</h3>
+                        <img class="imagen" src="{{reservaSeleccionada.firma}}" alt="" >
+                    </div>
+                    <a class="btn btn-secondary btn-sm btn-sig" style="margin-right: 5%; margin-left: 30%; width: 100px;"                    
                     (click)="imprimirDetalles()" role="button" *ngIf="most==false">Imprimir</a>               
+
                 </div>
             <!-- datos reserva -->
                 <div class="card-body">
@@ -37,8 +42,8 @@
                             <h4 class="card-text text-muted" style="margin-left: 20px">Color: {{reservaSeleccionada.vehiculo.color}}</h4>                       
                             <h4 class="card-text text-muted" style="margin-left: 20px">Marca: {{reservaSeleccionada.vehiculo.marca}}</h4>                   
                         </div>
-                        <div *ngIf="reservaSeleccionada.nroAcompanantes != 0" style="border-top: 1px solid rgba(0, 0, 0, 0.205);">
-                            <h3 class="text-center" style="margin-bottom: 3px">Informacion de Acompañantes</h3>
+                        <div style="border-top: 1px solid rgba(0, 0, 0, 0.205);">
+                            <h3 *ngIf="reservaSeleccionada.nroAcompanantes != undefined" class="text-center" style="margin-bottom: 3px">Informacion de Acompañantes</h3>
                             <div *ngFor="let acom of reservaSeleccionada.acompanantes" style="border-bottom: 1px solid rgba(0, 0, 0, 0.205);">
                                 <h4 class="card-subtitle mb-2 text-center text-muted" styles="font-weight: bolder;">Nombre y Apellido: {{acom.nombre}} {{acom.apellido}}</h4>
                                 <h4 class="card-subtitle mb-2 text-center text-muted" styles="font-weight: bolder;">Documento o Pasaporte: {{acom.documento}}</h4>
