@@ -7,7 +7,7 @@ import { Persona } from '../models/persona';
   providedIn: 'root'
 })
 export class PersonaService {
-  private baseURL: string = "http://localhost:3000/Persona";
+  private baseURL: string = "https://servidor-rj0l.onrender.com/Persona";
   constructor(private _http: HttpClient) { }
 
   createPersona(persona: Persona): Observable<any>{

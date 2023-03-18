@@ -7,7 +7,7 @@ import { Reserva } from '../models/reserva';
   providedIn: 'root'
 })
 export class ReservaService {
-  private baseURL: string = "http://localhost:3000/Reserva"; 
+  private baseURL: string = "https://servidor-rj0l.onrender.com/Reserva"; 
   //url!:string;
 
   constructor(private _http: HttpClient) {  }
