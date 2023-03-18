@@ -3,10 +3,6 @@ table {
   margin-top: 10px;
 }
 
-th {
-  width: 25%;
-}
-
 .pointer {
   cursor: pointer;
   color: rgb(9, 28, 73);
@@ -16,7 +12,7 @@ th {
   display: inline-block;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 766px) {
   .mat-table[matTableResponsive] .mat-header-row {
     display: flex;
     flex-wrap: wrap;

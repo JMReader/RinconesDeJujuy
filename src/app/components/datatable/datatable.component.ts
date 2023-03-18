@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Reserva } from 'src/app/models/reserva';
@@ -8,6 +8,7 @@ import { ReservaService } from 'src/app/services/reserva.service';
 import { SingleCheckComponent } from '../single-check/single-check.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { stringify } from 'querystring';
+import { timer } from 'rxjs';
 @Component({
   selector: 'app-datatable',
   templateUrl: './datatable.component.html',
@@ -29,15 +30,20 @@ export class DatatableComponent implements OnInit {
     'Diciembre',
   ];
 
-  displayedColumns: string[] = ['Titular', 'NomApe', 'fechaLlegada', 'fechaSalida', 'acciones'];
+  displayedColumns: string[] = ['Titular', 'NomApe', 'fechaLlegada', 'fechaSalida', 'hora','acciones'];
 
+  filtroDNI:boolean = false;
 
+  showFormField: number | null = null;
 
-
+  toggleFormField(option: number) {
+    this.showFormField = option;
+  }
 
   selectedValue!: string;
 //=======
  dataSource = new MatTableDataSource();
+ copyData = new MatTableDataSource();
  FechaFiltro!:Date;
  reservas: Array<any> = new Array();
  reservasFirmadas: Array<Reserva> = [];
@@ -50,6 +56,7 @@ export class DatatableComponent implements OnInit {
   @Output() eventData = new EventEmitter<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  
   searchKey!: string;
   
 
@@ -90,36 +97,30 @@ export class DatatableComponent implements OnInit {
     };
     this.dataSource.filter = fecha.toString();
   }
+
   Elegirmes(mes:number){
     var filtroM = mes;
     this.dataSource.filterPredicate = (data: any, filter: string) => {
-      console.log("ola");
       var fechatablaM = new Date(data.Reserva.fechaLlegada).getMonth();
       var fechatablaY = new Date(data.Reserva.fechaLlegada).getFullYear();
       let year = new Date().getFullYear();
       return filtroM === fechatablaM && fechatablaY === year
     }
     this.dataSource.filter = mes.toString();
+    console.log(this.dataSource.filter, "ola");
   }
   
-
-
-  
+  clsMes(){
+    this.dataSource.filter = '';
+  this.dataSource.data = this.copyData.data.slice();
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
     console.log(this.dataSource.data, "filter")
-    // if (this.dataSource.paginator) {
-    //   this.dataSource.paginator.firstPage();
-    // }
   }
 
-
-  // open() {
-  // 	const modalRef = this.modalService.open(SingleCheckComponent);
-  // 	modalRef.componentInstance.name = 'World';
-  // }
 
   selectedReserva(reserva: Reserva): void {
     this.eventData.emit(reserva);
@@ -137,7 +138,7 @@ export class DatatableComponent implements OnInit {
           };
         });
         this.dataSource.data = this.reservas;
-        console.log(this.dataSource.data, "data");
+        this.copyData.data = this.dataSource.data.slice();
       },
       error => { alert("Error en la petición"); }
     )
@@ -204,17 +205,12 @@ export class DatatableComponent implements OnInit {
 
   cls(){
     this.selectedValue = "";
-    this.reservaService.getReservas().subscribe(
-      (result) => {
-        this.reservas = result.msg;
-        this.dataSource.data = this.reservas.map(reserva => {
-          return {
-            Reserva: reserva,
-            titularDocumento: reserva.titular.documento
-          };
-        });;
-      }
-    )
+    this.dataSource.data = this.copyData.data.slice();
+  }
+
+  clsClose(){
+    //this.obtenerReservas();
+    this.dataSource.filter = " ";
   }
 
   editarReserva(reserva: Reserva): void{
