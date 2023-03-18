@@ -22,13 +22,6 @@ export class CheckInFormComponent implements OnInit {
   mostrar:boolean = false;
   band: boolean = false;
   bandera1 = false;  
-  bandera2 = false;  
-  bandera3 = false; 
-  bandera4 = false; 
-  habilitarboton = false; 
-  cargando: Array<string> = []
-  cargando1: Array<string> = []
-  cargando2: Array<string> = []
   res: boolean=true; 
   status!: number;
   tab: number = 0;
