@@ -39,8 +39,8 @@ export class CheckInFormComponent implements OnInit {
   direccionTitular= new Direccion;
   persona = new Persona; 
   acompanantes: Array<Persona> = []; 
-
-
+  isLoading=false;
+  fechaDeHoy="";
   constructor(private reservaService: ReservaService, private route: ActivatedRoute, private loginS:LoginService, private router: Router) {
     this.vehiculo = new Vehiculo();
     this.reserva = new Reserva();
@@ -65,6 +65,17 @@ export class CheckInFormComponent implements OnInit {
       this.status = params['status']; 
       console.log(params['status'])
     })
+    const fecha = new Date();
+    const anio: number = fecha.getFullYear();
+    const mes: number = fecha.getMonth()+1;
+    const dia: number = fecha.getDate(); 
+    if(mes>9){
+      this.fechaDeHoy = anio + '-' + mes + '-' + dia;
+      console.log(this.fechaDeHoy)
+    }else{
+      this.fechaDeHoy = anio + '-0' + mes + '-' + dia;
+      console.log(this.fechaDeHoy)
+    }
   }
 
   ocultar(): void {
@@ -96,13 +107,17 @@ export class CheckInFormComponent implements OnInit {
   }
 
   guardarReserva(){console.log(this.reserva.horaLLegada);
+    this.isLoading=true;
     this.titular.documentacion = this.dnibase64;
     console.log(this.dnibase64)
     this.checkin = {"Persona": this.titular, "Vehiculo": this.vehiculo, "Reserva": this.reserva, "Direccion": this.direccionTitular}
     console.log(this.checkin)
     this.reservaService.createReserva(this.checkin).subscribe((data: any)=>{
             console.log(data);
-            this.checkin1 = data.msg})
+            this.checkin1 = data.msg
+            this.isLoading=false;
+          })
+
     this.band = true; 
   }
 
@@ -221,6 +236,7 @@ export class CheckInFormComponent implements OnInit {
   }
 
   async firmar (){
+    this.isLoading=true;
     this.titular.documentacion = this.dnibase64;
     console.log(this.dnibase64)
     this.checkin = {"Persona": this.titular, "Vehiculo": this.vehiculo, "Reserva": this.reserva, "Direccion": this.direccionTitular}
@@ -230,6 +246,7 @@ export class CheckInFormComponent implements OnInit {
       console.log(this.checkin1);
       this.reservaService.getReserva(this.checkin1).subscribe(
                 async (result) => {
+                  this.isLoading=true;
                   console.log(this.checkin1);
                    await new Promise(f => setTimeout(f, 100));
                    this.router.navigate(['sign/', this.checkin1]);

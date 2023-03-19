@@ -18,7 +18,7 @@ export class ReservaDetailsComponent implements OnInit {
   most=false; 
   reser: string; 
   per!:Persona 
-
+  isLoading=false;
   constructor(private route: ActivatedRoute, private reservaService: ReservaService, private personaService: PersonaService) { 
     this.reser=  ""
   }
@@ -34,9 +34,11 @@ export class ReservaDetailsComponent implements OnInit {
   }
 
   traerReserva(){
+    this.isLoading=true;
     this.reservaService.getReserva(this.reser).subscribe((result)=> {
       this.reservaSeleccionada = result.reserva;
       console.log(this.reservaSeleccionada.nroAcompanantes); 
+      this.isLoading=false;
     }); 
     // this.reservaService.getReserva(this.reser).subscribe((data: any)=>{
     //   this.reservaSeleccionada = data.reserva; 

@@ -16,7 +16,6 @@ import { timer } from 'rxjs';
 })
 export class DatatableComponent implements OnInit {
   isLoading = false;
-
   meses: string[] = [
     'Enero',
     'Febrero',

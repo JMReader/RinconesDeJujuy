@@ -1,27 +1,9 @@
-
-<!-- <app-header class="no-imprimir"></app-header> -->
-
-<!-- <div class="container-fluid" id="Form-container" id="mainCointainer">
-    <div class="container-fluid overflow-hidden">
-      <div class="d-flex flex-column bd-highlight mb-3">
-        <mat-card>
-            <mat-card-header>
-              <mat-card-title>Actions Buttons</mat-card-title>
-              <mat-card-subtitle>Start</mat-card-subtitle>
-            </mat-card-header>
-            <div class="row">
-                <div class="col-md-4" style="background-color: aqua;">
-                    
-                </div>
-                <div class="col-md-8" style="background-color: blue;">
-                    aaa
-                </div>
-            </div>
-          </mat-card>
-      </div>
-    </div>
-</div> -->
-
+<div *ngIf="isLoading" class="loading-overlay">
+    <div class="spinner"></div>
+    <br>
+    <div class="loading-message">Cargando</div>
+  </div>
+  <div *ngIf="!isLoading">
 <div class="impresion">
     <div class="izquierda">
         <mat-card>
@@ -124,4 +106,4 @@
         <button mat-raised-button (click)="imprimirDetalles()" class="no-imprimir">Imprimir</button>
         <!-- <a class="btn btn-secondary btn-sm btn-sig" (click)="imprimirDetalles()" role="button" *ngIf="most==false">Imprimir</a>                -->
     </div>
-</div>
+</div></div>

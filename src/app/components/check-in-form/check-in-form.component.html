@@ -1,3 +1,9 @@
+<div *ngIf="isLoading" class="loading-overlay">
+  <div class="spinner"></div>
+  <br>
+  <div class="loading-message">Cargando</div>
+</div>
+
 <body id="Form-container">
   <div class="container-fluid" id="Form-container">
     <div class="container-fluid overflow-hidden">
@@ -99,8 +105,7 @@
               <label for="llegada" class="form-label">Fecha de llegada
                 <span class="obligatorio">*</span>
               </label>
-              <input type="date" name="fechaLlegada" max="{{reserva.fechaSalida}}" id="diall" [(ngModel)]="reserva.fechaLlegada" required #diall="ngModel">
-              <label for="salida" class="form-label">Fecha de salida
+              <input type="date" name="fechaLlegada" min="{{fechaDeHoy}}" max="{{reserva.fechaSalida}}" id="diall" [(ngModel)]="reserva.fechaLlegada" required #diall="ngModel"><label for="salida" class="form-label">Fecha de salida
                 <span class="obligatorio">*</span>
               </label>
               <input type="date" name="fechaSalida" name="diasal" min="{{reserva.fechaLlegada}}" id="diasal" [(ngModel)]="reserva.fechaSalida" required #diasal="ngModel">
