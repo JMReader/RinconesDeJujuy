@@ -131,7 +131,7 @@ export class DatatableComponent implements OnInit {
     this.reservaService.getReservas().subscribe(
       (result) => {
         this.reservas = result.msg;
-        console.log("llegada de datos"+ new Date().getTime());
+        console.log("llegada de datos "+ new Date().getTime());
         this.reservas  = this.reservas.map(reserva => {
           return {
             Reserva: reserva,
