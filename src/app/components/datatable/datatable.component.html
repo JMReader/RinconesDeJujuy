@@ -1,147 +1,155 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <mat-card>
-        <div class="row">
-          <div class="col-12">
-            <mat-card>
-              <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>filter_list</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="toggleFormField(1)">
-                  <mat-icon>account_box</mat-icon>
-                  <span>Filtro por DNI</span>
-                </button>
-                <button mat-menu-item (click)="toggleFormField(2)">
-                  <mat-icon>event</mat-icon>
-                  <span>Filtro por fecha de llegada exacta</span>
-                </button>
-                <button mat-menu-item (click)="toggleFormField(3)">
-                  <mat-icon>calendar_today</mat-icon>
-                  <span>Filtro por mes</span>
-                </button>
-                <button mat-menu-item (click)="toggleFormField(4)">
-                  <mat-icon>view_headline</mat-icon>
-                  <span>Filtro por reservas firmadas</span>
-                </button>
-              </mat-menu>
+<div *ngIf="isLoading" class="loading-overlay">
+  <div class="spinner"></div>
+  <br>
+  <div class="loading-message">Cargando</div>
+</div>
 
-              <!--Filtro por DNI-->
-              <mat-form-field class="mx-2" *ngIf="showFormField === 1">
-                <mat-label>DNI del titular</mat-label>
-                <input matInput (input)="applyFilter($event)" #input />
-                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''"
-                  (click)="clsClose()">
+<div *ngIf="!isLoading">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <mat-card>
+          <div class="row">
+            <div class="col-12">
+              <mat-card>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>filter_list</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="toggleFormField(1)">
+                    <mat-icon>account_box</mat-icon>
+                    <span>Filtro por DNI</span>
+                  </button>
+                  <button mat-menu-item (click)="toggleFormField(2)">
+                    <mat-icon>event</mat-icon>
+                    <span>Filtro por fecha de llegada exacta</span>
+                  </button>
+                  <button mat-menu-item (click)="toggleFormField(3)">
+                    <mat-icon>calendar_today</mat-icon>
+                    <span>Filtro por mes</span>
+                  </button>
+                  <button mat-menu-item (click)="toggleFormField(4)">
+                    <mat-icon>view_headline</mat-icon>
+                    <span>Filtro por reservas firmadas</span>
+                  </button>
+                </mat-menu>
+
+                <!--Filtro por DNI-->
+                <mat-form-field class="mx-2" *ngIf="showFormField === 1">
+                  <mat-label>DNI del titular</mat-label>
+                  <input matInput (input)="applyFilter($event)" #input />
+                  <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''"
+                    (click)="clsClose()">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+
+                <!--Filtro por fecha de llegada exacta-->
+                <mat-form-field class="mx-2" *ngIf="showFormField === 2">
+                  <mat-label>Fecha de llegada</mat-label>
+                  <input matInput [matDatepicker]="pickerInicio" #fechaInicio
+                    (dateChange)="filtrarPorFecha(fechaInicio.value, false)" />
+                  <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerInicio></mat-datepicker>
+                  <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="fechaInicio.value=''"
+                    (click)="clsMes()">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+
+                <!--Filtro por mes -->
+                <mat-form-field class="mx-2" *ngIf="showFormField === 3">
+                  <mat-label>Seleccionar mes</mat-label>
+                  <mat-select>
+                    <mat-option (click)="Elegirmes(i)" *ngFor="let mes of meses; let i = index" [value]="i">{{ mes
+                      }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button *ngIf="showFormField === 3" matSuffix mat-icon-button aria-label="Clear" (click)="clsMes()">
                   <mat-icon>close</mat-icon>
                 </button>
-              </mat-form-field>
 
-              <!--Filtro por fecha de llegada exacta-->
-              <mat-form-field class="mx-2" *ngIf="showFormField === 2">
-                <mat-label>Fecha de llegada</mat-label>
-                <input matInput [matDatepicker]="pickerInicio" #fechaInicio
-                  (dateChange)="filtrarPorFecha(fechaInicio.value, false)" />
-                <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
-                <mat-datepicker #pickerInicio></mat-datepicker>
-                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="fechaInicio.value=''"
-                  (click)="clsMes()">
-                  <mat-icon>close</mat-icon>
-                </button>
-              </mat-form-field>
+                <!--Filtro por reservas firmadas-->
+                  <mat-form-field class="mx-2" *ngIf="showFormField === 4 && !isLoading">
+                    <mat-label>Seleccionar una opción</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" (ngModelChange)="onFilterChange()">
+                      <mat-option value="firmadas">Check-In Firmados</mat-option>
+                      <mat-option value="nofirmadas">Check-In No Firmados</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <button *ngIf="selectedValue" matSuffix mat-icon-button aria-label="Clear" (click)="cls()">
+                    <mat-icon>close</mat-icon>
+                  </button>
 
-              <!--Filtro por mes -->
-              <mat-form-field class="mx-2" *ngIf="showFormField === 3">
-                <mat-label>Seleccionar mes</mat-label>
-                <mat-select>
-                  <mat-option (click)="Elegirmes(i)" *ngFor="let mes of meses; let i = index" [value]="i">{{ mes
-                    }}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <button *ngIf="showFormField === 3" matSuffix mat-icon-button aria-label="Clear" (click)="clsMes()">
-                <mat-icon>close</mat-icon>
-              </button>
+                <div class="mat-elevation-z8">
+                  <table mat-table matTableResponsive [dataSource]="dataSource">
+                    <ng-container matColumnDef="Titular">
+                      <th mat-header-cell *matHeaderCellDef>DNI Titular</th>
+                      <td mat-cell *matCellDef="let element">
+                        {{ element.Reserva.titular.documento }}
+                      </td>
+                    </ng-container>
 
-              <!--Filtro por reservas firmadas-->
-              <mat-form-field class="mx-2" *ngIf="showFormField === 4">
-                <mat-label>Seleccionar una opción</mat-label>
-                <mat-select [(ngModel)]="selectedValue" (ngModelChange)="onFilterChange()">
-                  <mat-option value="firmadas">Check-In Firmados</mat-option>
-                  <mat-option value="nofirmadas">Check-In No Firmados</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <button *ngIf="selectedValue" matSuffix mat-icon-button aria-label="Clear" (click)="cls()">
-                <mat-icon>close</mat-icon>
-              </button>
+                    <ng-container matColumnDef="NomApe">
+                      <th mat-header-cell *matHeaderCellDef>Nombre y Apellido</th>
+                      <td mat-cell *matCellDef="let element">
+                        {{ element.Reserva.titular.apellido }},
+                        {{ element.Reserva.titular.nombre }}
+                      </td>
+                    </ng-container>
 
-              <div class="mat-elevation-z8">
-                <table mat-table matTableResponsive [dataSource]="dataSource">
-                  <ng-container matColumnDef="Titular">
-                    <th mat-header-cell *matHeaderCellDef>DNI Titular</th>
-                    <td mat-cell *matCellDef="let element">
-                      {{ element.Reserva.titular.documento }}
-                    </td>
-                  </ng-container>
+                    <ng-container matColumnDef="fechaLlegada">
+                      <th mat-header-cell *matHeaderCellDef>Fecha LLegada</th>
+                      <td mat-cell *matCellDef="let element">
+                        {{ element.Reserva.fechaLlegada | date : "dd/MM/yyyy" }}
+                      </td>
+                    </ng-container>
 
-                  <ng-container matColumnDef="NomApe">
-                    <th mat-header-cell *matHeaderCellDef>Nombre y Apellido</th>
-                    <td mat-cell *matCellDef="let element">
-                      {{ element.Reserva.titular.apellido }},
-                      {{ element.Reserva.titular.nombre }}
-                    </td>
-                  </ng-container>
+                    <ng-container matColumnDef="fechaSalida">
+                      <th mat-header-cell *matHeaderCellDef>Fecha Salida</th>
+                      <td mat-cell *matCellDef="let element">
+                        {{ element.Reserva.fechaSalida | date : "dd/MM/yyyy" }}
+                      </td>
+                    </ng-container>
 
-                  <ng-container matColumnDef="fechaLlegada">
-                    <th mat-header-cell *matHeaderCellDef>Fecha LLegada</th>
-                    <td mat-cell *matCellDef="let element">
-                      {{ element.Reserva.fechaLlegada | date : "dd/MM/yyyy" }}
-                    </td>
-                  </ng-container>
+                    <ng-container matColumnDef="hora">
+                      <th mat-header-cell *matHeaderCellDef>Horario llegada</th>
+                      <td mat-cell *matCellDef="let element">
+                        {{ element.Reserva.horaLLegada }}
+                      </td>
+                    </ng-container>
 
-                  <ng-container matColumnDef="fechaSalida">
-                    <th mat-header-cell *matHeaderCellDef>Fecha Salida</th>
-                    <td mat-cell *matCellDef="let element">
-                      {{ element.Reserva.fechaSalida | date : "dd/MM/yyyy" }}
-                    </td>
-                  </ng-container>
+                    <ng-container matColumnDef="acciones" style="text-align: right;">
+                      <th mat-header-cell *matHeaderCellDef style="text-align: right;">Acciones</th>
+                      <td mat-cell *matCellDef="let element; let pasajero" style="text-align: right;">
+                        <a class="pointer" (click)="selectedReserva(element.Reserva)"
+                          matTooltip="Ver detalles del check in">
+                          <mat-icon>remove_red_eye</mat-icon>
+                        </a>
+                        <a class="pointer" (click)="editarReserva(element.Reserva)"
+                          matTooltip="Imprimir ficha del huesped">
+                          <mat-icon>print</mat-icon>
+                        </a>
+                      </td>
+                    </ng-container>
 
-                  <ng-container matColumnDef="hora">
-                    <th mat-header-cell *matHeaderCellDef>Horario llegada</th>
-                    <td mat-cell *matCellDef="let element">
-                      {{ element.Reserva.horaLLegada }}
-                    </td>
-                  </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
-                  <ng-container matColumnDef="acciones" style="text-align: right;">
-                    <th mat-header-cell *matHeaderCellDef style="text-align: right;">Acciones</th>
-                    <td mat-cell *matCellDef="let element; let pasajero" style="text-align: right;">
-                      <a class="pointer" (click)="selectedReserva(element.Reserva)"
-                        matTooltip="Ver detalles del check in">
-                        <mat-icon>remove_red_eye</mat-icon>
-                      </a>
-                      <a class="pointer" (click)="editarReserva(element.Reserva)"
-                        matTooltip="Imprimir ficha del huesped">
-                        <mat-icon>print</mat-icon>
-                      </a>
-                    </td>
-                  </ng-container>
-
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-
-                  <!-- <tr class="mat-row" *matNoDataRow>
+                    <!-- <tr class="mat-row" *matNoDataRow>
                             <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
                         </tr> -->
-                </table>
+                  </table>
 
-                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-                  aria-label="Select page of periodic elements">
-                </mat-paginator>
-              </div>
-            </mat-card>
+                  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+                  </mat-paginator>
+                </div>
+              </mat-card>
+            </div>
           </div>
-        </div>
-      </mat-card>
+        </mat-card>
+      </div>
     </div>
   </div>
 </div>

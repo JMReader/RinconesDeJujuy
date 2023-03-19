@@ -17,6 +17,7 @@ import { EmployeeFormComponent } from '../employee-form/employee-form.component'
 })
 export class RootViewComponent implements OnInit {
 
+  isLoading = false;
   empleado!:Persona;
   user!:Empleado;
   direccionEmpleado!:Direccion;
@@ -50,12 +51,16 @@ export class RootViewComponent implements OnInit {
   }
 
   obtenerEmpleados() {
+    this.isLoading = true;
     this.personaService.getEmpleados().subscribe(
       (result) => {
         console.log(result, "Empleados");
         this.dataSource.data = result.msg;
+        this.isLoading = false;
       },
-      error => { alert("Error en la petición"); }
+      error => { alert("Error en la petición"); 
+      this.isLoading = false;
+    }
     )
   }
 
@@ -66,5 +71,6 @@ export class RootViewComponent implements OnInit {
     this.personaService.createEmpleado(this.empleadoNuevo).subscribe((data: any)=>{
             console.log(data);
           })
+    location.reload();
   }
 }

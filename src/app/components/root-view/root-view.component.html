@@ -112,60 +112,68 @@
     </div>
 </div>
 
-<!-- Datatable employee -->
+<div *ngIf="isLoading" class="loading-overlay">
+    <div class="spinner"></div>
+    <br>
+    <div class="loading-message">Cargando</div>
+</div>
+
+
 <div class="container-fluid" id="Form-container" id="mainCointainer">
     <div class="container-fluid overflow-hidden">
-      <div class="d-flex flex-column bd-highlight mb-3">
+        <div class="d-flex flex-column bd-highlight mb-3">
             <div class="p-2 bd-highlight" id="Logo-container">
                 <img class="logoF" src="assets/img/rincjujuy.png">
-              </div>
-              <br>
-            <mat-card>
+            </div>
+            <br>
+                <mat-card>
 
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-secondary btn-sm btn-sig" role="button" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    <mat-icon>create_new_folder</mat-icon>
-                    Nuevo empleado
-                </button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-secondary btn-sm btn-sig" role="button" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        <mat-icon>create_new_folder</mat-icon>
+                        Nuevo empleado
+                    </button>
 
-                <div class="mat-elevation-z8 mat-table-responsive">
-                    <table mat-table matTableResponsive [dataSource]="dataSource">
+                    <div class="mat-elevation-z8 mat-table-responsive">
+                        <table mat-table matTableResponsive [dataSource]="dataSource">
 
-                        <ng-container matColumnDef="NomApe">
-                            <th mat-header-cell *matHeaderCellDef> Nombre y Apellido </th>
-                            <td mat-cell *matCellDef="let element"> {{element.datos.apellido}},
-                                {{element.datos.nombre}} </td>
-                        </ng-container>
+                            <ng-container matColumnDef="NomApe">
+                                <th mat-header-cell *matHeaderCellDef> Nombre y Apellido </th>
+                                <td mat-cell *matCellDef="let element"> {{element.datos.apellido}},
+                                    {{element.datos.nombre}} </td>
+                            </ng-container>
 
-                        <ng-container matColumnDef="Usuario">
-                            <th mat-header-cell *matHeaderCellDef> Nombre de usuario </th>
-                            <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
-                        </ng-container>
-
-
-                        <ng-container matColumnDef="Contraseña">
-                            <th mat-header-cell *matHeaderCellDef> Contraseña </th>
-                            <td mat-cell *matCellDef="let element"> {{element.password}} </td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="Admin">
-                            <th mat-header-cell *matHeaderCellDef> Tipo </th>
-                            <td mat-cell *matCellDef="let element"> {{element.root ? 'Administrador' : 'Empleado'}} </td>
-                        </ng-container>
+                            <ng-container matColumnDef="Usuario">
+                                <th mat-header-cell *matHeaderCellDef> Nombre de usuario </th>
+                                <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
+                            </ng-container>
 
 
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            <ng-container matColumnDef="Contraseña">
+                                <th mat-header-cell *matHeaderCellDef> Contraseña </th>
+                                <td mat-cell *matCellDef="let element"> {{element.password}} </td>
+                            </ng-container>
 
-                    </table>
+                            <ng-container matColumnDef="Admin">
+                                <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                                <td mat-cell *matCellDef="let element"> {{element.root ? 'Administrador' : 'Empleado'}}
+                                </td>
+                            </ng-container>
 
-                    <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons
-                        aria-label="Select page of periodic elements">
-                    </mat-paginator>
-                </div>
 
-            </mat-card>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                        </table>
+
+                        <mat-paginator [pageSizeOptions]="[3, 5, 10]" showFirstLastButtons
+                            aria-label="Select page of periodic elements">
+                        </mat-paginator>
+                    </div>
+
+                </mat-card>
         </div>
     </div>
 </div>
+<!-- Datatable employee -->
