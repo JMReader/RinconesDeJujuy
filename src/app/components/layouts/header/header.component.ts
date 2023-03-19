@@ -10,8 +10,8 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class HeaderComponent implements OnInit {
 
-  URL:string = "http://localhost:4200/check-in/0";
-  //URL:string = window.location.protocol + "/check-in/0";
+  // URL:string = "http://localhost:4200/check-in/0";
+  URL:string = window.location.protocol + "/check-in/0";
 
   status: number; 
 
