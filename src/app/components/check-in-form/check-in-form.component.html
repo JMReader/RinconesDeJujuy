@@ -42,7 +42,7 @@
               <label for="copiadnia" class="form-label">Copia Documento de Identidad del titular
                 <span class="obligatorio">*</span>
               </label>
-              <input type="file"(change)="onFileChanges($event)" alife-file-to-base64  class="form-control"  name="documentacion" id="copiadni" aria-describedby="dniHelp"
+              <input type="file"(change)="onFileChanges($event)" alife-file-to-base64 class="form-control"  name="documentacion" id="copiadni" aria-describedby="dniHelp"
                accept="image/x-png,image/gif,image/jpeg"  >
               <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
             </div>
@@ -85,7 +85,7 @@
                 <label for="copiadniaAcomp1" class="form-label">Copia Documento del Acompañante
                   <span class="obligatorio">*</span>
                 </label>
-                <input class="form-control" name="documentacion1" alife-file-to-base64 (onFileChanged)="cargarDocumentacion($event)" type="file" id="copiadniAcomp" aria-describedby="dniHelp">
+                <input class="form-control" name="documentacion1"  (change)="onfileChangeAcompanante($event, j)" type="file" id="copiadniAcomp" aria-describedby="dniHelp">
                 <ng-container *ngIf="j == tab-1">
                   <button type="button" class="btn btn-warning" style="margin-left: 75px;" (click)="guardarAcompanantes()" [disabled]="acompanantesForm.invalid">Guardar acompañantes</button>
                 </ng-container>
