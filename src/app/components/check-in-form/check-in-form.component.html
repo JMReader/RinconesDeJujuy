@@ -36,6 +36,30 @@
                 </div>
               </div>
 
+            </div>
+  
+            <div class="mb-3">
+              <label for="copiadnia" class="form-label">Copia Documento de Identidad del titular
+                <span class="obligatorio">*</span>
+              </label>
+              <input type="file"(change)="onFileChanges($event)" alife-file-to-base64 class="form-control"  name="documentacion" id="copiadni" aria-describedby="dniHelp"
+               accept="image/x-png,image/gif,image/jpeg"  >
+              <div id="dniHelp" class="form-text">Solo archivos pdf, doc, docx, jpg, jpeg, png</div>
+            </div>
+  
+            <div class="mb-3">
+              <label for="acompaniantes" class="form-label">Nº de acompañantes</label>
+              <select class="custom-select" name="cantidad" id="CantAcomp" [(ngModel)]="tab" (change)="mostrarAcompanantes()">
+                <option selected value="0">Sin acompañante</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+
+
               <!-- DNI titular -->
               <div class="form-group">
                 <label for="dni" class="form-label">Nº de Documento de Identidad
@@ -122,6 +146,7 @@
                 <label for="llegada" class="form-label">Fecha de llegada
                   <span class="obligatorio">*</span>
                 </label>
+
                 <input type="date" name="fechaLlegada" max="{{reserva.fechaSalida}}" id="diall"
                   [(ngModel)]="reserva.fechaLlegada" required #diall="ngModel">
                 <label for="salida" class="form-label">Fecha de salida
@@ -132,6 +157,28 @@
                 <div
                   *ngIf="diall.invalid && (diall.dirty || diall.touched) || diasal.invalid && (diasal.dirty || diasal.touched)"
                   class="alert alert-danger">
+
+                <input class="form-control" name="documentacion1"  (change)="onfileChangeAcompanante($event, j)" type="file" id="copiadniAcomp" aria-describedby="dniHelp">
+                <ng-container *ngIf="j == tab-1">
+                  <button type="button" class="btn btn-warning" style="margin-left: 75px;" (click)="guardarAcompanantes()" [disabled]="acompanantesForm.invalid">Guardar acompañantes</button>
+                </ng-container>
+              </form>  
+            </div>
+            
+            <!-- fin del formulario acompanantes -->
+            
+            <!-- Fecha llegada, salida y hora de llegada -->
+            <div class="form-group">
+              <label for="llegada" class="form-label">Fecha de llegada
+                <span class="obligatorio">*</span>
+              </label>
+              <input type="date" name="fechaLlegada" max="{{reserva.fechaSalida}}" id="diall" [(ngModel)]="reserva.fechaLlegada" required #diall="ngModel">
+              <label for="salida" class="form-label">Fecha de salida
+                <span class="obligatorio">*</span>
+              </label>
+              <input type="date" name="fechaSalida" name="diasal" min="{{reserva.fechaLlegada}}" id="diasal" [(ngModel)]="reserva.fechaSalida" required #diasal="ngModel">
+                <div *ngIf="diall.invalid && (diall.dirty || diall.touched) || diasal.invalid && (diasal.dirty || diasal.touched)" class="alert alert-danger">
+
                   <div *ngIf="diall.errors || diasal.errors">
                     Rellene los campos de fecha correctamente.
                   </div>

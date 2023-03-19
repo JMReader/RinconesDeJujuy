@@ -99,6 +99,7 @@ export class CheckInFormComponent implements OnInit {
   guardarReserva(){console.log(this.reserva.horaLLegada);
     this.isLoading = true;
     this.titular.documentacion = this.dnibase64;
+    console.log(this.dnibase64)
     this.checkin = {"Persona": this.titular, "Vehiculo": this.vehiculo, "Reserva": this.reserva, "Direccion": this.direccionTitular}
     console.log(this.checkin)
     this.reservaService.createReserva(this.checkin).subscribe((data: any)=>{
@@ -122,99 +123,111 @@ export class CheckInFormComponent implements OnInit {
       };
     }
   }
+  onfileChangeAcompanante(event: any, index : number){
+    const file: File = event.target.files[0];
+    console.log(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+      this.acompanantes[index].documentacion = reader.result as string;
+      }
+  }}
 
-  cargarDocumentacion(event: any){
-    switch (this.acompanantes.length) {
-      case 0:
-        this.cont = 0; 
-      break; 
-      case 1:
-         this.bases[0] = event[0].base64
-       break;
-      case 2:
-        this.cont ++; 
-        if(this.cont == 1)
-        {
-          this.bases[0] = event[0].base64
-          Object.freeze(this.bases[0])
-          console.log(this.cont)
-        }else if(this.bases[0] !="")
-        {
-          this.bases[1] = event[0].base64
-        }
-      break;
-      case 3:
-        this.cont ++; 
-        if(this.cont == 1)
-        {
-          this.bases[0] = event[0].base64
-          Object.freeze(this.bases[0])
-          console.log(this.bases[0])
-        }else if (this.cont == 2){
-          this.bases[1] = event[0].base64
-          Object.freeze(this.bases[1])
-          console.log(this.bases[1])
-        }
-        this.bases[2] = event[0].base64
-      break;
-      case 4:
-        this.cont ++; 
-        if(this.cont == 1)
-        {
-          this.bases[0] = event[0].base64
-          Object.freeze(this.bases[0])
-          console.log(this.bases[0])
-        }else if (this.cont == 2){
-          this.bases[1] = event[0].base64
-          Object.freeze(this.bases[1])
-          console.log(this.bases[1])
-        }else if (this.cont == 3){
-          this.bases[2] = event[0].base64
-          Object.freeze(this.bases[2])
-        }
-        this.bases[3] = event[0].base64
-      break;
-      case 5:
-        this.cont ++; 
-        if(this.cont == 1)
-        {
-          this.bases[0] = event[0].base64
-          Object.freeze(this.bases[0])
-          console.log(this.bases[0])
-        }else if (this.cont == 2){
-          this.bases[1] = event[0].base64
-          Object.freeze(this.bases[1])
-          console.log(this.bases[1])
-        }else if (this.cont == 3){
-          this.bases[2] = event[0].base64
-          Object.freeze(this.bases[2])
-        }else if (this.cont == 4){
-          this.bases[3] = event[0].base64
-          Object.freeze(this.bases[3])
-        }
-        this.bases[4] = event[0].base64
-      break;
-    }
-    // for(this.i=0; this.i < this.tab; this.i++)
-    // {
-    //   console.log(this.bases[this.i]); 
-    // }
-  }
+
+  // cargarDocumentacion(event: any){
+  //   switch (this.acompanantes.length) {
+  //     case 0:
+  //       this.cont = 0; 
+  //     break; 
+  //     case 1:
+  //        this.bases[0] = event[0].base64
+  //      break;
+  //     case 2:
+  //       this.cont ++; 
+  //       if(this.cont == 1)
+  //       {
+  //         this.bases[0] = event[0].base64
+  //         Object.freeze(this.bases[0])
+  //         console.log(this.cont)
+  //       }else if(this.bases[0] !="")
+  //       {
+  //         this.bases[1] = event[0].base64
+  //       }
+  //     break;
+  //     case 3:
+  //       this.cont ++; 
+  //       if(this.cont == 1)
+  //       {
+  //         this.bases[0] = event[0].base64
+  //         Object.freeze(this.bases[0])
+  //         console.log(this.bases[0])
+  //       }else if (this.cont == 2){
+  //         this.bases[1] = event[0].base64
+  //         Object.freeze(this.bases[1])
+  //         console.log(this.bases[1])
+  //       }
+  //       this.bases[2] = event[0].base64
+  //     break;
+  //     case 4:
+  //       this.cont ++; 
+  //       if(this.cont == 1)
+  //       {
+  //         this.bases[0] = event[0].base64
+  //         Object.freeze(this.bases[0])
+  //         console.log(this.bases[0])
+  //       }else if (this.cont == 2){
+  //         this.bases[1] = event[0].base64
+  //         Object.freeze(this.bases[1])
+  //         console.log(this.bases[1])
+  //       }else if (this.cont == 3){
+  //         this.bases[2] = event[0].base64
+  //         Object.freeze(this.bases[2])
+  //       }
+  //       this.bases[3] = event[0].base64
+  //     break;
+  //     case 5:
+  //       this.cont ++; 
+  //       if(this.cont == 1)
+  //       {
+  //         this.bases[0] = event[0].base64
+  //         Object.freeze(this.bases[0])
+  //         console.log(this.bases[0])
+  //       }else if (this.cont == 2){
+  //         this.bases[1] = event[0].base64
+  //         Object.freeze(this.bases[1])
+  //         console.log(this.bases[1])
+  //       }else if (this.cont == 3){
+  //         this.bases[2] = event[0].base64
+  //         Object.freeze(this.bases[2])
+  //       }else if (this.cont == 4){
+  //         this.bases[3] = event[0].base64
+  //         Object.freeze(this.bases[3])
+  //       }
+  //       this.bases[4] = event[0].base64
+  //     break;
+  //   }
+  //   // for(this.i=0; this.i < this.tab; this.i++)
+  //   // {
+  //   //   console.log(this.bases[this.i]); 
+  //   // }
+  // }
 
 
   guardarAcompanantes(){
-    for(this.i=0; this.i < this.tab; this.i++)
-    {
-      this.reserva.acompaniantes[this.i].documentacion = this.bases[this.i]; 
-      console.log(this.reserva.acompaniantes); 
-    }
+    // for(this.i=0; this.i < this.tab; this.i++)
+    // {
+    //   this.reserva.acompaniantes[this.i].documentacion = this.bases[this.i]; 
+    //   console.log(this.reserva.acompaniantes); 
+    // }
+    this.reserva.acompaniantes = this.acompanantes;
     this.res = true;             
-    console.log(this.bases); 
   }
 
   async firmar (){
     this.isLoading = true;
     this.titular.documentacion = this.dnibase64;
+    console.log(this.dnibase64)
     this.checkin = {"Persona": this.titular, "Vehiculo": this.vehiculo, "Reserva": this.reserva, "Direccion": this.direccionTitular}
     await new Promise(f => setTimeout(f, 80)); 
     this.reservaService.createReserva(this.checkin).subscribe((data: any)=>{
