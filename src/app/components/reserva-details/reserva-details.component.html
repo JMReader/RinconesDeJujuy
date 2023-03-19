@@ -1,61 +1,127 @@
-<app-header class="no-imprimir"></app-header>
-<body>
-    <div class="container" style="margin-top: 100px"><br>
 
-        <div class="fichaContainer" style="position: relative;">
-            <!-- datos titular -->
-                <div style="border-right: 1px solid rgba(0, 0, 0, 0.205);">
-                    <img *ngIf="reservaSeleccionada.titular.documentacion != '' " class="imagen" src="{{reservaSeleccionada.titular.documentacion}}" alt="" >
-                    <h3 class="card-title, text-center">Datos del Titular</h3>
-                    <h4 class="card-subtitle mb-2 text-center text-muted" styles="font-weight: bolder;">{{reservaSeleccionada.titular.nombre}} {{reservaSeleccionada.titular.apellido}}</h4>
-                    <h4 class="card-subtitle mb-2 text-center text-muted ">DNI: {{reservaSeleccionada.titular.documento}}</h4>
-                    <h4 class="card-subtitle mb-2 text-center text-muted">Correo: {{reservaSeleccionada.titular.email}}</h4>
-                    <h4 class="card-subtitle mb-2 text-center text-muted">Telefono: {{reservaSeleccionada.titular.telefono}}</h4>
-                    <h3 class="card-title, text-center" style="margin-bottom: 3px;">Domicilio</h3>
-                    <h4 class="card-subtitle mb-2 text-center text-muted">Calle, numero: {{reservaSeleccionada.titular.direccion.calle}}</h4>
-                    <h4 class="card-subtitle mb-2 text-center text-muted">Ciudad: {{reservaSeleccionada.titular.direccion.ciudad}}</h4>
-                    <h4 class="card-subtitle mb-2 text-center text-muted">Provincia:  {{reservaSeleccionada.titular.direccion.region}}</h4>
-                    <h4 class="card-subtitle mb-2 text-center text-muted">Pais: {{reservaSeleccionada.titular.direccion.pais}}</h4>   
-                    <div *ngIf="reservaSeleccionada.firma != undefined ">
-                        <h3 class="card-title, text-center" style="margin-bottom: 3px;">Firma del titular</h3>
-                        <img class="imagen" src="{{reservaSeleccionada.firma}}" alt="" >
-                    </div>
-                    <a class="btn btn-secondary btn-sm btn-sig" style="margin-right: 5%; margin-left: 30%; width: 100px;"                    
-                    (click)="imprimirDetalles()" role="button" *ngIf="most==false">Imprimir</a>               
+<!-- <app-header class="no-imprimir"></app-header> -->
 
+<!-- <div class="container-fluid" id="Form-container" id="mainCointainer">
+    <div class="container-fluid overflow-hidden">
+      <div class="d-flex flex-column bd-highlight mb-3">
+        <mat-card>
+            <mat-card-header>
+              <mat-card-title>Actions Buttons</mat-card-title>
+              <mat-card-subtitle>Start</mat-card-subtitle>
+            </mat-card-header>
+            <div class="row">
+                <div class="col-md-4" style="background-color: aqua;">
+                    
                 </div>
-            <!-- datos reserva -->
-                <div class="card-body">
-                    <h3 class="card-subtitle mb-2 text-center ">Datos de Reserva </h3>
-                    <div>
-                        <h4 class="card-text text-muted" style="margin-left: 20px">Fecha de Llegada: {{reservaSeleccionada.fechaLlegada | date: 'dd/MM/yyyy'}}</h4>
-                        <h4 class="card-text text-muted" style="margin-left: 20px">Fecha de Salida: {{reservaSeleccionada.fechaSalida | date: 'dd/MM/yyyy'}}</h4>
-                        <h4 class="card-text text-muted" style="margin-left: 20px">Hora de Llegada: {{reservaSeleccionada.horaLLegada}}</h4>
-                        <h4 class="card-text text-muted" style="margin-left: 20px">Medio de Tansporte: {{reservaSeleccionada.medioTransporte}}</h4>
-                        <h4 class="card-text text-muted" style="margin-left: 20px">Frecuencia de Limpieza: {{reservaSeleccionada.frecuenciaLimpieza}}</h4>
-                        <h4 class="card-text text-muted" style="margin-left: 20px">Notas: {{reservaSeleccionada.notas}}</h4>
-                        <h4 class="card-text text-muted" style="margin-left: 20px">Cantidad de Acompañantes: {{reservaSeleccionada.nroacompanantes}}</h4>
-                        <div *ngIf="reservaSeleccionada.medioTransporte == 'vehiculo'" style="border-top: 1px solid rgba(0, 0, 0, 0.205);">
-                            <h4 class="card-title, text-center">Datos del Vehiculo</h4>
-                            <h4 class="card-text text-muted" style="margin-left: 20px">Modelo: {{reservaSeleccionada.vehiculo.modelo}}</h4>
-                            <h4 class="card-text text-muted" style="margin-left: 20px">Patente: {{reservaSeleccionada.vehiculo.patente}}</h4>
-                            <h4 class="card-text text-muted" style="margin-left: 20px">Color: {{reservaSeleccionada.vehiculo.color}}</h4>                       
-                            <h4 class="card-text text-muted" style="margin-left: 20px">Marca: {{reservaSeleccionada.vehiculo.marca}}</h4>                   
-                        </div>
-                        <div style="border-top: 1px solid rgba(0, 0, 0, 0.205);">
-                            <h3 *ngIf="reservaSeleccionada.nroAcompanantes != undefined" class="text-center" style="margin-bottom: 3px">Informacion de Acompañantes</h3>
-                            <div *ngFor="let acom of reservaSeleccionada.acompanantes" style="border-bottom: 1px solid rgba(0, 0, 0, 0.205);">
-                                <h4 class="card-subtitle mb-2 text-center text-muted" styles="font-weight: bolder;">Nombre y Apellido: {{acom.nombre}} {{acom.apellido}}</h4>
-                                <h4 class="card-subtitle mb-2 text-center text-muted" styles="font-weight: bolder;">Documento o Pasaporte: {{acom.documento}}</h4>
-                                <div *ngIf="acom.documentacion != ''">
-                                    <h4 class="card-subtitle mb-2 text-center text-muted" styles="font-weight: bolder;">Documentacion:</h4>
-                                    <img style="width: 150px; height: 150px;  display: flex; justify-content: center;  margin: auto; padding: 20px" src="{{acom.documentacion}}" alt="">
-                                </div>
+                <div class="col-md-8" style="background-color: blue;">
+                    aaa
+                </div>
+            </div>
+          </mat-card>
+      </div>
+    </div>
+</div> -->
+
+<div class="impresion">
+    <div class="izquierda">
+        <mat-card>
+            <mat-card-content>
+                <!-- datos titular -->
+                <div class="p-2 bd-highlight" id="img-container">
+                    <img *ngIf="reservaSeleccionada.titular.documentacion != '' " class="imagen"
+                        src="{{reservaSeleccionada.titular.documentacion}}" alt="">
+                </div>
+                <h3 class="card-title, text-center">Datos del Titular</h3>
+                <hr class="separador" />
+                <h4 class="card-subtitle mb-2 text-muted">{{reservaSeleccionada.titular.nombre}}
+                    {{reservaSeleccionada.titular.apellido}}</h4>
+                <h4 class="card-subtitle mb-2 text-muted ">DNI: {{reservaSeleccionada.titular.documento}}
+                </h4>
+                <h4 class="card-subtitle mb-2 text-muted">Correo: {{reservaSeleccionada.titular.email}}</h4>
+                <h4 class="card-subtitle mb-2 text-muted">Telefono: {{reservaSeleccionada.titular.telefono}}
+                </h4>
+                <h3 class="card-title, text-center">Domicilio</h3>
+                <hr class="separador" />
+                <h4 class="card-subtitle mb-2 text-muted">Calle, numero:
+                    {{reservaSeleccionada.titular.direccion.calle}}</h4>
+                <h4 class="card-subtitle mb-2 text-muted">Ciudad:
+                    {{reservaSeleccionada.titular.direccion.ciudad}}</h4>
+                <h4 class="card-subtitle mb-2 text-muted">Provincia:
+                    {{reservaSeleccionada.titular.direccion.region}}</h4>
+                <h4 class="card-subtitle mb-2 text-muted">Pais:
+                    {{reservaSeleccionada.titular.direccion.pais}}</h4>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="derecha">
+        <mat-card>
+            <mat-card-content>
+                <!-- datos reserva -->
+                <h3 class="card-title, text-center">Datos de Reserva </h3>
+                <hr class="separador" />
+                <div>
+                    <h4 class="card-text text-muted">Fecha de Llegada: {{reservaSeleccionada.fechaLlegada | date:
+                        'dd/MM/yyyy'}}</h4>
+                    <h4 class="card-text text-muted">Fecha de Salida: {{reservaSeleccionada.fechaSalida | date:
+                        'dd/MM/yyyy'}}</h4>
+                    <h4 class="card-text text-muted">Hora de Llegada: {{reservaSeleccionada.horaLLegada}}</h4>
+                    <h4 class="card-text text-muted">Medio de Tansporte: {{reservaSeleccionada.medioTransporte}}</h4>
+                    <h4 class="card-text text-muted">Frecuencia de Limpieza: {{reservaSeleccionada.frecuenciaLimpieza}}
+                    </h4>
+                    <h4 class="card-text text-muted">Notas: {{reservaSeleccionada.notas}}</h4>
+                    <h4 *ngIf="reservaSeleccionada.nroacompanantes > 0" class="card-text text-muted">Cantidad de
+                        Acompañantes: {{reservaSeleccionada.nroacompanantes}}
+                    </h4>
+                    <div *ngIf="reservaSeleccionada.medioTransporte == 'vehiculo'">
+                        <h3 class="card-title, text-center">Datos del Vehiculo</h3>
+                        <hr class="separador" />
+                        <h4 class="card-text text-muted">Modelo: {{reservaSeleccionada.vehiculo.modelo}}</h4>
+                        <h4 class="card-text text-muted">Patente: {{reservaSeleccionada.vehiculo.patente}}</h4>
+                        <h4 class="card-text text-muted">Color: {{reservaSeleccionada.vehiculo.color}}</h4>
+                        <h4 class="card-text text-muted">Marca: {{reservaSeleccionada.vehiculo.marca}}</h4>
+                    </div>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<!-- <div class="abajo-firma" *ngIf="most==true">
+    <div *ngIf="reservaSeleccionada.firma != undefined ">
+        <h3 class="card-title">Firma del titular</h3>
+        <img class="imagen" src="{{reservaSeleccionada.firma}}" alt="" >
+    </div>
+</div> -->
+<div class="abajo">
+    <mat-card *ngIf="reservaSeleccionada.nroacompanantes > 0" style="width: 90%;">
+        <mat-card-content>
+            <div *ngIf="reservaSeleccionada.nroAcompanantes != 0">
+                <h3 class="card-title, text-center">Informacion de Acompañantes</h3>
+                <hr class="separador">
+
+                <div class="abajo-hijo" *ngFor="let acom of reservaSeleccionada.acompanantes">
+                    <div class="left">
+                        <h4 class="card-subtitle mb-2 text-muted">Nombre y Apellido: {{acom.nombre}}
+                            {{acom.apellido}}</h4>
+                        <h4 class="card-subtitle mb-2 text-muted">Documento o Pasaporte: {{acom.documento}}</h4>
+                    </div>
+                    <div class="right">
+                        <div *ngIf="acom.documentacion != ''">
+                            <div class="p-2 bd-highlight" id="img-container">
+                                <img class="imagen" src="{{acom.documentacion}}" alt="">
+
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-        </div>
-</body>
-    
+        </mat-card-content>
+    </mat-card>
+</div>
+<div class="abajo-btn">
+    <div class="p-2 bd-highlight" id="img-container">
+        <button mat-raised-button (click)="imprimirDetalles()" class="no-imprimir">Imprimir</button>
+        <!-- <a class="btn btn-secondary btn-sm btn-sig" (click)="imprimirDetalles()" role="button" *ngIf="most==false">Imprimir</a>                -->
+    </div>
+</div>

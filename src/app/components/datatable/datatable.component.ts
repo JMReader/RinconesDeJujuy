@@ -15,6 +15,8 @@ import { timer } from 'rxjs';
   styleUrls: ['./datatable.component.css']
 })
 export class DatatableComponent implements OnInit {
+  isLoading = false;
+
   meses: string[] = [
     'Enero',
     'Febrero',
@@ -127,27 +129,28 @@ export class DatatableComponent implements OnInit {
   }
 
   async obtenerReservas() {
-    if(!this.reservas){
-      await new Promise(f => setTimeout(f, 10));
-      console.log("envio de datos "+ new Date());
-      this.reservaService.getReservas().subscribe(
-        (result) => {
-          this.reservas = result.msg;
-          console.log("llegada de datos "+ new Date());
-          this.reservas  = this.reservas.map(reserva => {
-            return {
-              Reserva: reserva,
-              titularDocumento: reserva.titular.documento
-            };
-          });
-          
-          this.dataSource.data = this.reservas;
-          this.copyData.data = this.dataSource.data.slice();
-        },
-        error => { alert("Error en la petición"); }
-      )
+
+if(!this.reservas){
+    this.isLoading = true;
+    await new Promise(f => setTimeout(f, 10));
+    this.reservaService.getReservas().subscribe(
+      (result) => {
+        this.reservas = result.msg;
+        this.reservas  = this.reservas.map(reserva => {
+          return {
+            Reserva: reserva,
+            titularDocumento: reserva.titular.documento
+          };
+        });
+        this.dataSource.data = this.reservas;
+        this.copyData.data = this.dataSource.data.slice();
+        this.isLoading = false;
+      },
+      error => { alert("Error en la petición"); 
+      this.isLoading = false;
     }
-   
+    )}
+
   }
 
   async obtenerReservasFiltradas() {
@@ -165,6 +168,7 @@ export class DatatableComponent implements OnInit {
   }
 
   onFilterChange() {
+    this.isLoading = true;
     this.reservaService.getReservasFiltro().subscribe(
       (result) => {
         this.reservasFirmadas = result.firmadas;
@@ -178,6 +182,7 @@ export class DatatableComponent implements OnInit {
               titularDocumento: reserva.titular.documento
             };
           });;
+          this.isLoading = false;
         } else if (this.selectedValue  === 'nofirmadas') {
           this.dataSource.data = this.reservasNoFirmadas.map(reserva => {
             return {
@@ -185,6 +190,7 @@ export class DatatableComponent implements OnInit {
               titularDocumento: reserva.titular.documento
             };
           });;
+          this.isLoading = false;
         }
       }
 
@@ -206,7 +212,6 @@ export class DatatableComponent implements OnInit {
         };
       });;
     }
-
   }
 
   cls(){
