@@ -18,7 +18,6 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./check-in-form.component.css']
 })
 export class CheckInFormComponent implements OnInit { 
-  isLoading = false;
   cont1 : number = 0; 
   mostrar:boolean = false;
   band: boolean = false;
@@ -97,16 +96,13 @@ export class CheckInFormComponent implements OnInit {
   }
 
   guardarReserva(){console.log(this.reserva.horaLLegada);
-    this.isLoading = true;
     this.titular.documentacion = this.dnibase64;
     console.log(this.dnibase64)
     this.checkin = {"Persona": this.titular, "Vehiculo": this.vehiculo, "Reserva": this.reserva, "Direccion": this.direccionTitular}
     console.log(this.checkin)
     this.reservaService.createReserva(this.checkin).subscribe((data: any)=>{
             console.log(data);
-            this.checkin1 = data.msg
-            this.isLoading = false;
-          })
+            this.checkin1 = data.msg})
     this.band = true; 
   }
 
@@ -225,7 +221,6 @@ export class CheckInFormComponent implements OnInit {
   }
 
   async firmar (){
-    this.isLoading = true;
     this.titular.documentacion = this.dnibase64;
     console.log(this.dnibase64)
     this.checkin = {"Persona": this.titular, "Vehiculo": this.vehiculo, "Reserva": this.reserva, "Direccion": this.direccionTitular}
@@ -240,8 +235,7 @@ export class CheckInFormComponent implements OnInit {
                    this.router.navigate(['sign/', this.checkin1]);
               }
               )
-              this.isLoading = false;
-            })
+    })
   }
 
   recargar(){
