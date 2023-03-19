@@ -1,23 +1,139 @@
-.fichaContainer{
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.impresion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  page-break-after: avoid;
+  border: 1px solid rgb(0 0 0 / 31%);
+}
+
+.izquierda {
+  width: 40%;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgb(0 0 0 / 31%);;
+}
+
+.derecha {
+  width: 60%;
+  float: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.abajo {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  display: flex;
+  justify-content: center;
+}
+
+/* .abajo-firma {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: end;
+  page-break-after: avoid;
+} */
+
+.abajo-hijo{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left, .right {
+  flex-basis: 50%;
+  padding: 10px;
+}
+
+.left {
+  align-self: center;
+}
+
+
+.abajo-btn {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-card {
+  width: 90%;
+  margin-top: 10px;
+  border: none;
+  box-shadow: none;
+}
+
+/* .fichaContainer{
     display: flex; 
     width: 800px;
     height: auto;
     border-radius: 2px;
     box-shadow: 1px 1px 4px 2px rgba(0,0,0,0.2);
     padding: 20px;
-} 
+}  */
 
-.imagen{
-    width: 250px;
-    height: 250px;
-    border-right: 1px solid #0000;
-    padding: 20px; 
+#img-container {
+  width: 90%;
+  height: auto;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.imagen {
+  max-width: 250px;
+    max-height: 160px;
+    aspect-ratio: 4/3;
+}
+
+.separador {
+  margin: 1rem 0;
+  color: inherit;
+  border: 0;
+  border-top: 1px solid;
+  opacity: .25;
+  margin-top: -10px;
+  margin-bottom: 7px;
+  size: 1.5px;
+  background-color: black;
+}
+
+.mat-raised-button {
+  color: #ffffff;
+  background-color: #091c49;
+}
+
+/* #btn-container {
+  width: 90%;
+  height: auto;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
 
 /* .card-body{
 } */
 
-.container {
+/* .container {
     align-items: center;
     justify-content: center;
     height: 30vh; 
@@ -28,20 +144,52 @@
     top: 8%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-
-  @media print {
-    .no-imprimir {
-      visibility: hidden;
-    }
-    @page {
-      size: A4;
-      margin: 0;
-    }
-  }
-
-    /* @media (max-width:640px){
-      .fichaContainer {
-        display: block;
-      }
   } */
+
+/* @media print {
+  .no-imprimir {
+    visibility: hidden;
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+} */
+
+.left {
+  width: 40%;
+  float: left;
+  text-align: center;
+}
+
+.right {
+  width: 60%;
+  float: right;
+}
+
+@media print {
+  .impresion {
+    height: auto !important;
+    page-break-after: always;
+  } 
+  /* .abajo-firma {
+    height: auto !important;
+    page-break-after: always;
+  } */
+  .izquierda, .derecha {
+    margin-bottom: 10px; 
+  }
+  .abajo {
+    margin-top: 10px; 
+  }
+  
+  .no-imprimir {
+    visibility: hidden;
+  }
+  
+  @page {
+    size: A4;
+    margin: 0;
+  }
+}

@@ -11,11 +11,14 @@ import { PersonaService } from 'src/app/services/persona.service';
   templateUrl: './reserva-details.component.html',
   styleUrls: ['./reserva-details.component.css']
 })
+
+
 export class ReservaDetailsComponent implements OnInit {
   reservaSeleccionada! : any; 
   most=false; 
   reser: string; 
   per!:Persona 
+
   constructor(private route: ActivatedRoute, private reservaService: ReservaService, private personaService: PersonaService) { 
     this.reser=  ""
   }
@@ -48,6 +51,4 @@ export class ReservaDetailsComponent implements OnInit {
     }, 300); 
   }
   
-  
-
 }
