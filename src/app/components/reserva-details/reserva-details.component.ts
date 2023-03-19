@@ -14,6 +14,8 @@ import { PersonaService } from 'src/app/services/persona.service';
 
 
 export class ReservaDetailsComponent implements OnInit {
+  isLoading = false;
+
   reservaSeleccionada! : any; 
   most=false; 
   reser: string; 
@@ -34,9 +36,11 @@ export class ReservaDetailsComponent implements OnInit {
   }
 
   traerReserva(){
+    this.isLoading = true;
     this.reservaService.getReserva(this.reser).subscribe((result)=> {
       this.reservaSeleccionada = result.reserva;
       console.log(this.reservaSeleccionada.nroAcompanantes); 
+      this.isLoading = false;
     }); 
     // this.reservaService.getReserva(this.reser).subscribe((data: any)=>{
     //   this.reservaSeleccionada = data.reserva; 
