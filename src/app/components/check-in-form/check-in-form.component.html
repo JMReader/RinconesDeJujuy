@@ -61,7 +61,7 @@
 
             <!-- Formulario acompanantes -->
             <div>
-              <form class="form-group" #acompanantesForm="ngForm" *ngFor="let acom of acompanantes">
+              <form class="form-group" #acompanantesForm="ngForm" *ngFor="let acom of acompanantes, let j = index">
                 <label for="datosAcomp" class="form-label">Datos del Acompañante
                   <span class="obligatorio">*</span>
                 </label>
@@ -86,8 +86,10 @@
                   <span class="obligatorio">*</span>
                 </label>
                 <input class="form-control" name="documentacion1" alife-file-to-base64 (onFileChanged)="cargarDocumentacion($event)" type="file" id="copiadniAcomp" aria-describedby="dniHelp">
+                <ng-container *ngIf="j == tab-1">
+                  <button type="button" class="btn btn-warning" style="margin-left: 75px;" (click)="guardarAcompanantes()" [disabled]="acompanantesForm.invalid">Guardar acompañantes</button>
+                </ng-container>
               </form>  
-              <button type="button" class="btn btn-warning" style="margin-left: 75px;" (click)="guardarAcompanantes()" *ngIf="bandera1 == true">Guardar acompañantes</button>
             </div>
             
             <!-- fin del formulario acompanantes -->
@@ -512,11 +514,11 @@
             </div>
   
             <div class="d-flex justify-content-center mb-3" *ngIf="status == 0">
-              <button type="button" class="btn btn-warning" (click)="guardarReserva()" [disabled]="reservaForm.invalid">Enviar</button>
+              <button type="button" class="btn btn-warning" (click)="guardarReserva()" [disabled]="reservaForm.invalid || res==false">Enviar</button>
             </div>
   
             <div class="d-flex justify-content-center mb-3" *ngIf="status == 1">
-              <button type="button" class="btn btn-warning" (click)="firmar()" [disabled]="reservaForm.invalid">Firmar</button>
+              <button type="button" class="btn btn-warning" (click)="firmar()" [disabled]="reservaForm.invalid || res==false">Firmar</button>
             </div>
             
   
@@ -529,10 +531,7 @@
           <div>
             <div>
               <h2 class="text-center">¡Su reserva ha sido registrada con exito!</h2><br>
-            </div>
-
-            <a type="button" href="/" class="btn btn-dark" style="width: 100%; margin-bottom: 5px;">Volver a listado de reservas</a>
-            
+            </div>            
 
               <h4 class="text-center">Puede cerrar esta ventana o, si lo desea, puede generar una nueva reserva.</h4>
             <a type="button" (click)="recargar()" class="btn btn-dark" style="padding-inline: 113px; width: 440px;">Cargar nueva reserva</a>

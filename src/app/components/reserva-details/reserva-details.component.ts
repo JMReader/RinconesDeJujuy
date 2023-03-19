@@ -36,7 +36,7 @@ export class ReservaDetailsComponent implements OnInit {
   traerReserva(){
     this.reservaService.getReserva(this.reser).subscribe((result)=> {
       this.reservaSeleccionada = result.reserva;
-      console.log(this.reservaSeleccionada); 
+      console.log(this.reservaSeleccionada.nroAcompanantes); 
     }); 
     // this.reservaService.getReserva(this.reser).subscribe((data: any)=>{
     //   this.reservaSeleccionada = data.reserva; 

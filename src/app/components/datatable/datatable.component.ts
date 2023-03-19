@@ -47,7 +47,7 @@ export class DatatableComponent implements OnInit {
  dataSource = new MatTableDataSource();
  copyData = new MatTableDataSource();
  FechaFiltro!:Date;
- reservas: Array<any> = new Array();
+ reservas!: Array<any>;
  reservasFirmadas: Array<Reserva> = [];
  reservasNoFirmadas: Array<Reserva> = [];
 
@@ -129,6 +129,8 @@ export class DatatableComponent implements OnInit {
   }
 
   async obtenerReservas() {
+
+if(!this.reservas){
     this.isLoading = true;
     await new Promise(f => setTimeout(f, 10));
     this.reservaService.getReservas().subscribe(
@@ -147,7 +149,8 @@ export class DatatableComponent implements OnInit {
       error => { alert("Error en la petición"); 
       this.isLoading = false;
     }
-    )
+    )}
+
   }
 
   async obtenerReservasFiltradas() {
