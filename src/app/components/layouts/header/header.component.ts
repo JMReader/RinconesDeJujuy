@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
   check_hotel(){
     this.status=1; 
-    this.router.navigate(['koritacrah.github.io/RinconesDeJujuy/check-in/', this.status]);
+    this.router.navigate(['/check-in/', this.status]);
     console.log(this.status)
   }
   logOut(){
