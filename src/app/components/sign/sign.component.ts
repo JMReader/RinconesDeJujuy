@@ -42,15 +42,6 @@ export class SignComponent {
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
     });
-    // this.activatedRoute.params.subscribe(params =>{
-    //   this.reservaService.getReserva(params['id']).subscribe(
-    //     (result) => {
-    //       // this.pasaje = new Pasaje();
-    //       // Object.assign(this.pasaje, element)
-    //       console.log(result, "resultado y element");
-    //   }
-    //   )
-    // })
   }
 
   drawComplete() {
