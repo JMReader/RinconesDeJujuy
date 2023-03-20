@@ -406,9 +406,6 @@
             </div>
   
             <div class="mb-3">
-              <label for="mensaje" class="form-label">Mensaje
-                <span class="obligatorio">*</span>
-              </label>
               <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" name="notas"
                 placeholder="Si desea dejarnos alguna recomendación para el día de su llegada, indiquela aquí..." [(ngModel)]="reserva.notas"></textarea>
             </div>
@@ -528,7 +525,8 @@
             
   
             <div class="aviso">
-              <span class="obligatorio"> * </span>los campos son obligatorios.
+              <span class="obligatorio"> * </span>Los campos son obligatorios. <br>
+              <span class="obligatorio"> * </span>Si cuenta con acompañantes, verifique haber cargado sus datos.
             </div>
           </form>
         </div>

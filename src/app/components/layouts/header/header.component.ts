@@ -10,8 +10,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class HeaderComponent implements OnInit {
 
-  // URL:string = "http://localhost:4200/check-in/0";
-  URL:string = window.location.protocol + "/check-in/0";
+  URL:string = window.location.protocol + "RinconesDeJujuy/check-in/0";
 
   status: number; 
 
@@ -30,7 +29,7 @@ export class HeaderComponent implements OnInit {
 
   check_hotel(){
     this.status=1; 
-    this.router.navigate(['check-in/', this.status]);
+    this.router.navigate(['RinconesDeJujuy/check-in/', this.status]);
     console.log(this.status)
   }
   logOut(){
